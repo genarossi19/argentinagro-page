@@ -1,0 +1,42 @@
+---
+import NavItem from "./NavBarItem.astro";
+import NavbarButtons from "./NavBarButtons";
+
+import "../../styles/global.css";
+
+const path = Astro.url.pathname;
+const pathSlipt = path.split("/").slice(1).toString();
+
+const ClassFunction = (type: string) => {
+  let classes =
+    "text-black transition-all ease-in-out cursor-pointer px-4 py-2 rounded-full";
+
+  if (pathSlipt === type) {
+    // Estilos cuando estás en la página
+    classes += " bg-black text-[#ffffff] hover:bg-logo-blue hover:text-white";
+  } else {
+    // Estilos cuando NO estás en la página
+    classes += " hover:text-logo-blue";
+  }
+
+  return classes;
+};
+---
+
+<nav class="flex justify-between py-2 px-10 items-center">
+  <a class="flex items-center gap-2" href="/"
+    ><img src="/logo1.png" alt="logo" class="w-[200px]" /></a
+  >
+
+  <ul class="flex gap-8 items-center">
+    <NavItem newClass={ClassFunction("")} href="/">Inicio</NavItem>
+    <NavItem newClass={ClassFunction("services")} href="/services"
+      >Servicios</NavItem
+    >
+    <NavItem newClass={ClassFunction("about")} href="/about"
+      >Sobre nosotros</NavItem
+    >
+    <NavItem newClass={ClassFunction("info")} href="/info">Informacion</NavItem>
+  </ul>
+  <NavbarButtons client:visible />
+</nav>
