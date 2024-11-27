@@ -20,8 +20,8 @@ import "@/styles/global.css";
     <title>{title}</title>
   </head>
   <body>
-    <div id="app" class="relative p-2 gap-2"></div>
-    <header class="header-blur fixed top-0 w-full [grid-area:header]">
+    <div id="app" class="relative"></div>
+    <header class="header-blur fixed top-0 w-full [grid-area:header] z-30">
       <NavBar />
     </header>
     <main class="[grid-area:main]"><slot /></main>

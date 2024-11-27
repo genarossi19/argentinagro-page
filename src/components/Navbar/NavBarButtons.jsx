@@ -1,5 +1,5 @@
 import React from "react";
-
+import { MailOpen } from "lucide-react";
 import { motion } from "framer-motion";
 function NavbarButtons() {
   return (
@@ -10,7 +10,10 @@ function NavbarButtons() {
           whileTap={{ scale: 0.8 }}
           className="bg-logo-blue text-white rounded-full px-6 py-2  "
         >
-          Contactanos
+          <div className="flex items-center gap-2">
+            ¡Contáctanos!
+            <MailOpen size={20} />
+          </div>
         </motion.button>
       </li>
     </ul>
