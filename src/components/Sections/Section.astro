@@ -1,0 +1,34 @@
+---
+const { color, title, subtitle, id } = Astro.props;
+const textColor = `text-${color}`;
+---
+
+<div class="snap-start">
+  <section
+    id={id}
+    class="landing-section bg-black h-screen w-screen text-center relative overflow-hidden"
+    data-header-color={color}
+  >
+    <!-- no pasa nada con usar dos header y dos footer en una pagina, ya que este es el header de la SECTION no de la pagina en si -->
+    <div class="z-30 relative h-full flex flex-col">
+      <header class="">
+        <slot name="icon" />
+        <h2 class={`text-[40px] ${textColor} pt-40 font-medium`}>
+          {title}
+        </h2>
+        <p class={`text-sm ${textColor} underline`}>
+          {subtitle}
+        </p>
+      </header>
+
+      <footer class="flex flex-grow flex-col flex-nowrap justify-end pb-20">
+        <slot name="footer" />
+        <!-- envolvemos el boton en un div para que no tome todo el ancho del footer -->
+      </footer>
+    </div>
+
+    <div class="absolute top-0 bottom-0 h-full z-10 w-full">
+      <slot name="background" />
+    </div>
+  </section>
+</div>
