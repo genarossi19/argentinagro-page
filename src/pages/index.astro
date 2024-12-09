@@ -5,25 +5,40 @@ import Section from "@/components/Sections/Section.astro";
 import SectionHeader from "@/components/Sections/SectionHeader.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-  <header
-    class="mx-auto flex justify-between h-screen w-screen text-center snap-y snap-mandatory relative overflow-auto"
-  >
-    <div class="flex-1 z-10">
-      <h1
-        class="text-6xl font-semibold text-white items-center text-center text-balance mt-40"
-      >
-        La solucion ideal para <span class="text-logo-blue font-bold"
-          >proteger</span
+<Layout title="Argentinagro SRL de Trenque Lauquen">
+  <main class="snap-y snap-mandatory relative w-full h-screen overflow-auto">
+    <!-- HERO -->
+    <SectionHeader color="white" id="#">
+      <div class="flex-1">
+        <h1
+          class="text-6xl font-semibold text-white items-center text-center text-balance mt-40"
         >
-        tus <span class="text-logo-blue font-bold"> cultivos</span>.
-      </h1>
+          La solución ideal para <span class="text-logo-blue font-bold"
+            >proteger</span
+          >
+          tus <span class="text-logo-blue font-bold"> cultivos</span>.
+        </h1>
 
-      <p class="text-2xl text-white text-center font-medium mt-6 ml-8">
-        Desde 1976 al servicio de la agricultura regional.
-      </p>
-    </div>
-    <div class="absolute top-0 bottom-0 h-full w-full">
+        <p class="text-2xl text-white text-center font-medium mt-6 ml-8">
+          Desde 1976 al servicio de la agricultura regional.
+        </p>
+      </div>
+      <div
+        slot="footer"
+        class="flex flex-col px-6 justify-center gap-y-4 sm:flex-row sm:gap-x-6"
+      >
+        <a
+          class="text-sm py-2 px-12 border-[3px] border-black/5 rounded cursor-pointer hover:bg-black/90 hover:border-black/5 hover:backdrop-blur-3xl bg-black/60 text-white transition-all duration-300"
+          href="#"
+        >
+          <span>Novedades</span>
+        </a>
+
+        <a
+          class="text-sm py-2 px-12 border-[3px] border-white rounded cursor-pointer hover:bg-black/30 hover:border-gray-100/5 hover:backdrop-blur-3xl hover:text-white bg-white text-black transition-all duration-300"
+          href="#servicios"><span>Servicios</span></a
+        >
+      </div>
       <video
         slot="background"
         muted
@@ -31,19 +46,146 @@ import SectionHeader from "@/components/Sections/SectionHeader.astro";
         autoplay
         class="object-center object-cover h-full w-full"
         loop></video>
-    </div>
-  </header>
+    </SectionHeader>
+    <!-- SIEMBRA AEREA -->
+    <Section
+      color="black"
+      title="Siembra aérea"
+      subtitle="Pioneros en la zona con 20 años de experiencia"
+      id="siembra_aerea"
+    >
+      <div slot="footer">
+        <a
+          class="text-sm text-white py-2 px-12 border-[3px] border-white rounded cursor-pointer hover:bg-white/30 hover:border-white/5 hover:backdrop-blur-3xl active:bg-white active:text-black transition-all duration-300"
+          href="#"><span>Ver más</span></a
+        >
+      </div>
+      <img
+        slot="background"
+        class="object-center object-cover h-full w-full"
+        src="avion1.jpg"
+        alt="Siembra aerea"
+      />
+    </Section>
+    <!-- SIEMBRA TERRESTRE -->
+    <Section
+      color="white"
+      title="Siembra terrestre"
+      subtitle="Contamos con 3 equipos de siembra de última tecnología"
+      id="siembra_terrestre"
+    >
+      <div slot="footer">
+        <a
+          class="text-sm text-white py-2 px-12 border-[3px] border-white rounded cursor-pointer hover:bg-white/30 hover:border-white/5 hover:backdrop-blur-3xl active:bg-white active:text-black transition-all duration-300"
+          href="#"><span>Ver más</span></a
+        >
+      </div>
+      <img
+        slot="background"
+        class="object-top object-cover h-full w-full"
+        src="siembra_terrestre2.jpg"
+        alt="Siembra terrestre"
+      />
+    </Section>
+    <!-- COSECHA -->
+    <Section
+      color="white"
+      title="Cosecha"
+      subtitle="Desde granos finos hasta cultivos especiales, contamos con la maquinaria y el equipo humano necesario"
+      id="cosecha"
+    >
+      <div slot="footer">
+        <a
+          class="text-sm text-white py-2 px-12 border-[3px] border-white rounded cursor-pointer hover:bg-white/30 hover:border-white/5 hover:backdrop-blur-3xl active:bg-white active:text-black transition-all duration-300"
+          href="#"><span>Ver más</span></a
+        >
+      </div>
+      <img
+        slot="background"
+        class="object-center object-cover h-full w-full"
+        src="cosechadoras.JPG"
+        alt="cosecha"
+      />
+    </Section>
+    <!-- FERTILIZACION -->
+    <Section
+      color="white"
+      title="Fertilización"
+      subtitle="Aplicamos los nutrientes que tus cultivos necesitan, donde los necesitan."
+      id="fertilizacion"
+    >
+      <div slot="footer">
+        <a
+          class="text-sm text-white py-2 px-12 border-[3px] border-white rounded cursor-pointer hover:bg-white/30 hover:border-white/5 hover:backdrop-blur-3xl active:bg-white active:text-black transition-all duration-300"
+          href="#"><span>Ver más</span></a
+        >
+      </div>
+      <img
+        slot="background"
+        class="object-top object-cover h-full w-full"
+        src="fertilizacion4.jpg"
+        alt="fertilizacion"
+      />
+    </Section>
+    <!-- PULVERIZACION AEREA -->
+    <Section
+      color="white"
+      title="Pulverización aérea"
+      subtitle="Maximiza tus rendimientos con una pulverización aérea precisa y oportuna."
+      id="pulverizacion_aerea"
+    >
+      <div slot="footer">
+        <a
+          class="text-sm text-white py-2 px-12 border-[3px] border-white rounded cursor-pointer hover:bg-white/30 hover:border-white/5 hover:backdrop-blur-3xl active:bg-white active:text-black transition-all duration-300"
+          href="#"><span>Ver más</span></a
+        >
+      </div>
+      <img
+        slot="background"
+        class="object-center object-cover h-full w-full"
+        src="pulverizacion_aerea.jpg"
+        alt="pulverizacion_aerea"
+      />
+    </Section>
+    <!-- PULVERIZACION TERRESTRE -->
+    <Section
+      color="black"
+      title="Pulverización terrestre"
+      id="pulverizacion_terrestre"
+      subtitle="Confía en la precisión de nuestro sistema SIA para una pulverización óptima."
+    >
+      <div slot="footer">
+        <a
+          class="text-sm text-white py-2 px-12 border-[3px] border-white rounded cursor-pointer hover:bg-white/30 hover:border-white/5 hover:backdrop-blur-3xl active:bg-white active:text-black transition-all duration-300"
+          href="#"><span>Ver más</span></a
+        >
+      </div>
+      <img
+        slot="background"
+        class="object-center object-cover h-full w-full"
+        src="pulverizacion_terrestre.jpg"
+        alt="pulverizacion_terrestre"
+      />
+    </Section>
+    <!-- Otros Servicios -->
+    <Section
+      color="white"
+      title="Otros servicios"
+      id="otros"
+      subtitle="Asesoramiento agronómico y servicios de campo a medida para optimizar tus resultados."
+    >
+      <div slot="footer">
+        <a
+          class="text-sm text-white py-2 px-12 border-[3px] border-white rounded cursor-pointer hover:bg-white/30 hover:border-white/5 hover:backdrop-blur-3xl active:bg-white active:text-black transition-all duration-300"
+          href="#"><span>Ver más</span></a
+        >
+      </div>
+      <img
+        slot="background"
+        class="object-top object-cover h-full w-full"
+        src="otros.jpg"
+        alt="otros"
+      />
+    </Section>
+  </main>
 </Layout>
-
-<Section
-  color="white"
-  title="Servicios"
-  subtitle="Conoce nuestros servicios"
-  id="servicios"
-/>
-<Section
-  color="white"
-  title="Servicios"
-  subtitle="Conoce nuestros servicios"
-  id="novedades"
-/>

@@ -11,7 +11,23 @@ const textColor = `text-${color}`;
   >
     <!-- no pasa nada con usar dos header y dos footer en una pagina, ya que este es el header de la SECTION no de la pagina en si -->
     <div class="z-30 relative h-full flex flex-col">
+      <header class="">
+        <slot name="icon" />
+        <h1
+          class="text-6xl font-semibold text-white items-center text-center text-balance mt-40"
+        >
+          La solución ideal para <span class="text-logo-blue font-bold"
+            >proteger</span
+          >
+          tus <span class="text-logo-blue font-bold"> cultivos</span>.
+        </h1>
+        <p class="text-2xl text-white text-center font-medium mt-6 ml-8">
+          Desde 1976 al servicio de la agricultura regional.
+        </p>
+      </header>
+
       <footer class="flex flex-grow flex-col flex-nowrap justify-end pb-20">
+        <slot name="footer" />
         <!-- envolvemos el boton en un div para que no tome todo el ancho del footer -->
       </footer>
     </div>

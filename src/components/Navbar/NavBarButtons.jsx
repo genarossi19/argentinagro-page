@@ -1,5 +1,5 @@
 import React from "react";
-import { MailOpen } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 function NavbarButtons() {
   return (
@@ -8,11 +8,11 @@ function NavbarButtons() {
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.8 }}
-          className="bg-logo-blue text-white rounded-full px-6 py-2  "
+          className="bg-logo-blue/80 text-white rounded-md px-6 py-2  "
         >
-          <div className="flex items-center gap-2">
-            ¡Contáctanos!
-            <MailOpen size={20} />
+          <div className="flex items-center gap-4">
+            Contáctanos
+            <MessageCircle size={16} />
           </div>
         </motion.button>
       </li>
