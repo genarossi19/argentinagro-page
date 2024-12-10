@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import "@/styles/global.css";
 import Section from "@/components/Sections/Section.astro";
 import SectionHeader from "@/components/Sections/SectionHeader.astro";
+import DialogDemo from "@/components/Dialogs/DialogDemo";
 ---
 
 <Layout title="Argentinagro SRL de Trenque Lauquen">
@@ -47,6 +48,7 @@ import SectionHeader from "@/components/Sections/SectionHeader.astro";
         class="object-center object-cover h-full w-full"
         loop></video>
     </SectionHeader>
+    <DialogDemo client:load />
     <!-- SIEMBRA AEREA -->
     <Section
       color="black"

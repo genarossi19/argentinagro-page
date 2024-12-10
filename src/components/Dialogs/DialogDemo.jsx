@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -11,9 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import DialogImg from "@/public/dialog-content.png";
 import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function DialogDemo() {
@@ -22,30 +18,31 @@ export default function DialogDemo() {
 
   const stepContent = [
     {
-      title: "Welcome to Origin UI",
+      title: "Novedades de la semana",
       description:
-        "Discover a powerful collection of components designed to enhance your development workflow.",
+        "Tenemos novedades de la semana, descubre las mejores herramientas para tu agricultura.",
+      image: "/avion1.jpg",
     },
     {
-      title: "Customizable Components",
+      title: "Pulverización",
       description:
-        "Each component is fully customizable and built with modern web standards in mind.",
+        "Descubre las mejores herramientas para pulverizar tus cultivos.",
+      image: "/pulverizacion_aerea.jpg",
     },
     {
-      title: "Ready to Start?",
-      description:
-        "Begin building amazing interfaces with our comprehensive component library.",
+      title: "Siembra terrestre",
+      description: "Descubre las mejores herramientas para siembra terrestre.",
+      image: "/siembra_terrestre.jpg",
     },
     {
-      title: "Get Support",
-      description:
-        "Access our extensive documentation and community resources to make the most of Origin UI.",
+      title: "Cosecha",
+      description: "Descubre las mejores herramientas para cosecha.",
+      image: "/cosechadora1.JPG",
     },
   ];
 
   const totalSteps = stepContent.length;
 
-  // Muestra el diálogo si el usuario no lo ha visto antes
   useEffect(() => {
     const hasSeenDialog = localStorage.getItem("hasSeenDialog");
     if (!hasSeenDialog) {
@@ -60,8 +57,8 @@ export default function DialogDemo() {
   };
 
   const handleSkipDialog = () => {
-    setIsDialogVisible(false); // Cierra el diálogo
-    localStorage.setItem("hasSeenDialog", "true"); // Guarda que el usuario ya lo vio
+    setIsDialogVisible(false);
+    localStorage.setItem("hasSeenDialog", "true");
   };
 
   return (
@@ -73,16 +70,24 @@ export default function DialogDemo() {
             if (!open) setIsDialogVisible(false);
           }}
         >
-          <DialogContent className="gap-0 p-0 [&>button:last-child]:text-white">
-            <div className="p-2">
-              <Image
-                className="w-full rounded-lg"
-                src={DialogImg}
-                width={382}
-                height={216}
-                alt="dialog"
-              />
+          <DialogContent className="gap-0 p-0 [&>button:last-child]:text-black">
+            {/* Título NOVEDADES */}
+            <div className="text-black text-center font-bold text-xl py-2">
+              NOVEDADES
             </div>
+
+            {/* Imagen del paso */}
+            <div className="flex justify-center px-4">
+              <div className="relative w-full h-64 rounded-lg overflow-hidden">
+                <img
+                  className="absolute inset-0 w-full h-full object-cover"
+                  src={stepContent[step - 1].image}
+                  alt={`Imagen del paso ${step}`}
+                />
+              </div>
+            </div>
+
+            {/* Contenido del diálogo */}
             <div className="space-y-6 px-6 pb-6 pt-3">
               <DialogHeader>
                 <DialogTitle>{stepContent[step - 1].title}</DialogTitle>
@@ -90,15 +95,21 @@ export default function DialogDemo() {
                   {stepContent[step - 1].description}
                 </DialogDescription>
               </DialogHeader>
+
+              {/* Indicadores de pasos */}
               <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                 <div className="flex justify-center space-x-1.5 max-sm:order-1">
                   {[...Array(totalSteps)].map((_, index) => (
                     <div
                       key={index}
+                      onClick={() => setStep(index + 1)}
                       className={cn(
-                        "h-1.5 w-1.5 rounded-full bg-primary",
-                        index + 1 === step ? "bg-primary" : "opacity-20"
+                        "h-2 w-2 cursor-pointer rounded-full border transition-all duration-300",
+                        index + 1 === step
+                          ? "bg-black border-black"
+                          : "bg-gray-300 border-gray-300"
                       )}
+                      title={`Ir al paso ${index + 1}`}
                     />
                   ))}
                 </div>
@@ -109,7 +120,7 @@ export default function DialogDemo() {
                       variant="ghost"
                       onClick={handleSkipDialog}
                     >
-                      Skip
+                      Saltar
                     </Button>
                   </DialogClose>
                   {step < totalSteps ? (
@@ -118,7 +129,7 @@ export default function DialogDemo() {
                       type="button"
                       onClick={handleContinue}
                     >
-                      Next
+                      Siguiente
                       <ArrowRight
                         className="-me-1 ms-2 opacity-60 transition-transform group-hover:translate-x-0.5"
                         size={16}
