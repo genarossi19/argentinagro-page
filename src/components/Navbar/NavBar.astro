@@ -9,21 +9,22 @@ const pathSlipt = path.split("/").slice(1).toString();
 
 const ClassFunction = (type: string) => {
   let classes =
-    "text-black transition-all ease-in-out cursor-pointer px-4 py-2 rounded-md ";
+    "text-black font-medium transition-all ease-in-out cursor-pointer px-4 py-2 rounded-md ";
 
   if (pathSlipt === type) {
     // Estilos cuando estás en la página
     classes += " bg-black/60 text-white hover:bg-logo-blue hover:text-white";
   } else {
     // Estilos cuando NO estás en la página
-    classes += " hover:text-white px-4 py-2 rounded-md hover:bg-black/20";
+    classes +=
+      " text-current hover:text-white px-4 py-2 rounded-md hover:bg-black/20";
   }
 
   return classes;
 };
 ---
 
-<nav class="flex justify-between py-2 px-10 items-center">
+<nav id="nav-header" class="flex justify-between py-2 px-10 items-center">
   <a class="flex items-center gap-2" href="/"
     ><img src="/logo1.png" alt="logo" class="w-[200px]" /></a
   >
@@ -40,3 +41,26 @@ const ClassFunction = (type: string) => {
   </ul>
   <NavbarButtons client:visible />
 </nav>
+<!-- intersection observer -->
+<script>
+  //el $ solo lo usamos para indicr que es un elemento del DOM
+  const $nav = document.querySelector("#nav-header") as HTMLElement;
+  const observerOptions = {
+    root: null, //el root es el elemento que queremos que se observe. En este caso es el viewport por eso no especificamos
+    rootMargin: "0px", //queremos en cuanto se vea o asome el elemento
+    threshold: 0.9, //porcentaje de visibilidad del elemento que queremos que se observe. Hasta que no haya mas del 90% visible, no se va a observar
+  };
+  //el IntersectionObserver recibe un callback que lo que va a hacer es, con los elementos que observe, tiene que dispararse
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const { isIntersecting } = entry;
+      if (isIntersecting) {
+        const color = entry.target.getAttribute("data-header-color");
+        $nav.style.color = color!;
+      }
+    });
+  }, observerOptions);
+
+  const $sections = document.querySelectorAll(".landing-section");
+  $sections.forEach((section) => observer.observe(section));
+</script>
