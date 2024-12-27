@@ -14,7 +14,10 @@ const textColor = `text-${color}`;
       <header class="">
         <slot name="icon" />
 
-        <h2 class={`text-[40px] ${textColor} pt-40 font-medium `}>
+        <h2
+          class={`text-[40px] ${textColor} pt-40 font-medium `}
+          transition:name=`${title}-title`
+        >
           {title}
         </h2>
 

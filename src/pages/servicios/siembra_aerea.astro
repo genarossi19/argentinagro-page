@@ -9,22 +9,29 @@ const images = [
   "/aviones.jpeg?height=300&width=300",
   "/avion3.jpeg?height=300&width=300",
 ];
+
+const title = "Siembra aérea";
 ---
 
 <Layout title="Servicios | Siembra Aérea">
   <div class="h-[120px] header-blur w-full fixed top-0"></div>
   <section class="w-[95%] mx-auto mt-28 mb-28">
-    <h1 class="text-[40px] font-semibold text-center text-logo-blue">
-      Siembra Aérea
+    <h1
+      class="text-[40px] font-semibold text-center text-logo-blue"
+      transition:name=`${title}-title`
+    >
+      {title}
     </h1>
     <div class="mt-10 w-full h-[300px]">
       <img
+        transition:name="img-siembra_aerea"
         class="object-center object-cover h-full w-full rounded-md"
         src="/avion1.jpg"
         alt="Siembra aerea"
       />
     </div>
     <div
+      transition:animate="fade"
       class="mt-10 grid grid-cols-[1fr_2fr] gap-10 items-center justify-start"
     >
       <CarouselDemo client:load images={images} />

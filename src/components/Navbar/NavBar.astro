@@ -43,24 +43,34 @@ const ClassFunction = (type: string) => {
 </nav>
 <!-- intersection observer -->
 <script>
-  //el $ solo lo usamos para indicr que es un elemento del DOM
-  const $nav = document.querySelector("#nav-header") as HTMLElement;
-  const observerOptions = {
-    root: null, //el root es el elemento que queremos que se observe. En este caso es el viewport por eso no especificamos
-    rootMargin: "0px", //queremos en cuanto se vea o asome el elemento
-    threshold: 0.9, //porcentaje de visibilidad del elemento que queremos que se observe. Hasta que no haya mas del 90% visible, no se va a observar
-  };
-  //el IntersectionObserver recibe un callback que lo que va a hacer es, con los elementos que observe, tiene que dispararse
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      const { isIntersecting } = entry;
-      if (isIntersecting) {
-        const color = entry.target.getAttribute("data-header-color");
-        $nav.style.color = color!;
-      }
-    });
-  }, observerOptions);
+  const initializeObserver = () => {
+    const $nav = document.querySelector("#nav-header") as HTMLElement;
 
-  const $sections = document.querySelectorAll(".landing-section");
-  $sections.forEach((section) => observer.observe(section));
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.9,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const { isIntersecting } = entry;
+        if (isIntersecting) {
+          const color = entry.target.getAttribute("data-header-color");
+          $nav.style.color = color!;
+        }
+      });
+    }, observerOptions);
+
+    const $sections = document.querySelectorAll(".landing-section");
+    $sections.forEach((section) => observer.observe(section));
+  };
+
+  // Inicialización al cargar la página
+  initializeObserver();
+
+  // Re-inicializar después de cada navegación del ClientRouter
+  document.addEventListener("astro:after-swap", () => {
+    initializeObserver();
+  });
 </script>
