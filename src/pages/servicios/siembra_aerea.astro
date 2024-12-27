@@ -1,0 +1,60 @@
+---
+import { Button } from "@/components/ui/button";
+import Layout from "@/layouts/Layout.astro";
+
+import "@/styles/global.css";
+import { CarouselDemo } from "@/components/Carousel/CarouselDemo";
+const images = [
+  "/avion1.jpeg?height=300&width=300",
+  "/aviones.jpeg?height=300&width=300",
+  "/avion3.jpeg?height=300&width=300",
+];
+---
+
+<Layout title="Servicios | Siembra Aérea">
+  <div class="h-[120px] header-blur w-full fixed top-0"></div>
+  <section class="w-[95%] mx-auto mt-28 mb-28">
+    <h1 class="text-[40px] font-semibold text-center text-logo-blue">
+      Siembra Aérea
+    </h1>
+    <div class="mt-10 w-full h-[300px]">
+      <img
+        class="object-center object-cover h-full w-full rounded-md"
+        src="/avion1.jpg"
+        alt="Siembra aerea"
+      />
+    </div>
+    <div
+      class="mt-10 grid grid-cols-[1fr_2fr] gap-10 items-center justify-start"
+    >
+      <CarouselDemo client:load images={images} />
+
+      <div class="h-full">
+        <h2 class="text-[2rem] font-normal mb-5 tracking-tight">
+          Pioneros en la zona con 20 años de experiencia
+        </h2>
+        <p class="mb-5 text-gray-500">
+          Para este fin disponemos de un Avión Especial (Turbo Kruk) de 750 HP,
+          el cual posee gran capacidad de carga (1.500 Kg.), además de esto
+          cuenta con otra particularidad que nos diferencia del resto, y es que
+          puede operar en superficies muy cortas (300-400 Mts.), por lo
+          expuesto, al hacerlo de lugares cercanos al objetivos se minimizan
+          considerablemente los costos. También se cuenta con otro avión
+          específico para la actividad un Puelche 260 paso variable, de menor
+          capacidad (600 Kg.) pero muy ágil para realizar aplicaciones en
+          sectores cercanos a montes o líneas eléctricas. Los mejores resultados
+          los hemos logrado sobre Soja en estado fenológico R6-R7 (cuando
+          comienza la senescencia de las hojas y se produce la caída de las
+          mismas) momento de la siembra. También se ha sembrado al voleo sobre
+          maíces y girasoles (avena, rye-grass, vicia, centeno) con muy buenos
+          resultados.
+        </p>
+        <Button
+          className=" border-logo-blue text-logo-blue"
+          client:load
+          variant={"outline"}>Contactanos</Button
+        >
+      </div>
+    </div>
+  </section>
+</Layout>

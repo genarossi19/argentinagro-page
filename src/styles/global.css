@@ -2,14 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .header-blur {
+.header-blur {
   background: rgba(147, 143, 143, 0);
 
   backdrop-filter: blur(13.5px);
   -webkit-backdrop-filter: blur(13.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-} */
+}
 
 @layer base {
   :root {
