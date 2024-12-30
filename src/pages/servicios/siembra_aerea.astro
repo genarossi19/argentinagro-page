@@ -1,23 +1,25 @@
 ---
 import { Button } from "@/components/ui/button";
 import Layout from "@/layouts/Layout.astro";
-
+import { MessageCircle } from "lucide-react";
 import "@/styles/global.css";
 import { CarouselDemo } from "@/components/Carousel/CarouselDemo";
 const images = [
-  "/avion1.jpeg?height=300&width=300",
-  "/aviones.jpeg?height=300&width=300",
-  "/avion3.jpeg?height=300&width=300",
+  "/SiembraAerea1.jpg?height=300&width=300",
+  "/SiembraAerea2.jpg?height=300&width=300",
+  "/SiembraAerea3.jpg?height=300&width=300",
+  "/SiembraAerea5.jpg?height=300&width=300",
+  "/SiembraAerea6.jpg?height=300&width=300",
 ];
 
 const title = "Siembra aérea";
 ---
 
 <Layout title="Servicios | Siembra Aérea">
-  <div class="h-[120px] header-blur w-full fixed top-0"></div>
+  <div class="h-[120px] header-blur w-full z-10 fixed top-0"></div>
   <section class="w-[95%] mx-auto mt-28 mb-28">
     <h1
-      class="text-[40px] font-semibold text-center text-logo-blue"
+      class="text-[40px] font-semibold text-center text-logo-blue underline"
       transition:name=`${title}-title`
     >
       {title}
@@ -60,10 +62,14 @@ const title = "Siembra aérea";
         </div>
 
         <Button
-          className=" border-logo-blue text-logo-blue hover:bg-logo-blue hover:text-white flex-shrink-0 flex-grow-0 max-w-[200px]"
+          className="justify-center border-logo-blue text-logo-blue hover:bg-logo-blue hover:text-white flex-shrink-0 flex-grow-0 max-w-[200px]"
           client:load
-          variant={"outline"}>Contactanos</Button
+          variant={"outline"}
         >
+          <div class="flex items-center gap-4">
+            Saber más <MessageCircle size={16} />
+          </div>
+        </Button>
       </div>
     </div>
   </section>
