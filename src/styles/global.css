@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+body { 
+  background-image: url('/nnnoise.svg'); 
+}
 .header-blur {
   background: rgba(147, 143, 143, 0);
 
