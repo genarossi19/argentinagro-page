@@ -6,6 +6,7 @@ import {
   PhoneIcon as WhatsApp,
   Youtube,
 } from "lucide-react";
+import { Button } from "../ui/button";
 
 const socialLinks = [
   {
@@ -108,8 +109,15 @@ export default function Footer() {
       {/* Copyright */}
       <div className="mt-12 pt-6 text-center text-blue-200/80 text-sm border-t border-white/10">
         <p>
-          © {new Date().getFullYear()} Genaro Rossi. Todos los derechos
-          reservados.
+          © {new Date().getFullYear()}{" "}
+          <a
+            target="_blank"
+            className="text-blue-200/80 p-0 hover:underline font-semibold"
+            href="https://www.instagram.com/gena_rossi?igsh=MWFzcmpzdnBpazNsNg=="
+          >
+            Genaro Rossi
+          </a>
+          . Todos los derechos reservados.
         </p>
       </div>
     </footer>
