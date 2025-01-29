@@ -11,7 +11,9 @@ function NavbarButtons() {
           className="bg-logo-blue/80 text-white rounded-md px-6 py-2  "
         >
           <div className="flex items-center gap-4">
-            Contáctanos
+            <a target="_blank" href="https://wa.link/r80kjj">
+              Contáctanos
+            </a>
             <MessageCircle size={16} />
           </div>
         </motion.button>

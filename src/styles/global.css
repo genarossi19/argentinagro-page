@@ -18,3 +18,17 @@ body {
     --radius: 0.5rem;
   }
 }
+
+
+.item{
+ 
+  transition: .3s;
+}
+.containers:hover > :not(:hover){
+  opacity: .4;
+  filter: blur(2px);
+}
+.containers:hover > :hover{
+  transform: scale(1.1);
+  z-index: 1;
+}

@@ -1,0 +1,57 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import "@/styles/global.css";
+import ServicesCard from "@/components/ServicesCard.astro";
+const title = "Otros servicios";
+---
+
+<Layout title=`Servicios | ${title}` `>
+  <div class="h-[120px] header-blur w-full z-10 fixed top-0"></div>
+  <section class="w-[95%] mx-auto mt-28 mb-28">
+    <h1
+      class="text-[40px] font-semibold text-center text-logo-blue underline"
+      transition:name=`${title}-title`
+    >
+      {title}
+    </h1>
+    <div class="mt-10 w-full h-[300px]">
+      <img
+        transition:name="img-otros"
+        class="object-center object-cover h-full w-full rounded-md"
+        src="/otros.jpg"
+        alt={title}
+      />
+    </div>
+    <div
+      transition:animate="fade"
+      class="mt-10 grid grid-cols-[1fr_2fr] gap-10 items-center justify-start"
+    >
+    </div>
+    <div class="flex flex-wrap mx-auto justify-between items-center containers">
+      <!-- EMBOLSADO, EXTRACTION Y ACARREO DE CEREAL -->
+      <ServicesCard
+        href="#"
+        img="/otros.jpg"
+        text="Embolsado, extracción y acarreo de cereal."
+      />
+      <!-- ROLO TRITURADOR -->
+      <ServicesCard
+        href="#"
+        img="/rolo_triturador.jpg"
+        text="Rolo triturador (cañas de girasos, malezas, etc)"
+      />
+      <!-- RASTRA DESENCONTRADO CON ROLOS, ESCARDILLO, ENTRE OTRAS HERRAMIENTAS -->
+      <ServicesCard
+        href="#"
+        img="/rastra.jpg"
+        text="Rastro desencontrado con rolos, escardillo, etc."
+      />
+      <!-- MONITOREO DE PLAGAS, MALEZAS Y ENFERMEDADES -->
+      <ServicesCard
+        href="#"
+        img="/otros.jpg"
+        text="Monitoreo de plagas, malezas y enfermedades."
+      />
+    </div>
+  </section>
+</Layout>

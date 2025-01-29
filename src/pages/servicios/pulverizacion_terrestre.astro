@@ -1,0 +1,70 @@
+---
+import { Button } from "@/components/ui/button";
+import Layout from "@/layouts/Layout.astro";
+import { MessageCircle } from "lucide-react";
+import "@/styles/global.css";
+import { CarouselDemo } from "@/components/Carousel/CarouselDemo";
+const images = [
+  "/pulverizacion_terrestre.jpg?height=300&width=300",
+  "/pulverizacion_terrestre2.jpeg?height=300&width=300",
+  "/pulverizacion_terrestre3.jpeg?height=300&width=300",
+];
+
+const title = "Pulverizacion Terrestre";
+---
+
+<Layout title=`Servicios | ${title}` `>
+  <div class="h-[120px] header-blur w-full z-10 fixed top-0"></div>
+  <section class="w-[95%] mx-auto mt-28 mb-28">
+    <h1
+      class="text-[40px] font-semibold text-center text-logo-blue underline"
+      transition:name=`${title}-title`
+    >
+      {title}
+    </h1>
+    <div class="mt-10 w-full h-[300px]">
+      <img
+        transition:name="img-pulverizacion_terrestre"
+        class="object-center object-cover h-full w-full rounded-md"
+        src="/pulverizacion_terrestre.jpg"
+        alt={title}
+      />
+    </div>
+    <div
+      transition:animate="fade"
+      class="mt-10 grid grid-cols-[1fr_2fr] gap-10 items-center justify-start"
+    >
+      <CarouselDemo client:load images={images} />
+
+      <div class="h-full inline-flex flex-col justify-between">
+        <div class="flex flex-col gap-6">
+          <h2 class="text-[2rem] font-normal tracking-tight">
+            Confía en la precisión de nuestro sistema SIA para una pulverización
+            óptima.
+          </h2>
+          <p class="text-gray-500 text-lg">Para estre trabajo contamos con:</p>
+          <ul class="text-gray-500 text-lg space-y-2">
+            <li>
+              <strong>
+                Máquina Marca PLA modelo 2019, MD 3300 con sistema SIA</strong
+              > (estación meteorológica incorporada) 36 mts de ala mixta, corte por
+              sección, banderillero satelital, piloto automático y computadora de
+              a bordo, operadas por personal (familiar de la empresa-socio) idóneo
+              en el tema con mas de 10 años de experiencia en el trabajo.
+            </li>
+          </ul>
+
+          <Button
+            className="justify-center border-logo-blue text-logo-blue hover:bg-logo-blue hover:text-white flex-shrink-0 flex-grow-0 max-w-[200px]"
+            client:load
+            variant={"outline"}
+          >
+            <div class="flex items-center gap-4">
+              Saber más <MessageCircle size={16} />
+            </div>
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
