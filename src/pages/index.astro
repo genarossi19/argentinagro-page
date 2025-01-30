@@ -1,12 +1,14 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import LayoutLanding from "../layouts/LayoutLanding.astro";
 import "@/styles/global.css";
 import Section from "@/components/Sections/Section.astro";
+import Footer from "@/components/Footer/Footer";
 import SectionHeader from "@/components/Sections/SectionHeader.astro";
+import SectionFooter from "@/components/Sections/SectionFooter.astro";
 import DialogDemo from "@/components/Dialogs/DialogDemo";
 ---
 
-<Layout title="Argentinagro SRL de Trenque Lauquen">
+<LayoutLanding title="Argentinagro SRL de Trenque Lauquen">
   <main class="snap-y snap-mandatory relative w-full h-screen overflow-auto">
     <!-- HERO -->
     <SectionHeader color="black" id="#">
@@ -176,25 +178,26 @@ import DialogDemo from "@/components/Dialogs/DialogDemo";
       />
     </Section>
     <!-- Otros Servicios -->
-    <Section
-      color="white"
-      title="Otros servicios"
-      id="otros"
-      subtitle="Asesoramiento agronómico y servicios de campo a medida para optimizar tus resultados."
-    >
-      <div slot="footer">
-        <a
-          class="text-sm text-white py-2 px-12 border-[3px] border-white rounded cursor-pointer hover:bg-white/30 hover:border-white/5 hover:backdrop-blur-3xl active:bg-white active:text-black transition-all duration-300"
-          href="/servicios/otros/"><span>Ver más</span></a
-        >
-      </div>
-      <img
-        transition:name="img-otros"
-        slot="background"
-        class="object-top object-cover h-full w-full"
-        src="otros.jpg"
-        alt="otros"
-      />
-    </Section>
   </main>
-</Layout>
+  <Section
+    color="white"
+    title="Otros servicios"
+    id="otros"
+    subtitle="Asesoramiento agronómico y servicios de campo a medida para optimizar tus resultados."
+  >
+    <div slot="footer">
+      <a
+        class="text-sm text-white py-2 px-12 border-[3px] border-white rounded cursor-pointer hover:bg-white/30 hover:border-white/5 hover:backdrop-blur-3xl active:bg-white active:text-black transition-all duration-300"
+        href="/servicios/otros/"><span>Ver más</span></a
+      >
+    </div>
+    <img
+      transition:name="img-otros"
+      slot="background"
+      class="object-top object-cover h-full w-full"
+      src="otros.jpg"
+      alt="otros"
+    />
+  </Section>
+  <Footer />
+</LayoutLanding>
