@@ -1,0 +1,84 @@
+---
+import { Button } from "@/components/ui/button";
+import Layout from "@/layouts/Layout.astro";
+import { MessageCircle } from "lucide-react";
+import "@/styles/global.css";
+import { CarouselDemo } from "@/components/Carousel/CarouselDemo";
+const images = [
+  "/SiembraTerrestre1.jpeg?height=300&width=300",
+  "/SiembraTerrestre2.jpeg?height=300&width=300",
+  "/SiembraTerrestre3.jpg?height=300&width=300",
+  "/SiembraTerrestre4.jpg?height=300&width=300",
+];
+
+const title = "Aplicacion con drones";
+---
+
+<Layout title=`Servicios | ${title}` `>
+  <div class="h-[120px] header-blur w-full z-10 fixed top-0"></div>
+  <section class="w-[95%] mx-auto mt-28 mb-28">
+    <h1
+      class="text-[40px] font-semibold text-center text-logo-blue underline"
+      transition:name=`${title}-title`
+    >
+      {title}
+    </h1>
+    <div class="mt-10 w-full h-[300px]">
+      <img
+        transition:name="img-siembra_terrestre"
+        class="object-center object-cover h-full w-full rounded-md"
+        src="/siembra_terrestre2.jpg"
+        alt={title}
+      />
+    </div>
+    <div
+      transition:animate="fade"
+      class="mt-10 grid grid-cols-[1fr_2fr] gap-10 items-center justify-start"
+    >
+      <CarouselDemo client:load images={images} />
+
+      <div class="h-full inline-flex flex-col justify-between">
+        <div class="flex flex-col gap-6">
+          <h2 class="text-[2rem] font-normal tracking-tight">
+            Contamos con 3 equipos de siembra de última tecnología
+          </h2>
+          <p class="text-gray-500 text-lg">
+            Nuestros equipos de siembra terrestre:
+          </p>
+          <ul class="text-gray-500 text-lg space-y-2">
+            <li>
+              <strong>Sembradora Agrometal TX-MEGA</strong>: 16 surcos a 52 cm
+              entre hileras, neumática con siembra variable de fertilizante y
+              semilla, ideal para maíces.
+            </li>
+            <li>
+              <strong>Sembradora JUBER 5200</strong>: Siembra grano grueso y
+              fino a diversas distancias (17,5 cm, 35 cm, 52 cm, 70 cm), con
+              sistema de dosificación Master Mac y siembra variable.
+            </li>
+            <li>
+              <strong>Sembradora Crucianelli GRINGA</strong>: 28 cuerpos a 35
+              cm, con sistema PRECISION PLANTING, neumática y variable en
+              fertilizante y semilla. Ideal para maíces, con excelentes
+              resultados en uniformidad de nacimientos.
+            </li>
+            <li>
+              <strong>Sembradora SuperDancar</strong>: 12 cuerpos a 52 cm,
+              neumática y variable Mastermac, ideal para suelos húmedos.
+            </li>
+          </ul>
+        </div>
+
+        <Button
+          className="justify-center border-logo-blue text-logo-blue hover:bg-logo-blue hover:text-white flex-shrink-0 flex-grow-0 max-w-[200px]"
+          client:load
+          variant={"outline"}
+        >
+          <div class="flex items-center gap-4">
+            Saber más <MessageCircle size={16} />
+          </div>
+        </Button>
+      </div>
+    </div>
+  </section>
+</Layout>

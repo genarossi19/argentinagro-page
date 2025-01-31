@@ -1,15 +1,14 @@
 ---
-const { id } = Astro.props;
-import Footer from "@/components/Footer/Footer";
+const { id, color } = Astro.props;
+import FooterFull from "@/components/Footer/FooterFull";
 ---
 
 <div class="snap-start">
   <section
+    data-header-color={color}
     id={id}
-    class="landing-section bg-black h-screen w-screen text-center relative overflow-hidden"
+    class="landing-section bg-black h-screen w-screen text-center relative overflow-hidden flex flex-col"
   >
-    <div class="z-30 relative flex flex-col">
-      <Footer />
-    </div>
+    <FooterFull />
   </section>
 </div>
