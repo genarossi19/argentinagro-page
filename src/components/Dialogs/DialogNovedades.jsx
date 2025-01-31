@@ -8,11 +8,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export default function DialogDemo() {
+export default function DialogNovedades({ className }) {
   const [step, setStep] = useState(1);
   const [isDialogVisible, setIsDialogVisible] = useState(false);
 
@@ -27,13 +26,6 @@ export default function DialogDemo() {
 
   const totalSteps = stepContent.length;
 
-  useEffect(() => {
-    const hasSeenDialog = localStorage.getItem("hasSeenDialog");
-    if (!hasSeenDialog) {
-      setIsDialogVisible(true);
-    }
-  }, []);
-
   const handleContinue = () => {
     if (step < totalSteps) {
       setStep(step + 1);
@@ -42,11 +34,20 @@ export default function DialogDemo() {
 
   const handleCloseDialog = () => {
     setIsDialogVisible(false);
-    localStorage.setItem("hasSeenDialog", "true");
   };
 
   return (
     <>
+      {/* Botón que abre el diálogo */}
+      <Button
+        type="button"
+        onClick={() => setIsDialogVisible(true)}
+        className={className} // Pasamos las clases de Tailwind aquí
+      >
+        <span>Novedades</span>
+      </Button>
+
+      {/* Diálogo */}
       {isDialogVisible && (
         <Dialog
           open={isDialogVisible}
@@ -87,12 +88,11 @@ export default function DialogDemo() {
                     <div
                       key={index}
                       onClick={() => setStep(index + 1)}
-                      className={cn(
-                        "h-2 w-2 cursor-pointer rounded-full border transition-all duration-300",
+                      className={`h-2 w-2 cursor-pointer rounded-full border transition-all duration-300 ${
                         index + 1 === step
                           ? "bg-black border-black"
                           : "bg-gray-300 border-gray-300"
-                      )}
+                      }`}
                       title={`Ir al paso ${index + 1}`}
                     />
                   ))}

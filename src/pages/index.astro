@@ -2,7 +2,7 @@
 import LayoutLanding from "../layouts/LayoutLanding.astro";
 import "@/styles/global.css";
 import Section from "@/components/Sections/Section.astro";
-import Footer from "@/components/Footer/Footer";
+import DialogNovedades from "@/components/Dialogs/DialogNovedades";
 import SectionHeader from "@/components/Sections/SectionHeader.astro";
 import SectionFooter from "@/components/Sections/SectionFooter.astro";
 import DialogDemo from "@/components/Dialogs/DialogDemo";
@@ -30,12 +30,12 @@ import DialogDemo from "@/components/Dialogs/DialogDemo";
         slot="footer"
         class="flex flex-col px-6 justify-center gap-y-4 sm:flex-row sm:gap-x-6"
       >
-        <a
-          class="text-sm py-2 px-12 border-[3px] border-black/5 rounded cursor-pointer hover:bg-black/90 hover:border-black/5 hover:backdrop-blur-3xl bg-black/60 text-white transition-all duration-300"
-          href="#"
+        <DialogNovedades
+          client:load
+          className="text-sm py-2 px-12 border-[3px] border-black/5 rounded cursor-pointer hover:bg-black/90 hover:border-black/5 hover:backdrop-blur-3xl bg-black/60 text-white transition-all duration-300"
         >
           <span>Novedades</span>
-        </a>
+        </DialogNovedades>
 
         <a
           class="text-sm py-2 px-12 border-[3px] border-white rounded cursor-pointer hover:bg-black/30 hover:border-gray-100/5 hover:backdrop-blur-3xl hover:text-white bg-white text-black transition-all duration-300"
@@ -50,6 +50,7 @@ import DialogDemo from "@/components/Dialogs/DialogDemo";
         class="object-center object-cover h-full w-full"
         loop></video>
     </SectionHeader>
+    <!-- Mostrar el diálogo cuando sea necesario -->
     <DialogDemo client:load />
     <!-- SIEMBRA AEREA -->
     <Section
@@ -177,6 +178,27 @@ import DialogDemo from "@/components/Dialogs/DialogDemo";
         alt="pulverizacion_terrestre"
       />
     </Section>
+    <!-- Aplicacion con Drones -->
+    <Section
+      color="white"
+      title="Aplicacion con drones"
+      id="drones"
+      subtitle="Aplicación de insumos y monitoreo de cultivos con tecnología de punta."
+    >
+      <div slot="footer">
+        <a
+          class="text-sm text-white py-2 px-12 border-[3px] border-white rounded cursor-pointer hover:bg-white/30 hover:border-white/5 hover:backdrop-blur-3xl active:bg-white active:text-black transition-all duration-300"
+          href="/servicios/drones/"><span>Ver más</span></a
+        >
+      </div>
+      <img
+        transition:name="img-drones"
+        slot="background"
+        class="object-left-top object-cover h-full w-full"
+        src="/dron2.jpeg"
+        alt="drones"
+      />
+    </Section>
     <!-- Otros Servicios -->
     <Section
       color="white"
@@ -198,28 +220,9 @@ import DialogDemo from "@/components/Dialogs/DialogDemo";
         alt="otros"
       />
     </Section>
-    <!-- Aplicacion con Drones -->
-    <Section
-      color="white"
-      title="Aplicacion con drones"
-      id="drones"
-      subtitle="Aplicación de insumos y monitoreo de cultivos con tecnología de punta."
-    >
-      <div slot="footer">
-        <a
-          class="text-sm text-white py-2 px-12 border-[3px] border-white rounded cursor-pointer hover:bg-white/30 hover:border-white/5 hover:backdrop-blur-3xl active:bg-white active:text-black transition-all duration-300"
-          href="/servicios/drones/"><span>Ver más</span></a
-        >
-      </div>
-      <img
-        transition:name="img-drones"
-        slot="background"
-        class="object-left-top object-cover h-full w-full"
-        src="/dron2.jpeg"
-        alt="drones"
-      />
-      <!-- Footer -->
-      <SectionFooter id="footer" color="white" />
-    </Section>
+
+    <!-- Footer -->
+    <SectionFooter id="footer" color="white" />
   </main>
 </LayoutLanding>
+<script></script>
