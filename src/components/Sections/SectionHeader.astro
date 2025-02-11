@@ -1,6 +1,7 @@
 ---
 const { color, id } = Astro.props;
 const textColor = `text-${color}`;
+import Title from "@/components/Text/Title";
 ---
 
 <div class="snap-start">
@@ -13,7 +14,7 @@ const textColor = `text-${color}`;
     <div class="z-30 relative h-full flex flex-col">
       <header class="">
         <slot name="icon" />
-        <h1
+        <!-- <h1
           class="text-6xl font-semibold text-white items-center text-center text-balance mt-40"
         >
           La solución ideal para <span class="text-logo-blue font-bold"
@@ -23,7 +24,8 @@ const textColor = `text-${color}`;
         </h1>
         <p class="text-2xl text-white text-center font-medium mt-6 ml-8">
           Desde 1976 al servicio de la agricultura regional.
-        </p>
+        </p> -->
+        <Title client:visible />
       </header>
 
       <footer class="flex flex-grow flex-col flex-nowrap justify-end pb-20">

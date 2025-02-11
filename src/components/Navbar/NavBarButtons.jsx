@@ -3,7 +3,7 @@ import { MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 function NavbarButtons() {
   return (
-    <ul className="flex gap-4 items-center pl-4">
+    <ul className="hidden md:flex gap-4 items-center pl-4">
       <li>
         <motion.button
           whileHover={{ scale: 1.1 }}

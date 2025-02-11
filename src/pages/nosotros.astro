@@ -1,0 +1,12 @@
+---
+import LayoutAbout from "@/layouts/LayoutAbout.astro";
+import "@/styles/global.css";
+import About from "@/components/Page/About.jsx";
+---
+
+<LayoutAbout title="Sobre Nosotros" data-header-color="white">
+  <div class="h-[120px] header-blur w-full z-10 fixed top-0"></div>
+  <section class="landing-section" data-header-color="white">
+    <About data-header-color="white" client:only="react" />
+  </section>
+</LayoutAbout>

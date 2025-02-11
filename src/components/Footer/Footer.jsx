@@ -6,24 +6,57 @@ import {
   PhoneIcon as WhatsApp,
   Youtube,
 } from "lucide-react";
-import { Button } from "../ui/button";
 
 const socialLinks = [
   {
     name: "instagram",
     icon: Instagram,
     color: "hover:bg-gradient-to-tr from-purple-500 to-pink-500",
+    href: "https://www.instagram.com/argentinagrosrl/",
   },
-  { name: "email", icon: Mail, color: "hover:bg-red-500" },
-  { name: "facebook", icon: Facebook, color: "hover:bg-blue-600" },
-  { name: "whatsapp", icon: WhatsApp, color: "hover:bg-green-500" },
-  { name: "youtube", icon: Youtube, color: "hover:bg-red-600" },
-  { name: "location", icon: MapPin, color: "hover:bg-orange-500" },
+  {
+    name: "email",
+    icon: Mail,
+    color: "hover:bg-red-500",
+    href: "mailto:argentinagrosl@gmail.com",
+  },
+  {
+    name: "facebook",
+    icon: Facebook,
+    color: "hover:bg-blue-600",
+    href: "https://www.facebook.com/Argentinagrosrl/?locale=es_LA",
+  },
+  {
+    name: "whatsapp",
+    icon: WhatsApp,
+    color: "hover:bg-green-500",
+    href: "https://wa.link/r80kjj",
+  },
+  {
+    name: "youtube",
+    icon: Youtube,
+    color: "hover:bg-red-600",
+    href: "https://www.youtube.com/@argentinagrodetrenquelauqu8241",
+  },
+  {
+    name: "location",
+    icon: MapPin,
+    color: "hover:bg-orange-500",
+    href: "https://www.google.com/maps/place/35%C2%B059'45.4%22S+62%C2%B042'28.1%22W/@-35.995844,-62.709142,16z/data=!4m4!3m3!8m2!3d-35.9959444!4d-62.7078056?hl=es&entry=ttu&g_ep=EgoyMDI1MDIwNS4xIKXMDSoJLDEwMjExMjMzSAFQAw%3D%3D",
+  },
 ];
 
 const contacts = [
-  { name: "La Argentina", phone: "2392-480555" },
-  { name: "Ing. Agrónomo Mauricio J. Font", phone: "2392-401144" },
+  {
+    name: "La Argentina",
+    phone: "2392-480555",
+    // href: "https://wa.link/m884l1",
+  },
+  {
+    name: "Ing. Agrónomo Mauricio J. Font",
+    phone: "2392-401144",
+    // href: "https://wa.link/pmi5kx",
+  },
   { name: "Patricio J. Font", phone: "2392-510966" },
 ];
 
@@ -91,10 +124,11 @@ export default function Footer() {
             <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-400 transform origin-left hover:scale-x-110 transition-transform"></span>
           </h3>
           <div className="grid grid-cols-3 gap-6 max-w-[240px] mx-auto md:mx-0">
-            {socialLinks.map(({ name, icon: Icon, color }) => (
+            {socialLinks.map(({ name, icon: Icon, color, href }) => (
               <a
+                target="_blank"
                 key={name}
-                href="#"
+                href={href}
                 className={`flex items-center justify-center h-12 w-12 rounded-lg bg-white/10 backdrop-blur-sm 
                   transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/10 ${color}`}
                 aria-label={name}

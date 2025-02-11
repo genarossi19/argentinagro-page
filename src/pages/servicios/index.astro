@@ -1,11 +1,82 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import ServicesCardSection from "@/components/Cards/ServicesCardSection.astro";
+
+const servicios = [
+  {
+    title: "Siembra aérea",
+    description: "Pioneros en la zona con 20 años de experiencia",
+    imageUrl: "avion1.jpg",
+    altText: "siembra_aerea",
+  },
+  {
+    title: "Siembra terrestre",
+    description: "Contamos con 3 equipos de siembra de última tecnología",
+    imageUrl: "siembra_terrestre2.jpg",
+    altText: "siembra_terrestre",
+  },
+  {
+    title: "Cosecha",
+    description:
+      "Desde granos finos hasta cultivos especiales, contamos con la maquinaria y el equipo humano necesario",
+    imageUrl: "cosechadoras.JPG",
+    altText: "cosecha",
+  },
+  {
+    title: "Fertilización",
+    description:
+      "Aplicamos los nutrientes que tus cultivos necesitan, donde los necesitan.",
+    imageUrl: "fertilizacion4.jpg",
+    altText: "fertilizacion",
+  },
+  {
+    title: "Pulverización aérea",
+    description:
+      "Maximiza tus rendimientos con una pulverización aérea precisa y oportuna.",
+    imageUrl: "pulverizacion_aerea.jpg",
+    altText: "pulverizacion_aerea",
+  },
+  {
+    title: "Pulverización terrestre",
+    description:
+      "Confía en la precisión de nuestro sistema SIA para una pulverización óptima.",
+    imageUrl: "pulverizacion_terrestre.jpg",
+    altText: "pulverizacion_terrestre",
+  },
+  {
+    title: "Aplicacion con drones",
+    description:
+      "Aplicación de insumos y monitoreo de cultivos con tecnología de punta.",
+    imageUrl: "/dron2.jpeg",
+    altText: "drones",
+  },
+  {
+    title: "Otros servicios",
+    description:
+      "Asesoramiento agronómico y servicios de campo a medida para optimizar tus resultados.",
+    imageUrl: "otros.jpg",
+    altText: "otros",
+  },
+];
 ---
 
 <Layout title="Servicios">
-  <section class="w-[90%] mx-auto">
-    <h2 class="text-2xl font-semibold text-black text-left mt-8 ml-8">
-      Servicios
-    </h2>
-  </section>
+  <div class="h-[120px] header-blur w-full z-10 fixed top-0"></div>
+  <main class="container mx-auto px-4 py-8 mt-28">
+    <h1 class="text-4xl font-bold text-center text-gray-800 mb-12">
+      Nuestros Servicios Agropecuarios
+    </h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        servicios.map((servicio) => (
+          <ServicesCardSection
+            title={servicio.title}
+            description={servicio.description}
+            imageUrl={servicio.imageUrl}
+            altText={servicio.altText}
+          />
+        ))
+      }
+    </div>
+  </main>
 </Layout>

@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Facebook,
   Instagram,
@@ -14,12 +12,38 @@ const socialLinks = [
     name: "instagram",
     icon: Instagram,
     color: "hover:bg-gradient-to-tr from-purple-500 to-pink-500",
+    href: "https://www.instagram.com/argentinagrosrl/",
   },
-  { name: "email", icon: Mail, color: "hover:bg-red-500" },
-  { name: "facebook", icon: Facebook, color: "hover:bg-blue-600" },
-  { name: "whatsapp", icon: WhatsApp, color: "hover:bg-green-500" },
-  { name: "youtube", icon: Youtube, color: "hover:bg-red-600" },
-  { name: "location", icon: MapPin, color: "hover:bg-orange-500" },
+  {
+    name: "email",
+    icon: Mail,
+    color: "hover:bg-red-500",
+    href: "mailto:argentinagrosl@gmail.com",
+  },
+  {
+    name: "facebook",
+    icon: Facebook,
+    color: "hover:bg-blue-600",
+    href: "https://www.facebook.com/Argentinagrosrl/?locale=es_LA",
+  },
+  {
+    name: "whatsapp",
+    icon: WhatsApp,
+    color: "hover:bg-green-500",
+    href: "https://wa.link/r80kjj",
+  },
+  {
+    name: "youtube",
+    icon: Youtube,
+    color: "hover:bg-red-600",
+    href: "https://www.youtube.com/@argentinagrodetrenquelauqu8241",
+  },
+  {
+    name: "location",
+    icon: MapPin,
+    color: "hover:bg-orange-500",
+    href: "https://www.google.com/maps/place/35%C2%B059'45.4%22S+62%C2%B042'28.1%22W/@-35.995844,-62.709142,16z/data=!4m4!3m3!8m2!3d-35.9959444!4d-62.7078056?hl=es&entry=ttu&g_ep=EgoyMDI1MDIwNS4xIKXMDSoJLDEwMjExMjMzSAFQAw%3D%3D",
+  },
 ];
 
 const contacts = [
@@ -92,10 +116,11 @@ export default function FooterFull() {
             <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-400 transform origin-left hover:scale-x-110 transition-transform"></span>
           </h3>
           <div className="grid grid-cols-3 gap-8 max-w-[300px] mx-auto lg:mx-0">
-            {socialLinks.map(({ name, icon: Icon, color }) => (
+            {socialLinks.map(({ name, icon: Icon, color, href }) => (
               <a
+                target="_blank"
                 key={name}
-                href="#"
+                href={href}
                 className={`flex items-center justify-center h-16 w-16 rounded-lg bg-white/10 backdrop-blur-sm 
                   transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/10 ${color}`}
                 aria-label={name}
@@ -114,7 +139,7 @@ export default function FooterFull() {
           <a
             target="_blank"
             className="text-blue-200/80 p-0 hover:underline font-semibold"
-            href="https://www.instagram.com/gena_rossi?igsh=MWFzcmpzdnBpazNsNg=="
+            href="https://github.com/genarossi19"
             rel="noopener noreferrer"
           >
             Genaro Rossi

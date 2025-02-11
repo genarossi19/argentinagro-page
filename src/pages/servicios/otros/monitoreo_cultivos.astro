@@ -1,0 +1,94 @@
+---
+import { Button } from "@/components/ui/button";
+import Layout from "@/layouts/Layout.astro";
+import { MessageCircle } from "lucide-react";
+import "@/styles/global.css";
+import { CarouselDemo } from "@/components/Carousel/CarouselDemo";
+const images = [
+  "/SiembraTerrestre1.jpeg?height=300&width=300",
+  "/SiembraTerrestre2.jpeg?height=300&width=300",
+  "/SiembraTerrestre3.jpg?height=300&width=300",
+  "/SiembraTerrestre4.jpg?height=300&width=300",
+];
+
+const title = "Monitoreo de Cultivos";
+---
+
+<Layout title=`Otros Servicios | ${title}` `>
+  <div class="h-[120px] header-blur w-full z-10 fixed top-0"></div>
+  <section class="w-[95%] mx-auto mt-28 mb-28">
+    <h1
+      class="text-[40px] font-semibold text-center text-logo-blue underline"
+      transition:name=`${title}-title`
+    >
+      {title}
+    </h1>
+    <div class="mt-10 w-full h-[300px]">
+      <img
+        transition:name="img-monitoreo_cultivos"
+        class="object-center object-cover h-full w-full rounded-md"
+        src="/siembra_terrestre2.jpg"
+        alt={title}
+      />
+    </div>
+    <div
+      transition:animate="fade"
+      class="mt-10 grid grid-cols-[1fr_2fr] gap-10 items-center justify-start"
+    >
+      <CarouselDemo client:load images={images} />
+
+      <div class="h-full inline-flex flex-col justify-between">
+        <div class="flex flex-col gap-6">
+          <h2 class="text-[2rem] font-normal tracking-tight">
+            Tarea que realizamos con Ingenieros Agrónomos y estudiantes
+            avanzados (6 año)
+          </h2>
+          <p class="text-gray-500 text-lg">Monitoreo de Plagas:</p>
+          <p>
+            El Monitoreo de Plagas es una práctica que implica una inspección
+            frecuente y profesional de los lotes, evaluando, tipo y cantidad de
+            organismos presentes, estimación de daño y posible evolución en
+            función de condiciones ambientales y enemigos biológicos presentes
+            en cada etapa del cultivo. Se realiza un informe semanal de lo
+            observado en cada lote con las sugerencias para realizar el control
+            o cuidado correspondiente y se envía por email. Este método,
+            presenta algunas ventajas comparativas con el sistema tradicional de
+            efectuar tratamientos preventivos o ante la sola presencia de algún
+            insecto. Entre las cuales podemos enumerar las siguientes:
+          </p>
+          <ul class="text-gray-500 text-lg space-y-2">
+            <li>
+              <strong>Ahorro de productos y menor impacto ambiental</strong>
+            </li>
+            <li>
+              <strong
+                >Aplicación del producto adecuado en la dosis efectiva para
+                solucionar el problema</strong
+              >
+            </li>
+            <li>
+              <strong
+                >Evita mermas de rendimiento por tomar a tiempo una infestación</strong
+              >
+            </li>
+            <li>
+              <strong
+                >Brinda mayor tiempo de gestión a la empresa agrícola
+              </strong>
+            </li>
+          </ul>
+        </div>
+
+        <Button
+          className="justify-center border-logo-blue text-logo-blue hover:bg-logo-blue hover:text-white flex-shrink-0 flex-grow-0 max-w-[200px] mt-8"
+          client:load
+          variant={"outline"}
+        >
+          <div class="flex items-center gap-4">
+            Saber más <MessageCircle size={16} />
+          </div>
+        </Button>
+      </div>
+    </div>
+  </section>
+</Layout>
