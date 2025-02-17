@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { AlignRight, X, Search } from "lucide-react";
+import { AlignRight, X, MessageCircle } from "lucide-react";
 import NavItem from "./NavBarItemWhite";
 
 const menuItems = [
   { href: "/", text: "Inicio" },
   { href: "/servicios", text: "Servicios" },
   { href: "/nosotros", text: "Sobre nosotros" },
-  { href: "/info", text: "Información" },
+  { href: "/galeria", text: "Galería" },
 ];
 
 const mobileMenuVariants = {
@@ -104,19 +104,22 @@ export default function Navbar() {
           transition={{ delay: 0.3 }}
         >
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-6 py-2 bg-white text-black rounded-md font-medium"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.8 }}
+            className="bg-white text-black rounded-md px-6 py-2  "
           >
-            Contáctanos
+            <div className="flex items-center gap-4">
+              <a target="_blank" href="https://wa.link/r80kjj">
+                Contáctanos
+              </a>
+              <MessageCircle size={16} />
+            </div>
           </motion.button>
-          <motion.button
+          {/* <motion.button
             whileHover={{ scale: 1.1, rotate: 15 }}
             whileTap={{ scale: 0.9 }}
             className="text-white"
-          >
-            <Search className="w-5 h-5" />
-          </motion.button>
+          ></motion.button> */}
         </motion.div>
       </motion.nav>
 
