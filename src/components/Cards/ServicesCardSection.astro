@@ -15,6 +15,7 @@ const { title, description, imageUrl, altText } = Astro.props;
 >
   <div class="relative">
     <img
+      loading="lazy"
       transition:name=`img-${altText}`
       src={imageUrl || "/placeholder.svg"}
       alt={altText}

@@ -117,11 +117,11 @@ export default function About() {
         transition={{ duration: 1.5 }}
       >
         <img
-          src="/placeholder.svg?height=1080&width=1920"
-          alt="Campo agrícola"
-          className="absolute inset-0 w-full h-full object-cover z-0"
+          src="/images/equipoyavion5.jpeg"
+          alt="Maquinarias"
+          className="absolute inset-0 w-full h-full object-cover z-0 opacity-40"
         />
-        <div className="relative z-10 text-center px-4">
+        <div className="relative z-10 text-center px-4 mb-20">
           <motion.h1
             className="text-4xl md:text-6xl font-bold mb-4"
             initial={{ y: 50, opacity: 0 }}
