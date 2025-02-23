@@ -1,11 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useInView } from "react-intersection-observer";
-import * as LazyLoadModule from "react-lazy-load-image-component";
-import { useMemo } from "react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ChevronDown, Plus } from "lucide-react";
 
 const images = [
   {
@@ -40,7 +46,6 @@ const images = [
     categories: ["maquinaria", "cosecha"],
     origin: "public",
   },
-
   {
     id: 6,
     src: "/images/dron6.jpeg",
@@ -73,7 +78,6 @@ const images = [
     categories: ["maquinaria"],
     origin: "images",
   },
-
   {
     id: 10,
     src: "/images/camiones3.jpeg",
@@ -98,7 +102,6 @@ const images = [
     categories: ["siembra", "avion"],
     origin: "public",
   },
-
   {
     id: 10,
     src: "/images/maquinas2.jpeg",
@@ -151,51 +154,81 @@ const images = [
   },
 ];
 
+const mainCategories = [
+  "siembra",
+  "cosecha",
+  "maquinaria",
+  "pulverizacion",
+  "avion",
+  "equipo",
+];
 const allCategories = [
   "maquinaria",
   "avion",
   "cosecha",
   "siembra",
   "fertilizacion",
+  "pulverizacion",
+  "equipo",
+  // Add any additional categories here
 ];
 
-const ImageSkeleton = ({ src, alt }) => {
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
+const otherCategories = allCategories.filter(
+  (cat) => !mainCategories.includes(cat)
+);
 
+const ImageSkeleton = ({ size, isFiltered }) => {
   return (
-    <div className="relative w-full h-[200px]">
-      {/* Skeleton visible solo si la imagen aún no ha cargado */}
-      {!isImageLoaded && (
-        <div className="absolute inset-0 bg-gray-300 animate-pulse rounded-md" />
-      )}
-
-      {/* Imagen con evento onLoad para detectar cuando carga */}
-      <img
-        src={src}
-        alt={alt}
-        className={`w-full h-full object-cover transition-opacity duration-500 ${
-          isImageLoaded ? "opacity-100" : "opacity-0"
-        }`}
-        onLoad={() => setIsImageLoaded(true)}
-      />
+    <div
+      className={`relative overflow-hidden rounded-lg ${
+        !isFiltered
+          ? `${size === "large" ? "col-span-2 row-span-2" : ""}
+             ${size === "wide" ? "col-span-2" : ""}
+             ${size === "tall" ? "row-span-2" : ""}`
+          : ""
+      }`}
+    >
+      <div
+        className="w-full h-0"
+        style={{
+          paddingBottom: isFiltered
+            ? "75%"
+            : size === "tall"
+            ? "200%"
+            : size === "large"
+            ? "100%"
+            : "75%",
+        }}
+      >
+        <Skeleton className="absolute inset-0 w-full h-full" />
+      </div>
     </div>
   );
 };
 
 const LazyImage = ({ src, alt, size, isFiltered, onClick }) => {
-  const [ref, inView] = useInView({
-    triggerOnce: true, // Carga la imagen solo una vez cuando entra en la vista
-  });
   const [isLoaded, setIsLoaded] = useState(false);
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    rootMargin: "200px 0px",
+  });
+
+  useEffect(() => {
+    if (inView) {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => setIsLoaded(true);
+    }
+  }, [inView, src]);
 
   return (
     <div
       ref={ref}
       className={`relative overflow-hidden rounded-lg shadow-lg cursor-pointer ${
         !isFiltered
-          ? `${size === "large" ? "sm:col-span-2 sm:row-span-2" : ""}
-             ${size === "wide" ? "sm:col-span-2" : ""}
-             ${size === "tall" ? "sm:row-span-2" : ""}`
+          ? `${size === "large" ? "col-span-2 row-span-2" : ""}
+             ${size === "wide" ? "col-span-2" : ""}
+             ${size === "tall" ? "row-span-2" : ""}`
           : ""
       }`}
       onClick={onClick}
@@ -203,19 +236,29 @@ const LazyImage = ({ src, alt, size, isFiltered, onClick }) => {
       <div
         className="w-full h-0"
         style={{
-          paddingBottom: isFiltered ? "75%" : size === "tall" ? "140%" : "75%",
+          paddingBottom: isFiltered
+            ? "75%"
+            : size === "tall"
+            ? "200%"
+            : size === "large"
+            ? "100%"
+            : "75%",
         }}
       >
-        {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full" />}
         {inView && (
-          <img
-            src={src || "/placeholder.svg"}
-            alt={alt}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-              isLoaded ? "opacity-100" : "opacity-0"
-            }`}
-            onLoad={() => setIsLoaded(true)}
-          />
+          <>
+            <img
+              src={src || "/placeholder.svg"}
+              alt={alt}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                isLoaded ? "opacity-100" : "opacity-0"
+              }`}
+              style={{ filter: isLoaded ? "none" : "blur(10px)" }}
+            />
+            {!isLoaded && (
+              <Skeleton className="absolute inset-0 w-full h-full" />
+            )}
+          </>
         )}
       </div>
       <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center">
@@ -231,6 +274,7 @@ export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     setIsLoading(false);
@@ -262,6 +306,10 @@ export default function Gallery() {
     );
   };
 
+  const filteredOtherCategories = otherCategories.filter((cat) =>
+    cat.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <section className="py-8 md:py-4">
       <div className="container mx-auto px-4">
@@ -275,20 +323,51 @@ export default function Gallery() {
         </motion.h2>
 
         <div className="flex flex-wrap justify-center gap-2 mb-8">
-          {allCategories.map((category) => (
-            <button
+          {mainCategories.map((category) => (
+            <Button
               key={category}
               onClick={() => toggleCategory(category)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors
-                ${
-                  selectedCategories.includes(category)
-                    ? "bg-logo-blue text-white"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                }`}
+              variant={
+                selectedCategories.includes(category) ? "default" : "outline"
+              }
             >
               {category}
-            </button>
+            </Button>
           ))}
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="outline">
+                Más filtros <ChevronDown className="ml-2 h-4 w-4" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-80">
+              <div className="space-y-4">
+                <Input
+                  type="search"
+                  placeholder="Buscar filtros..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <div className="space-y-2">
+                  {filteredOtherCategories.map((category) => (
+                    <Button
+                      key={category}
+                      onClick={() => toggleCategory(category)}
+                      variant={
+                        selectedCategories.includes(category)
+                          ? "default"
+                          : "outline"
+                      }
+                      className="w-full justify-start"
+                    >
+                      <Plus className="mr-2 h-4 w-4" />
+                      {category}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            </PopoverContent>
+          </Popover>
         </div>
 
         <AnimatePresence mode="wait">
@@ -300,26 +379,16 @@ export default function Gallery() {
             transition={{ duration: 0.3 }}
             className={`grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4`}
           >
-            {isLoading
-              ? Array.from({ length: filteredImages.length }).map(
-                  (_, index) => (
-                    <ImageSkeleton
-                      key={index}
-                      size={images[index % images.length].size}
-                      isFiltered={selectedCategories.length > 0}
-                    />
-                  )
-                )
-              : filteredImages.map((image) => (
-                  <LazyImage
-                    key={image.src}
-                    src={image.src}
-                    alt={image.alt}
-                    size={image.size}
-                    isFiltered={selectedCategories.length > 0}
-                    onClick={() => openLightbox(image)}
-                  />
-                ))}
+            {filteredImages.map((image) => (
+              <LazyImage
+                key={image.id}
+                src={image.src}
+                alt={image.alt}
+                size={image.size}
+                isFiltered={selectedCategories.length > 0}
+                onClick={() => openLightbox(image)}
+              />
+            ))}
           </motion.div>
         </AnimatePresence>
       </div>

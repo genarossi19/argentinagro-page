@@ -1,14 +1,13 @@
 "use client";
 
 import { motion, AnimatePresence, useTransform } from "framer-motion";
-import { useState, useRef } from "react";
-// Eliminar esta línea: import Image from "next/image"
+import { useState, useRef, useEffect } from "react";
 import { X } from "lucide-react";
 import { useScroll } from "framer-motion";
 import "@/styles/global.css";
-// Componentes
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Skeleton } from "@/components/ui/skeleton";
 
 // Datos simulados
 const companyHistory = [
@@ -31,20 +30,20 @@ const companyHistory = [
 
 const teamMembers = [
   {
-    name: "Ana Rodríguez",
+    name: "Mauricio J. Font",
     role: "CEO",
-    image: "/placeholder.svg?height=400&width=300",
-    bio: "Ana ha liderado nuestra empresa durante más de una década, impulsando la innovación y el crecimiento sostenible. Su visión ha sido fundamental para posicionarnos como líderes en soluciones agrícolas ecológicas.",
+    image: "https://thispersondoesnotexist.com/",
+    bio: "Mauricio ha liderado nuestra empresa durante más de una década, impulsando la innovación y el crecimiento sostenible...",
     achievements: [
       "Premio a la Innovación Agrícola 2019",
       "Miembro de la Junta de Sostenibilidad Agrícola",
     ],
   },
   {
-    name: "Carlos Mendoza",
+    name: "Viviana Oses",
     role: "Jefe de Investigación",
-    image: "/placeholder.svg?height=400&width=300",
-    bio: "Con un doctorado en Biotecnología Agrícola, Carlos lidera nuestro equipo de investigación en el desarrollo de soluciones innovadoras para la protección de cultivos.",
+    image: "https://thispersondoesnotexist.com/",
+    bio: "Con un doctorado en Biotecnología Agrícola, Viviana lidera nuestro equipo de investigación...",
     achievements: [
       "Patente en Biopesticidas Avanzados",
       "Publicación en Nature sobre Agricultura Sostenible",
@@ -53,8 +52,8 @@ const teamMembers = [
   {
     name: "Laura Gómez",
     role: "Directora de Operaciones",
-    image: "/placeholder.svg?height=400&width=300",
-    bio: "Laura ha optimizado nuestras operaciones globales, implementando prácticas sostenibles en toda nuestra cadena de suministro.",
+    image: "https://thispersondoesnotexist.com/",
+    bio: "Laura ha optimizado nuestras operaciones globales, implementando prácticas sostenibles...",
     achievements: [
       "Certificación en Gestión de Cadena de Suministro Verde",
       "Reducción del 30% en la huella de carbono operativa",
@@ -63,8 +62,8 @@ const teamMembers = [
   {
     name: "Miguel Sánchez",
     role: "Especialista en Sostenibilidad",
-    image: "/placeholder.svg?height=400&width=300",
-    bio: "Miguel trabaja incansablemente para asegurar que nuestros productos y prácticas sean amigables con el medio ambiente y sostenibles a largo plazo.",
+    image: "https://thispersondoesnotexist.com/",
+    bio: "Miguel trabaja incansablemente para asegurar que nuestros productos sean sostenibles...",
     achievements: [
       "Desarrollo del Programa de Agricultura Regenerativa",
       "Ponente principal en la Cumbre de Sostenibilidad Agrícola 2022",
@@ -91,6 +90,38 @@ const machinery = [
     description: "Optimiza el uso del agua basándose en datos en tiempo real.",
   },
 ];
+
+const ImageWithSkeleton = ({ src, alt, className }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = src;
+    img.onload = () => setIsLoaded(true);
+    img.onerror = () => setError(true);
+  }, [src]);
+
+  if (error) {
+    return <div className={`bg-gray-300 ${className}`}>{alt}</div>;
+  }
+
+  return (
+    <div className={`relative ${className}`}>
+      {!isLoaded && (
+        <Skeleton className="absolute inset-0 w-full h-full rounded-lg" />
+      )}
+      <img
+        src={src || "/placeholder.svg"}
+        alt={alt}
+        className={`w-full h-full object-cover rounded-lg transition-opacity duration-300 ${
+          isLoaded ? "opacity-100" : "opacity-0"
+        }`}
+        onLoad={() => setIsLoaded(true)}
+      />
+    </div>
+  );
+};
 
 export default function About() {
   const [selectedMember, setSelectedMember] = useState(null);
@@ -185,10 +216,10 @@ export default function About() {
               viewport={{ once: true }}
               onClick={() => setSelectedMember(member)}
             >
-              <img
+              <ImageWithSkeleton
                 src={member.image || "/placeholder.svg"}
                 alt={member.name}
-                className="w-full h-[300px] object-cover rounded-lg mb-4"
+                className="w-full h-[300px] mb-4"
               />
               <h3 className="text-xl font-semibold">{member.name}</h3>
               <p className="text-logo-blue">{member.role}</p>
@@ -220,10 +251,10 @@ export default function About() {
                   <X size={24} />
                 </button>
                 <div className="mt-8">
-                  <img
+                  <ImageWithSkeleton
                     src={selectedMember.image || "/placeholder.svg"}
                     alt={selectedMember.name}
-                    className="w-[200px] h-[200px] rounded-full mx-auto mb-4 object-cover"
+                    className="w-[200px] h-[200px] rounded-full mx-auto mb-4"
                   />
                   <h3 className="text-2xl font-bold text-center mb-2">
                     {selectedMember.name}
@@ -254,7 +285,7 @@ export default function About() {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
           Nuestra Tecnología
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {machinery.map((machine, index) => (
             <motion.div
               key={machine.name}
@@ -266,26 +297,31 @@ export default function About() {
             >
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button variant="ghost" className="w-full p-0">
-                    <div className="text-center">
-                      <div className="aspect-w-4 aspect-h-3 mb-4">
-                        <img
+                  <Button
+                    variant="ghost"
+                    className="w-full h-full p-0 hover:bg-transparent hover:opacity-90 transition-opacity"
+                  >
+                    <div className="text-center space-y-4">
+                      <div className="aspect-square w-full overflow-hidden rounded-lg">
+                        <ImageWithSkeleton
                           src={machine.image || "/placeholder.svg"}
                           alt={machine.name}
-                          className="w-full h-full object-cover rounded-lg"
+                          className="w-full h-full"
                         />
                       </div>
-                      <h3 className="text-xl font-semibold">{machine.name}</h3>
+                      <h3 className="text-xl font-semibold px-4">
+                        {machine.name}
+                      </h3>
                     </div>
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                   <div className="text-center">
-                    <div className="aspect-w-4 aspect-h-3 mb-4">
-                      <img
+                    <div className="aspect-video w-full mb-4">
+                      <ImageWithSkeleton
                         src={machine.image || "/placeholder.svg"}
                         alt={machine.name}
-                        className="w-full h-full object-cover rounded-lg"
+                        className="w-full h-full rounded-lg"
                       />
                     </div>
                     <h3 className="text-2xl font-bold mb-2">{machine.name}</h3>
@@ -307,14 +343,16 @@ export default function About() {
           Nuestra Misión en Acción
         </h2>
         <div className="max-w-4xl mx-auto">
-          <div className="aspect-w-16 aspect-h-9">
+          <div className="relative h-[600px]">
             <iframe
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              src="https://www.youtube.com/embed/KoGEn24fsiM"
+              title="Cosecha de Soja 2022 [1] | La Argentina | ArgentinagroSRL"
               frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
-              className="rounded-lg w-full h-full"
-            ></iframe>
+              className="absolute inset-0 w-full h-full rounded-lg"
+            />
           </div>
         </div>
       </motion.section>
