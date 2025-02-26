@@ -21,7 +21,7 @@ import "@/styles/global.css";
     <title>{title}</title>
     <ClientRouter />
   </head>
-  <body>
+  <body class="custom-scroll">
     <div id="app" class="relative"></div>
     <header class="fixed top-0 w-full [grid-area:header] z-40">
       <NavBar />
@@ -43,5 +43,48 @@ import "@/styles/global.css";
       "footer";
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
+  }
+
+  /* Estilos globales para la barra de scroll */
+  body {
+    scrollbar-width: thin; /* Firefox: barra delgada */
+    scrollbar-color: transparent transparent; /* Firefox: oculta la barra por defecto */
+  }
+
+  body:hover {
+    scrollbar-color: #888 #f1f1f1; /* Firefox: muestra la barra al hacer hover */
+  }
+
+  /* Estilos para la barra de scroll en WebKit (Chrome, Safari, Edge) */
+  ::-webkit-scrollbar {
+    width: 8px; /* Ancho más delgado */
+    background-color: transparent; /* Fondo transparente */
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent; /* Fondo transparente */
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+    border: 2px solid transparent; /* Borde transparente */
+    opacity: 0; /* Barra invisible por defecto */
+    transition:
+      opacity 0.3s ease,
+      background 0.3s ease; /* Transición suave */
+  }
+
+  /* Mostrar la barra al hacer hover o al scrollear */
+  body:hover::-webkit-scrollbar-thumb,
+  body:active::-webkit-scrollbar-thumb {
+    opacity: 1; /* Barra visible */
+    border-color: #f1f1f1; /* Borde visible */
+  }
+
+  /* Cambiar el color del thumb al hacer hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 </style>

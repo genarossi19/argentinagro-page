@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useMemo, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useInView } from "react-intersection-observer";
 import {
@@ -12,170 +12,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ChevronDown, Plus } from "lucide-react";
-
-const images = [
-  {
-    id: 1,
-    src: "/images/maquinas1.jpeg",
-    alt: "maquinas1",
-    size: "large",
-    categories: ["maquinaria"],
-    origin: "images",
-  },
-  {
-    id: 2,
-    src: "/cosecha1.jpg",
-    alt: "cosecha1",
-    size: "small",
-    categories: ["maquinaria", "cosecha"],
-    origin: "public",
-  },
-  {
-    id: 3,
-    src: "/fertilizacion3.jpg",
-    alt: "fertilizacion3",
-    size: "tall",
-    categories: ["fertilizacion", "avion"],
-    origin: "public",
-  },
-  {
-    id: 4,
-    src: "/cosechadoras.JPG",
-    alt: "cosechadoras",
-    size: "small",
-    categories: ["maquinaria", "cosecha"],
-    origin: "public",
-  },
-  {
-    id: 6,
-    src: "/images/dron6.jpeg",
-    alt: "dron6",
-    size: "small",
-    categories: ["fertilizacion"],
-    origin: "images",
-  },
-  {
-    id: 7,
-    src: "/images/camiones1.jpeg",
-    alt: "camiones1",
-    size: "small",
-    categories: ["maquinaria"],
-    origin: "images",
-  },
-  {
-    id: 5,
-    src: "/fertilizacion1.jpg",
-    alt: "fertilizacion1",
-    size: "wide",
-    categories: ["avion"],
-    origin: "public",
-  },
-  {
-    id: 8,
-    src: "/images/camiones2.jpeg",
-    alt: "camiones2",
-    size: "tall",
-    categories: ["maquinaria"],
-    origin: "images",
-  },
-  {
-    id: 10,
-    src: "/images/camiones3.jpeg",
-    alt: "camiones3",
-    size: "large",
-    categories: ["maquinaria"],
-    origin: "images",
-  },
-  {
-    id: 11,
-    src: "/images/camiones4.jpeg",
-    alt: "camiones4",
-    size: "small",
-    categories: ["maquinaria"],
-    origin: "images",
-  },
-  {
-    id: 9,
-    src: "/fertilizacion2.jpg",
-    alt: "fertilizacion2",
-    size: "tall",
-    categories: ["siembra", "avion"],
-    origin: "public",
-  },
-  {
-    id: 10,
-    src: "/images/maquinas2.jpeg",
-    alt: "maquinas2",
-    size: "small",
-    categories: ["maquinaria"],
-    origin: "images",
-  },
-  {
-    id: 11,
-    src: "/images/jhondeere1.jpeg",
-    alt: "jhondeere1",
-    size: "wide",
-    categories: ["maquinaria", "cosecha"],
-  },
-  {
-    id: 12,
-    src: "/images/maquinas8.jpeg",
-    alt: "maquinas8",
-    size: "large",
-    categories: ["maquinaria"],
-  },
-  {
-    id: 13,
-    src: "/images/turbo1.jpeg",
-    alt: "turbo1",
-    size: "small",
-    categories: ["avion"],
-  },
-  {
-    id: 14,
-    src: "/images/newholland1.jpeg",
-    alt: "newholland1",
-    size: "small",
-    categories: ["maquinaria", "cosecha"],
-  },
-  {
-    id: 15,
-    src: "/images/tolva1.jpeg",
-    alt: "tolva1",
-    size: "small",
-    categories: ["maquinaria"],
-  },
-  {
-    id: 16,
-    src: "/images/tractor1.jpeg",
-    alt: "tractor1",
-    size: "small",
-    categories: ["maquinaria"],
-  },
-];
-
-const mainCategories = [
-  "siembra",
-  "cosecha",
-  "maquinaria",
-  "pulverizacion",
-  "avion",
-  "equipo",
-];
-const allCategories = [
-  "maquinaria",
-  "avion",
-  "cosecha",
-  "siembra",
-  "fertilizacion",
-  "pulverizacion",
-  "equipo",
-  // Add any additional categories here
-];
-
-const otherCategories = allCategories.filter(
-  (cat) => !mainCategories.includes(cat)
-);
 
 const ImageSkeleton = ({ size, isFiltered }) => {
   return (
@@ -275,9 +111,68 @@ export default function Gallery() {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const [images, setImages] = useState([]);
+  const [mainCategories, setMainCategories] = useState([]);
+  const [allCategories, setAllCategories] = useState([]);
 
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  // Fetch categories from the API
   useEffect(() => {
-    setIsLoading(false);
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("/api/get-categories.json");
+        if (!response.ok) {
+          throw new Error("Network response was not ok (categories)");
+        }
+        const data = await response.json();
+        const categories = data.categories.map((cat) => cat.name.toLowerCase());
+
+        // Set the first 5 categories as main categories
+        setMainCategories(categories.slice(0, 5));
+        // Set all categories
+        setAllCategories(categories);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  // Fetch images from the API
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await fetch("/api/get-images.json");
+        if (!response.ok) {
+          throw new Error("Network response was not ok (images)");
+        }
+        const data = await response.json();
+        // Adapt the data to match the expected structure
+        const adaptedImages = data.images.map((image) => ({
+          ...image,
+          categories: image.categories.map((cat) => cat.name.toLowerCase()),
+        }));
+        setImages(adaptedImages);
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchImages();
   }, []);
 
   const filteredImages = useMemo(() => {
@@ -286,7 +181,7 @@ export default function Gallery() {
       : images.filter((image) =>
           selectedCategories.every((cat) => image.categories.includes(cat))
         );
-  }, [selectedCategories]);
+  }, [selectedCategories, images]);
 
   const openLightbox = (image) => {
     setSelectedImage(image);
@@ -306,12 +201,25 @@ export default function Gallery() {
     );
   };
 
+  // Filter categories that are not in mainCategories
+  const otherCategories = allCategories.filter(
+    (cat) => !mainCategories.includes(cat)
+  );
+
   const filteredOtherCategories = otherCategories.filter((cat) =>
     cat.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
-    <section className="py-8 md:py-4">
+    <section ref={containerRef} className="py-8 md:py-4 relative">
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 z-50"
+        style={{
+          scaleX,
+          transformOrigin: "0%",
+          backgroundColor: "#0050AC", // logo-blue color
+        }}
+      />
       <div className="container mx-auto px-4">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -370,27 +278,35 @@ export default function Gallery() {
           </Popover>
         </div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={selectedCategories.join(",")}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className={`grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4`}
-          >
-            {filteredImages.map((image) => (
-              <LazyImage
-                key={image.id}
-                src={image.src}
-                alt={image.alt}
-                size={image.size}
-                isFiltered={selectedCategories.length > 0}
-                onClick={() => openLightbox(image)}
-              />
+        {isLoading ? (
+          <div className="grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {Array.from({ length: 12 }).map((_, index) => (
+              <ImageSkeleton key={index} size="small" isFiltered={false} />
             ))}
-          </motion.div>
-        </AnimatePresence>
+          </div>
+        ) : (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedCategories.join(",")}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className={`grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4`}
+            >
+              {filteredImages.map((image) => (
+                <LazyImage
+                  key={image.id}
+                  src={image.src}
+                  alt={image.alt}
+                  size={image.size}
+                  isFiltered={selectedCategories.length > 0}
+                  onClick={() => openLightbox(image)}
+                />
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        )}
       </div>
 
       {selectedImage && (

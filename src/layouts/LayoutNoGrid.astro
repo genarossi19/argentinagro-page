@@ -37,4 +37,15 @@ import "@/styles/global.css";
   }
   #app {
   }
+  /* Estilos globales para la barra de scroll */
+  /* Ocultar la barra de scroll en todos los navegadores */
+  body {
+    scrollbar-width: none; /* Firefox: oculta la barra de scroll */
+    -ms-overflow-style: none; /* IE y Edge: oculta la barra de scroll */
+  }
+
+  /* Ocultar la barra de scroll en WebKit (Chrome, Safari, Edge) */
+  ::-webkit-scrollbar {
+    display: none; /* Oculta la barra de scroll */
+  }
 </style>

@@ -1,6 +1,11 @@
 "use client";
 
-import { motion, AnimatePresence, useTransform } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useTransform,
+  useSpring,
+} from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import { X } from "lucide-react";
 import { useScroll } from "framer-motion";
@@ -127,19 +132,28 @@ export default function About() {
   const [selectedMember, setSelectedMember] = useState(null);
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
+    offset: ["start start", "end end"],
   });
 
   const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
 
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
   return (
     <section
       data-header-color="white"
       ref={containerRef}
-      className="landing-section min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white"
+      className="landing-section min-h-[calc(100vh-100px)] bg-gradient-to-b from-gray-900 to-gray-800 text-white"
     >
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-white z-50"
+        style={{ scaleX, transformOrigin: "0%" }}
+      />
       {/* Hero Section */}
       <motion.section
         className="h-screen flex items-center justify-center relative overflow-hidden"
@@ -358,7 +372,7 @@ export default function About() {
       </motion.section>
 
       {/* Llamado a la Acción */}
-      <section className="py-20 px-4 text-center">
+      <section className="py-20 px-4 text-center pb-[100px]">
         <h2 className="text-3xl md:text-4xl font-bold mb-8">
           Únete a Nuestra Misión
         </h2>
