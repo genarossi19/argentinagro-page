@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react"; // Importa React
+import ReactDOM from "react-dom"; // Importa React DOM si es necesario
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useInView } from "react-intersection-observer";
 import {
   Popover,
   PopoverContent,
@@ -42,24 +42,9 @@ const ImageSkeleton = ({ size, isFiltered }) => {
   );
 };
 
-const LazyImage = ({ src, alt, size, isFiltered, onClick }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    rootMargin: "200px 0px",
-  });
-
-  useEffect(() => {
-    if (inView) {
-      const img = new Image();
-      img.src = src;
-      img.onload = () => setIsLoaded(true);
-    }
-  }, [inView, src]);
-
+const GalleryImage = React.memo(({ src, alt, size, isFiltered, onClick }) => {
   return (
     <div
-      ref={ref}
       className={`relative overflow-hidden rounded-lg shadow-lg cursor-pointer ${
         !isFiltered
           ? `${size === "large" ? "col-span-2 row-span-2" : ""}
@@ -81,21 +66,14 @@ const LazyImage = ({ src, alt, size, isFiltered, onClick }) => {
             : "75%",
         }}
       >
-        {inView && (
-          <>
-            <img
-              src={src || "/placeholder.svg"}
-              alt={alt}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-                isLoaded ? "opacity-100" : "opacity-0"
-              }`}
-              style={{ filter: isLoaded ? "none" : "blur(10px)" }}
-            />
-            {!isLoaded && (
-              <Skeleton className="absolute inset-0 w-full h-full" />
-            )}
-          </>
-        )}
+        <img
+          src={src || "/placeholder.svg"}
+          alt={alt}
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+          width={500}
+          height={300}
+        />
       </div>
       <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center">
         <p className="text-white p-4 text-center text-sm md:text-base font-light tracking-wide">
@@ -104,7 +82,7 @@ const LazyImage = ({ src, alt, size, isFiltered, onClick }) => {
       </div>
     </div>
   );
-};
+});
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -127,52 +105,43 @@ export default function Gallery() {
     restDelta: 0.001,
   });
 
-  // Fetch categories from the API
+  // Fetch data from the API
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch("/api/get-categories.json");
-        if (!response.ok) {
-          throw new Error("Network response was not ok (categories)");
-        }
-        const data = await response.json();
-        const categories = data.categories.map((cat) => cat.name.toLowerCase());
+        const [categoriesResponse, imagesResponse] = await Promise.all([
+          fetch("/api/get-categories.json"),
+          fetch("/api/get-images.json"),
+        ]);
 
-        // Set the first 5 categories as main categories
+        if (!categoriesResponse.ok || !imagesResponse.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const [categoriesData, imagesData] = await Promise.all([
+          categoriesResponse.json(),
+          imagesResponse.json(),
+        ]);
+
+        const categories = categoriesData.categories.map((cat) =>
+          cat.name.toLowerCase()
+        );
         setMainCategories(categories.slice(0, 5));
-        // Set all categories
         setAllCategories(categories);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
-    };
 
-    fetchCategories();
-  }, []);
-
-  // Fetch images from the API
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const response = await fetch("/api/get-images.json");
-        if (!response.ok) {
-          throw new Error("Network response was not ok (images)");
-        }
-        const data = await response.json();
-        // Adapt the data to match the expected structure
-        const adaptedImages = data.images.map((image) => ({
+        const adaptedImages = imagesData.images.map((image) => ({
           ...image,
           categories: image.categories.map((cat) => cat.name.toLowerCase()),
         }));
         setImages(adaptedImages);
       } catch (error) {
-        console.error("Error fetching images:", error);
+        console.error("Error fetching data:", error);
       } finally {
         setIsLoading(false);
       }
     };
 
-    fetchImages();
+    fetchData();
   }, []);
 
   const filteredImages = useMemo(() => {
@@ -212,6 +181,7 @@ export default function Gallery() {
 
   return (
     <section ref={containerRef} className="py-8 md:py-4 relative">
+      {/* Comenta o elimina temporalmente la barra de progreso animada */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 z-50"
         style={{
@@ -287,15 +257,15 @@ export default function Gallery() {
         ) : (
           <AnimatePresence mode="wait">
             <motion.div
-              key={selectedCategories.join(",")}
-              initial={{ opacity: 0 }}
+              key="static-gallery" // Key estable
+              initial={false}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               className={`grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4`}
             >
               {filteredImages.map((image) => (
-                <LazyImage
+                <GalleryImage
                   key={image.id}
                   src={image.src}
                   alt={image.alt}

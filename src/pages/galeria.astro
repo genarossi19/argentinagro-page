@@ -1,11 +1,60 @@
 ---
-import LayoutNoGrid from "@/layouts/LayoutNoGrid.astro";
-import Gallery from "@/components/Page/Gallery";
+import LayoutNoGrid from "../layouts/LayoutNoGrid.astro";
+
+// Fetch image data from the API
+const response = await fetch("/api/get-images.json");
+const data = await response.json();
+const { images } = data;
+
+// Function to determine CSS class based on image size
+function getSizeClass(size: any) {
+  switch (size) {
+    case "large":
+      return "col-span-2 row-span-2";
+    case "tall":
+      return "row-span-2";
+    case "wide":
+      return "col-span-2";
+    default:
+      return "";
+  }
+}
 ---
 
-<LayoutNoGrid title="Galería">
-  <div class="h-[120px] header-blur w-full z-10 fixed top-0"></div>
-  <section class="w-[90%] mx-auto mt-28">
-    <Gallery client:visible />
-  </section>
+<LayoutNoGrid title="Image Gallery">
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Image Gallery</h1>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+    >
+      {
+        images.map(
+          (image: { size: any; src: any; alt: any; categories: any[] }) => (
+            <div
+              class={`relative overflow-hidden rounded-lg ${getSizeClass(image.size)}`}
+            >
+              <img
+                src={image.src || "/placeholder.svg"}
+                alt={image.alt}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2">
+                <p class="text-sm">{image.alt}</p>
+                {image.categories && image.categories.length > 0 && (
+                  <div class="flex flex-wrap mt-1">
+                    {image.categories.map((category: { name: unknown }) => (
+                      <span class="text-xs bg-white text-black rounded-full px-2 py-1 mr-1 mb-1">
+                        {category.name}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          )
+        )
+      }
+    </div>
+  </main>
 </LayoutNoGrid>
