@@ -1,0 +1,119 @@
+---
+import "photoswipe/style.css";
+import editionsInfo from "@/data/meta-gallery.json";
+
+const { edicion } = Astro.props;
+const edictionIndex = Number(1) - 1;
+const photos = editionsInfo[edictionIndex];
+---
+
+<masonry-layout
+  gap="24"
+  maxcolwidth="500"
+  class="max-w-7xl lg:mx-auto mx-4 my-10"
+  id="gallery"
+>
+  {
+    photos.map(({ height, width }, i) => (
+      <div class="gallery-item-wrapper">
+        {/* Skeleton placeholder */}
+        <div class="skeleton-placeholder" data-index={i}>
+          <div
+            class="animate-pulse rounded-xl bg-gray-200 dark:bg-gray-700 w-full"
+            style={`aspect-ratio: ${width}/${height}`}
+          />
+        </div>
+
+        <a
+          class="gallery-item group rounded-xl hover:scale-105 hover:contrast-[110%] transition-all relative opacity-0"
+          href={`/images/img-${i + 1}.webp`}
+          target="_blank"
+          data-cropped="true"
+          data-pswp-width={width}
+          data-pswp-height={height}
+          data-index={i}
+        >
+          <img
+            class="rounded-xl object-cover w-full h-auto"
+            loading="lazy"
+            src={`/images/thumbnails/img-${i + 1}.webp`}
+            alt="Fotografías"
+          />
+        </a>
+      </div>
+    ))
+  }
+</masonry-layout>
+
+<script>
+  import PhotoSwipeLightbox from "photoswipe/lightbox";
+  import "@appnest/masonry-layout";
+
+  document.addEventListener("astro:page-load", () => {
+    // Initialize PhotoSwipe
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: "#gallery",
+      children: "a.gallery-item",
+      pswpModule: () => import("photoswipe"),
+    });
+    lightbox.init();
+
+    // Handle image loading
+    const images = document.querySelectorAll(".gallery-item img");
+
+    images.forEach((img) => {
+      // For already loaded images (from cache)
+      if (img.complete) {
+        showImage(img);
+      } else {
+        // For images that need to load
+        img.onload = () => showImage(img);
+      }
+
+      // Fallback in case of loading error
+      img.onerror = () => showImage(img);
+    });
+
+    function showImage(img) {
+      const galleryItem = img.closest(".gallery-item");
+      const index = galleryItem.getAttribute("data-index");
+      const skeleton = document.querySelector(
+        `.skeleton-placeholder[data-index="${index}"]`
+      );
+
+      if (skeleton) {
+        skeleton.style.display = "none";
+      }
+
+      galleryItem.classList.remove("opacity-0");
+      galleryItem.style.opacity = "1";
+    }
+  });
+</script>
+
+<style>
+  .gallery-item-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .skeleton-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .gallery-item {
+    z-index: 2;
+    position: relative;
+    transition: opacity 0.3s ease;
+  }
+</style>
+
+<style is:global>
+  .pswp {
+    --pswp-bg: #00012a;
+  }
+</style>

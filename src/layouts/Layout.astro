@@ -22,12 +22,13 @@ import "@/styles/global.css";
     <ClientRouter />
   </head>
   <body class="custom-scroll">
-    <div id="app" class="relative"></div>
-    <header class="fixed top-0 w-full [grid-area:header] z-40">
-      <NavBar />
-    </header>
-    <main class="[grid-area:main]"><slot /></main>
-    <footer class="[grid-area:footer] min-w-[620px]"><Footer /></footer>
+    <div id="app" class="grid min-h-dvh grid-rows-[auto_1fr_auto]">
+      <header class="fixed top-0 w-full [grid-area:header] z-40">
+        <NavBar />
+      </header>
+      <main class="[grid-area:main]"><slot /></main>
+      <footer class="[grid-area:footer] min-w-[620px]"><Footer /></footer>
+    </div>
   </body>
 </html>
 <style is:global>

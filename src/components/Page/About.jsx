@@ -162,7 +162,7 @@ export default function About() {
         transition={{ duration: 1.5 }}
       >
         <img
-          src="/images/equipoyavion5.jpeg"
+          src="/images/img-44.webp"
           alt="Maquinarias"
           className="absolute inset-0 w-full h-full object-cover z-0 opacity-40"
         />
@@ -374,11 +374,10 @@ export default function About() {
       {/* Llamado a la Acción */}
       <section className="py-20 px-4 text-center pb-[100px]">
         <h2 className="text-3xl md:text-4xl font-bold mb-8">
-          Únete a Nuestra Misión
+          Compromiso con los Productores
         </h2>
         <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-          Descubre cómo nuestras soluciones pueden transformar tu agricultura y
-          contribuir a un futuro más sostenible.
+          Impulsamos tu Producción con Innovación y Responsabilidad
         </p>
         <Button className="bg-logo-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Contáctanos
