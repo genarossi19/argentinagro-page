@@ -78,21 +78,53 @@ const teamMembers = [
 
 const machinery = [
   {
-    name: "Tractor Inteligente X1",
-    image: "/placeholder.svg?height=600&width=800",
-    description:
-      "Equipado con GPS y sensores para una agricultura de precisión.",
+    name: "Cosechadora John Deere 9770",
+    image: "/cosecha2.jpeg?height=600&width=800",
+    description: "Con plataforma de 35 pies de corte.",
   },
   {
-    name: "Dron de Monitoreo AgroDron",
-    image: "/placeholder.svg?height=600&width=800",
-    description:
-      "Captura imágenes multiespectrales para analizar la salud de los cultivos.",
+    name: "Cosechadora New Holland ",
+    image: "/cosechadora2.JPG?height=600&width=800",
+    description: "desc",
   },
   {
-    name: "Sistema de Riego Automatizado",
-    image: "/placeholder.svg?height=600&width=800",
-    description: "Optimiza el uso del agua basándose en datos en tiempo real.",
+    name: "Pulverizadora PLA MD 3300 2019",
+    image: "/pulverizacion_terrestre.jpg?height=600&width=800",
+    description:
+      "Con sistema SIA (estacion meteorologica incorporada) 36 mts de ala mixta, corte por sección, banderillero satelital, piloto automático y computadora de a bordo, operadas por personal.",
+  },
+  {
+    name: "Sembradora JUBER 5200",
+    image: "/sembradora_juber5200.jpg?height=600&width=800",
+    description:
+      "Distancias posibles 17,5 cm. 35 cm. 52 cm y 70 cm entre hileras. Con sistema de dosificación Master Mac, neumática y variable de semilla y fertilizante.",
+  },
+  {
+    name: "Sembradora Crucianelli GRINGA",
+    image: "/siembra_terrestre2.jpg?height=600&width=800",
+    description:
+      "De grano grueso de 28 cuerpos a 35 cm, con sistema PRECISION PLANTING, neumático y variable de semilla y fertilizante. Ideal para maíces, con excelentes resultados en uniformidad de nacimientos.",
+  },
+  {
+    name: "Sembradora Agrometal TX-MEGA",
+    image: "/images/img-80.webp",
+    description:
+      "De 16 surcos a 52 cm entre hileras, neumatica con siembra variabl de fertilizante y semilla.",
+  },
+  {
+    name: "Tractor New Holland",
+    image: "/images/img-80.webp",
+    description: "",
+  },
+  {
+    name: "Avion Turbo Kruk",
+    image: "/pulverizacion_aerea3.jpg?height=600&width=800",
+    description: "",
+  },
+  {
+    name: "Avion Puelche 260",
+    image: "/images/img-80.webp",
+    description: "",
   },
 ];
 
@@ -297,7 +329,7 @@ export default function About() {
       {/* Tecnología y Maquinaria */}
       <section className="py-20 px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-          Nuestra Tecnología
+          Nuestra maquinaria
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {machinery.map((machine, index) => (
