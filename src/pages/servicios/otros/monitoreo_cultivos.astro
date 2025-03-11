@@ -1,9 +1,27 @@
 ---
 import { Button } from "@/components/ui/button";
 import Layout from "@/layouts/Layout.astro";
-import { MessageCircle } from "lucide-react";
+import {
+  MessageCircle,
+  Search,
+  FileText,
+  Leaf,
+  Shield,
+  TrendingUp,
+  Clock,
+} from "lucide-react";
 import "@/styles/global.css";
 import { CarouselDemo } from "@/components/Carousel/CarouselDemo";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+
 const images = [
   "/SiembraTerrestre1.jpeg?height=300&width=300",
   "/SiembraTerrestre2.jpeg?height=300&width=300",
@@ -12,6 +30,34 @@ const images = [
 ];
 
 const title = "Monitoreo de Cultivos";
+
+// Ventajas del monitoreo
+const ventajas = [
+  {
+    titulo: "Ahorro de productos y menor impacto ambiental",
+    descripcion:
+      "Reducción en el uso de agroquímicos, beneficiando tanto a su economía como al medio ambiente.",
+    icono: "Shield",
+  },
+  {
+    titulo: "Aplicación precisa y efectiva",
+    descripcion:
+      "Uso del producto adecuado en la dosis efectiva para solucionar el problema específico.",
+    icono: "Target",
+  },
+  {
+    titulo: "Prevención de pérdidas",
+    descripcion:
+      "Evita mermas de rendimiento al detectar y tratar a tiempo cualquier infestación.",
+    icono: "TrendingUp",
+  },
+  {
+    titulo: "Mayor tiempo de gestión",
+    descripcion:
+      "Brinda mayor tiempo para la toma de decisiones y planificación a la empresa agrícola.",
+    icono: "Clock",
+  },
+];
 ---
 
 <Layout title=`Otros Servicios | ${title}` `>
@@ -33,61 +79,181 @@ const title = "Monitoreo de Cultivos";
     </div>
     <div
       transition:animate="fade"
-      class="mt-10 grid grid-cols-[1fr_2fr] gap-10 items-center justify-start"
+      class="mt-10 flex flex-col md:flex-row gap-8 items-start"
     >
-      <CarouselDemo client:load images={images} />
-
-      <div class="h-full inline-flex flex-col justify-between">
-        <div class="flex flex-col gap-6">
-          <h2 class="text-[2rem] font-normal tracking-tight">
-            Tarea que realizamos con Ingenieros Agrónomos y estudiantes
-            avanzados (6 año)
-          </h2>
-          <p class="text-gray-500 text-lg">Monitoreo de Plagas:</p>
-          <p>
-            El Monitoreo de Plagas es una práctica que implica una inspección
-            frecuente y profesional de los lotes, evaluando, tipo y cantidad de
-            organismos presentes, estimación de daño y posible evolución en
-            función de condiciones ambientales y enemigos biológicos presentes
-            en cada etapa del cultivo. Se realiza un informe semanal de lo
-            observado en cada lote con las sugerencias para realizar el control
-            o cuidado correspondiente y se envía por email. Este método,
-            presenta algunas ventajas comparativas con el sistema tradicional de
-            efectuar tratamientos preventivos o ante la sola presencia de algún
-            insecto. Entre las cuales podemos enumerar las siguientes:
-          </p>
-          <ul class="text-gray-500 text-lg space-y-2">
-            <li>
-              <strong>Ahorro de productos y menor impacto ambiental</strong>
-            </li>
-            <li>
-              <strong
-                >Aplicación del producto adecuado en la dosis efectiva para
-                solucionar el problema</strong
-              >
-            </li>
-            <li>
-              <strong
-                >Evita mermas de rendimiento por tomar a tiempo una infestación</strong
-              >
-            </li>
-            <li>
-              <strong
-                >Brinda mayor tiempo de gestión a la empresa agrícola
-              </strong>
-            </li>
-          </ul>
-        </div>
-
-        <Button
-          className="justify-center border-logo-blue text-logo-blue hover:bg-logo-blue hover:text-white flex-shrink-0 flex-grow-0 max-w-[200px] mt-8"
-          client:load
-          variant={"outline"}
+      <div class="w-full md:w-2/3 px-4">
+        <Card
+          className="border-0 shadow-sm bg-white/80 backdrop-blur-sm h-full"
         >
-          <div class="flex items-center gap-4">
-            Saber más <MessageCircle size={16} />
-          </div>
-        </Button>
+          <CardHeader className="pb-2">
+            <div class="flex flex-col gap-4">
+              <Badge
+                variant="outline"
+                className="w-fit px-4 py-1 text-sm tracking-wider text-logo-blue border-logo-blue/20 bg-logo-blue/5 rounded-full"
+              >
+                Servicio especializado
+              </Badge>
+              <div class="space-y-2">
+                <CardTitle
+                  className="text-4xl font-bold tracking-wider text-gray-900"
+                >
+                  Tarea que realizamos con Ingenieros Agrónomos y estudiantes
+                  avanzados
+                </CardTitle>
+                <CardDescription
+                  className="text-xl tracking-wider text-gray-500"
+                >
+                  Inspección profesional para optimizar el rendimiento y la
+                  salud de sus cultivos
+                </CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+
+          <CardContent className="pt-8">
+            <div class="space-y-8">
+              <!-- Introducción al monitoreo -->
+              <div
+                class="bg-logo-blue/5 p-6 rounded-lg border border-logo-blue/20"
+              >
+                <div class="flex items-start gap-4">
+                  <div
+                    class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue mt-1"
+                  >
+                    <Search className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3
+                      class="text-xl font-semibold tracking-wider text-gray-900 mb-2"
+                    >
+                      Monitoreo de Plagas
+                    </h3>
+                    <p class="text-gray-600 tracking-wider leading-relaxed">
+                      El Monitoreo de Plagas es una práctica que implica una
+                      inspección frecuente y profesional de los lotes, evaluando
+                      tipo y cantidad de organismos presentes, estimación de
+                      daño y posible evolución en función de condiciones
+                      ambientales y enemigos biológicos presentes en cada etapa
+                      del cultivo.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Proceso de monitoreo -->
+              <div class="p-6 rounded-lg border border-logo-blue/10">
+                <div class="flex items-start gap-4 mb-4">
+                  <div
+                    class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue"
+                  >
+                    <FileText className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 class="font-semibold tracking-wider text-gray-900">
+                      Informes detallados
+                    </h3>
+                    <p class="text-gray-600 tracking-wider mt-1">
+                      Se realiza un informe semanal de lo observado en cada lote
+                      con las sugerencias para realizar el control o cuidado
+                      correspondiente y se envía por email.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-4">
+                  <div
+                    class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue"
+                  >
+                    <Leaf className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 class="font-semibold tracking-wider text-gray-900">
+                      Enfoque preventivo
+                    </h3>
+                    <p class="text-gray-600 tracking-wider mt-1">
+                      Este método presenta ventajas comparativas con el sistema
+                      tradicional de efectuar tratamientos preventivos o ante la
+                      sola presencia de algún insecto.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ventajas del monitoreo -->
+              <div>
+                <h3
+                  class="text-xl font-semibold tracking-wider text-gray-900 mb-4"
+                >
+                  Ventajas del monitoreo profesional
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {
+                    ventajas.map((ventaja) => (
+                      <div class="flex items-start gap-4 p-4 rounded-lg border border-logo-blue/10 hover:bg-logo-blue/5 transition-colors">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue">
+                          {ventaja.icono === "Shield" && (
+                            <Shield className="h-5 w-5" />
+                          )}
+                          {ventaja.icono === "Target" && (
+                            <Search className="h-5 w-5" />
+                          )}
+                          {ventaja.icono === "TrendingUp" && (
+                            <TrendingUp className="h-5 w-5" />
+                          )}
+                          {ventaja.icono === "Clock" && (
+                            <Clock className="h-5 w-5" />
+                          )}
+                        </div>
+                        <div>
+                          <h4 class="font-semibold tracking-wider text-gray-900">
+                            {ventaja.titulo}
+                          </h4>
+                          <p class="text-gray-600 tracking-wider text-sm mt-1">
+                            {ventaja.descripcion}
+                          </p>
+                        </div>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+
+              <!-- Cita destacada -->
+              <div
+                class="mt-6 p-6 border-l-4 border-logo-blue bg-logo-blue/5 rounded-r-lg"
+              >
+                <p class="italic text-gray-600 tracking-wider">
+                  "El monitoreo profesional de cultivos es una inversión que se
+                  traduce en mayor rendimiento, menor uso de agroquímicos y
+                  mejor planificación de recursos para su empresa agrícola."
+                </p>
+              </div>
+            </div>
+          </CardContent>
+
+          <CardFooter className="pt-6">
+            <a
+              target="_blank"
+              href="https://api.whatsapp.com/send?phone=542392480555&text=%C2%A1Hola!%2C%20te%20hago%20una%20consulta."
+              class="w-full sm:w-auto"
+            >
+              <Button
+                className="w-full sm:w-auto bg-black hover:bg-black/90 text-white gap-3 group px-6 py-6 text-base tracking-wider"
+                size="lg"
+              >
+                <span>Saber más</span>
+                <MessageCircle
+                  size={20}
+                  className="transition-transform group-hover:translate-x-1"
+                />
+              </Button>
+            </a>
+          </CardFooter>
+        </Card>
+      </div>
+      <div class="w-full md:w-1/3 sticky top-32">
+        <div class="rounded-lg overflow-hidden shadow-sm">
+          <CarouselDemo client:load images={images} />
+        </div>
       </div>
     </div>
   </section>

@@ -1,9 +1,26 @@
 ---
 import { Button } from "@/components/ui/button";
 import Layout from "@/layouts/Layout.astro";
-import { MessageCircle } from "lucide-react";
+import {
+  MessageCircle,
+  Tractor,
+  Gauge,
+  Satellite,
+  Computer,
+  Users,
+} from "lucide-react";
 import "@/styles/global.css";
 import { CarouselDemo } from "@/components/Carousel/CarouselDemo";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+
 const images = [
   "/pulverizacion_terrestre.jpg?height=300&width=300",
   "/pulverizacion_terrestre2.jpeg?height=300&width=300",
@@ -11,6 +28,32 @@ const images = [
 ];
 
 const title = "Pulverizacion Terrestre";
+
+// Características de la máquina
+const caracteristicas = [
+  {
+    titulo: "Máquina PLA modelo 2019, MD 3300",
+    descripcion: "Con sistema SIA (estación meteorológica incorporada)",
+    icono: "Tractor",
+  },
+  {
+    titulo: "36 metros de ala mixta",
+    descripcion: "Con corte por sección para mayor precisión",
+    icono: "Gauge",
+  },
+  {
+    titulo: "Tecnología de punta",
+    descripcion:
+      "Banderillero satelital, piloto automático y computadora de a bordo",
+    icono: "Computer",
+  },
+  {
+    titulo: "Personal especializado",
+    descripcion:
+      "Operada por personal familiar de la empresa con más de 10 años de experiencia",
+    icono: "Users",
+  },
+];
 ---
 
 <Layout title=`Servicios | ${title}` `>
@@ -32,37 +75,133 @@ const title = "Pulverizacion Terrestre";
     </div>
     <div
       transition:animate="fade"
-      class="mt-10 grid grid-cols-[1fr_2fr] gap-10 items-center justify-start"
+      class="mt-10 flex flex-col md:flex-row gap-8 items-start"
     >
-      <CarouselDemo client:load images={images} />
-
-      <div class="h-full inline-flex flex-col justify-between">
-        <div class="flex flex-col gap-6">
-          <h2 class="text-[2rem] font-normal tracking-tight">
-            Confía en la precisión de nuestro sistema SIA para una pulverización
-            óptima.
-          </h2>
-          <p class="text-gray-500 text-lg">Para estre trabajo contamos con:</p>
-          <ul class="text-gray-500 text-lg space-y-2">
-            <li>
-              <strong>
-                Máquina Marca PLA modelo 2019, MD 3300 con sistema SIA</strong
-              > (estación meteorológica incorporada) 36 mts de ala mixta, corte por
-              sección, banderillero satelital, piloto automático y computadora de
-              a bordo, operadas por personal (familiar de la empresa-socio) idóneo
-              en el tema con mas de 10 años de experiencia en el trabajo.
-            </li>
-          </ul>
-
-          <Button
-            className="justify-center border-logo-blue text-logo-blue hover:bg-logo-blue hover:text-white flex-shrink-0 flex-grow-0 max-w-[200px]"
-            client:load
-            variant={"outline"}
-          >
-            <div class="flex items-center gap-4">
-              Saber más <MessageCircle size={16} />
+      <div class="w-full md:w-2/3 px-4">
+        <Card
+          className="border-0 shadow-sm bg-white/80 backdrop-blur-sm h-full"
+        >
+          <CardHeader className="pb-2">
+            <div class="flex flex-col gap-4">
+              <Badge
+                variant="outline"
+                className="w-fit px-4 py-1 text-sm tracking-wider text-logo-blue border-logo-blue/20 bg-logo-blue/5 rounded-full"
+              >
+                Tecnología de precisión
+              </Badge>
+              <div class="space-y-2">
+                <CardTitle
+                  className="text-4xl font-bold tracking-wider text-gray-900"
+                >
+                  Confía en la precisión de nuestro sistema SIA para una
+                  pulverización óptima
+                </CardTitle>
+                <CardDescription
+                  className="text-xl tracking-wider text-gray-500"
+                >
+                  Equipamiento de última generación para una aplicación precisa
+                  y eficiente
+                </CardDescription>
+              </div>
             </div>
-          </Button>
+          </CardHeader>
+
+          <CardContent className="pt-8">
+            <div class="space-y-8">
+              <!-- Introducción -->
+              <div
+                class="bg-logo-blue/5 p-6 rounded-lg border border-logo-blue/20"
+              >
+                <div class="flex items-start gap-4">
+                  <div
+                    class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue mt-1"
+                  >
+                    <Tractor className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3
+                      class="text-xl font-semibold tracking-wider text-gray-900 mb-2"
+                    >
+                      Equipamiento especializado
+                    </h3>
+                    <p class="text-gray-600 tracking-wider leading-relaxed">
+                      Contamos con maquinaria de última generación y personal
+                      altamente capacitado para garantizar aplicaciones precisas
+                      y eficientes en sus cultivos.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Características de la máquina -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {
+                  caracteristicas.map((caracteristica) => (
+                    <div class="flex items-start gap-4 p-5 rounded-lg border border-logo-blue/10 hover:bg-logo-blue/5 transition-colors">
+                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue">
+                        {caracteristica.icono === "Tractor" && (
+                          <Tractor className="h-5 w-5" />
+                        )}
+                        {caracteristica.icono === "Gauge" && (
+                          <Gauge className="h-5 w-5" />
+                        )}
+                        {caracteristica.icono === "Computer" && (
+                          <Computer className="h-5 w-5" />
+                        )}
+                        {caracteristica.icono === "Users" && (
+                          <Users className="h-5 w-5" />
+                        )}
+                      </div>
+                      <div>
+                        <h3 class="font-semibold tracking-wider text-gray-900">
+                          {caracteristica.titulo}
+                        </h3>
+                        <p class="text-gray-600 tracking-wider text-sm mt-1">
+                          {caracteristica.descripcion}
+                        </p>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+
+              <!-- Cita destacada -->
+              <div
+                class="mt-6 p-6 border-l-4 border-logo-blue bg-logo-blue/5 rounded-r-lg"
+              >
+                <p class="italic text-gray-600 tracking-wider">
+                  "Nuestra máquina PLA modelo 2019 con sistema SIA representa lo
+                  último en tecnología de pulverización terrestre,
+                  permitiéndonos ofrecer un servicio de máxima precisión y
+                  eficiencia para sus cultivos."
+                </p>
+              </div>
+            </div>
+          </CardContent>
+
+          <CardFooter className="pt-6">
+            <a
+              target="_blank"
+              href="https://api.whatsapp.com/send?phone=542392480555&text=%C2%A1Hola!%2C%20te%20hago%20una%20consulta."
+              class="w-full sm:w-auto"
+            >
+              <Button
+                className="w-full sm:w-auto bg-black hover:bg-black/90 text-white gap-3 group px-6 py-6 text-base tracking-wider"
+                size="lg"
+              >
+                <span>Saber más</span>
+                <MessageCircle
+                  size={20}
+                  className="transition-transform group-hover:translate-x-1"
+                />
+              </Button>
+            </a>
+          </CardFooter>
+        </Card>
+      </div>
+      <div class="w-full md:w-1/3 sticky top-32">
+        <div class="rounded-lg overflow-hidden shadow-sm">
+          <CarouselDemo client:load images={images} />
         </div>
       </div>
     </div>

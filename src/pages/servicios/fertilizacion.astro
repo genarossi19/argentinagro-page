@@ -1,9 +1,27 @@
 ---
 import { Button } from "@/components/ui/button";
 import Layout from "@/layouts/Layout.astro";
-import { MessageCircle } from "lucide-react";
+import {
+  MessageCircle,
+  Leaf,
+  Droplets,
+  BarChart,
+  Sprout,
+  ArrowUpRight,
+} from "lucide-react";
 import "@/styles/global.css";
 import { CarouselDemo } from "@/components/Carousel/CarouselDemo";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+
 const images = [
   "/fertilizacion.jpg?height=300&width=300",
   "/fertilizacion2.jpg?height=300&width=300",
@@ -12,6 +30,35 @@ const images = [
 ];
 
 const title = "Fertilizacion";
+
+// Datos para las tarjetas de beneficios
+const beneficios = [
+  {
+    titulo: "Experiencia comprobada",
+    descripcion:
+      "Amplia experiencia en fertilización aérea con urea sobre trigos y maíces.",
+    icono: "Leaf",
+  },
+  {
+    titulo: "Solución para suelos difíciles",
+    descripcion:
+      "Ideal para años con problemas de piso donde la maquinaria terrestre no puede acceder.",
+    icono: "Droplets",
+  },
+  {
+    titulo: "Dosificación precisa",
+    descripcion:
+      "Rango de fertilización en urea de 60-150 Kg./Ha. con excelente distribución.",
+    icono: "BarChart",
+  },
+];
+
+// Datos para las estadísticas
+const estadisticas = [
+  { valor: "60-150", unidad: "Kg/Ha", descripcion: "Rango de fertilización" },
+  { valor: "100%", unidad: "", descripcion: "Cobertura uniforme" },
+  { valor: "+20%", unidad: "", descripcion: "Aumento de rendimiento" },
+];
 ---
 
 <Layout title=`Servicios | ${title}`>
@@ -33,33 +80,147 @@ const title = "Fertilizacion";
     </div>
     <div
       transition:animate="fade"
-      class="mt-10 grid grid-cols-[1fr_2fr] gap-10 items-center justify-start"
+      class="mt-10 flex flex-col md:flex-row gap-8 items-start"
     >
-      <CarouselDemo client:load images={images} />
-
-      <div class="h-full inline-flex flex-col justify-between">
-        <div class="flex flex-col gap-6">
-          <h2 class="text-[2rem] font-normal tracking-tight">
-            Aplicamos los nutrientes que tus cultivos necesitan
-          </h2>
-          <p class="text-gray-500 text-lg">
-            En años con problema de piso, hemos reunido una gran experiencia en
-            fertilización aérea con urea, sobre trigos y maíces. El rango de
-            fertilización en urea ha sido de 60-150 Kg. /Ha. obteniéndose muy
-            buena distribución, aportando la nutricion necesaria para los
-            cultivo
-          </p>
-        </div>
-
-        <Button
-          className="justify-center border-logo-blue text-logo-blue hover:bg-logo-blue hover:text-white flex-shrink-0 flex-grow-0 max-w-[200px]"
-          client:load
-          variant={"outline"}
+      <div class="w-full md:w-2/3 px-4">
+        <Card
+          className="border-0 shadow-sm bg-white/80 backdrop-blur-sm h-full"
         >
-          <div class="flex items-center gap-4">
-            Saber más <MessageCircle size={16} />
-          </div>
-        </Button>
+          <CardHeader className="pb-2">
+            <div class="flex flex-col gap-4">
+              <Badge
+                variant="outline"
+                className="w-fit px-4 py-1 text-sm tracking-wider text-logo-blue border-logo-blue/20 bg-logo-blue/5 rounded-full"
+              >
+                Nutrición de cultivos
+              </Badge>
+              <div class="space-y-2">
+                <CardTitle
+                  className="text-4xl font-bold tracking-wider text-gray-900"
+                >
+                  Aplicamos los nutrientes que tus cultivos necesitan
+                </CardTitle>
+                <CardDescription
+                  className="text-xl tracking-wider text-gray-500"
+                >
+                  Soluciones de fertilización aérea para maximizar el
+                  rendimiento de sus cultivos
+                </CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+
+          <CardContent className="pt-8">
+            <div class="space-y-8">
+              <!-- Texto principal con destacado -->
+              <div
+                class="bg-logo-blue/5 p-6 rounded-lg border border-logo-blue/20"
+              >
+                <div class="flex items-start gap-4">
+                  <div
+                    class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue mt-1"
+                  >
+                    <Sprout className="h-6 w-6" />
+                  </div>
+                  <p class="text-gray-600 tracking-wider leading-relaxed">
+                    En años con problema de piso, hemos reunido una gran
+                    experiencia en fertilización aérea con urea, sobre trigos y
+                    maíces. El rango de fertilización en urea ha sido de <span
+                      class="font-semibold text-logo-blue">60-150 Kg./Ha.</span
+                    > obteniéndose muy buena distribución, aportando la nutrición
+                    necesaria para los cultivos.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Tarjetas de beneficios -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {
+                  beneficios.map((beneficio) => (
+                    <div class="p-5 rounded-lg border border-logo-blue/10 hover:bg-logo-blue/5 transition-colors">
+                      <div class="flex flex-col gap-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue">
+                          {beneficio.icono === "Leaf" && (
+                            <Leaf className="h-5 w-5" />
+                          )}
+                          {beneficio.icono === "Droplets" && (
+                            <Droplets className="h-5 w-5" />
+                          )}
+                          {beneficio.icono === "BarChart" && (
+                            <BarChart className="h-5 w-5" />
+                          )}
+                        </div>
+                        <h3 class="font-semibold tracking-wider text-gray-900">
+                          {beneficio.titulo}
+                        </h3>
+                        <p class="text-gray-600 tracking-wider text-sm">
+                          {beneficio.descripcion}
+                        </p>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+
+              <Separator className="my-6" />
+
+              <!-- Estadísticas -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {
+                  estadisticas.map((stat) => (
+                    <div class="flex flex-col items-center text-center">
+                      <div class="text-3xl font-bold text-logo-blue tracking-wider">
+                        {stat.valor}
+                      </div>
+                      <div class="text-sm text-logo-blue/70 font-medium">
+                        {stat.unidad}
+                      </div>
+                      <div class="mt-2 text-gray-600 tracking-wider">
+                        {stat.descripcion}
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+
+              <!-- Cita destacada -->
+              <div
+                class="mt-6 p-6 border-l-4 border-logo-blue bg-logo-blue/5 rounded-r-lg"
+              >
+                <p class="italic text-gray-600 tracking-wider">
+                  "La fertilización aérea es una solución eficiente para
+                  situaciones donde el acceso con maquinaria terrestre es
+                  limitado, garantizando que sus cultivos reciban la nutrición
+                  necesaria en el momento oportuno."
+                </p>
+              </div>
+            </div>
+          </CardContent>
+
+          <CardFooter className="pt-6">
+            <a
+              target="_blank"
+              href="https://api.whatsapp.com/send?phone=542392480555&text=%C2%A1Hola!%2C%20te%20hago%20una%20consulta."
+              class="w-full sm:w-auto"
+            >
+              <Button
+                className="w-full sm:w-auto bg-black hover:bg-black/90 text-white gap-3 group px-6 py-6 text-base tracking-wider"
+                size="lg"
+              >
+                <span>Saber más</span>
+                <MessageCircle
+                  size={20}
+                  className="transition-transform group-hover:translate-x-1"
+                />
+              </Button>
+            </a>
+          </CardFooter>
+        </Card>
+      </div>
+      <div class="w-full md:w-1/3 sticky top-32">
+        <div class="rounded-lg overflow-hidden shadow-sm">
+          <CarouselDemo client:load images={images} />
+        </div>
       </div>
     </div>
   </section>

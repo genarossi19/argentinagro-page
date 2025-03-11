@@ -4,6 +4,17 @@ import Layout from "@/layouts/Layout.astro";
 import { MessageCircle } from "lucide-react";
 import "@/styles/global.css";
 import { CarouselDemo } from "@/components/Carousel/CarouselDemo";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { SiembraAereaTabs } from "@/components/SiembraAereaTabs";
+
 const images = [
   "/SiembraAerea1.jpg?height=300&width=300",
   "/SiembraAerea2.jpg?height=300&width=300",
@@ -32,44 +43,61 @@ const title = "Siembra aérea";
         alt={title}
       />
     </div>
+
     <div
       transition:animate="fade"
-      class="mt-10 grid grid-cols-[1fr_2fr] gap-10 items-center justify-start"
+      class="mt-10 flex flex-col md:flex-row gap-8 items-start"
     >
-      <CarouselDemo client:load images={images} />
-
-      <div class="h-full inline-flex flex-col justify-between">
-        <div class="flex flex-col gap-6">
-          <h2 class="text-[2rem] font-normal tracking-tight">
-            Pioneros en la zona con 20 años de experiencia
-          </h2>
-          <p class="text-gray-500 text-lg">
-            Para este fin disponemos de un Avión Especial (Turbo Kruk) de 750
-            HP, el cual posee gran capacidad de carga (1.500 Kg.), además de
-            esto cuenta con otra particularidad que nos diferencia del resto, y
-            es que puede operar en superficies muy cortas (300-400 Mts.), por lo
-            expuesto, al hacerlo de lugares cercanos al objetivos se minimizan
-            considerablemente los costos. También se cuenta con otro avión
-            específico para la actividad un Puelche 260 paso variable, de menor
-            capacidad (600 Kg.) pero muy ágil para realizar aplicaciones en
-            sectores cercanos a montes o líneas eléctricas. Los mejores
-            resultados los hemos logrado sobre Soja en estado fenológico R6-R7
-            (cuando comienza la senescencia de las hojas y se produce la caída
-            de las mismas) momento de la siembra. También se ha sembrado al
-            voleo sobre maíces y girasoles (avena, rye-grass, vicia, centeno)
-            con muy buenos resultados.
-          </p>
-        </div>
-
-        <Button
-          className="justify-center border-logo-blue text-logo-blue hover:bg-logo-blue hover:text-white flex-shrink-0 flex-grow-0 max-w-[200px]"
-          client:load
-          variant={"outline"}
+      <div class="w-full md:w-2/3 px-4">
+        <Card
+          className="border-0 shadow-sm bg-white/80 backdrop-blur-sm h-full"
         >
-          <div class="flex items-center gap-4">
-            Saber más <MessageCircle size={16} />
-          </div>
-        </Button>
+          <CardHeader className="pb-2">
+            <div class="flex flex-col gap-2">
+              <Badge
+                variant="outline"
+                className="w-fit text-logo-blue border-logo-blue/20 bg-logo-blue/5"
+              >
+                Servicio especializado
+              </Badge>
+              <CardTitle
+                className="mt-6 text-4xl font-bold tracking-tight text-gray-900"
+              >
+                Pioneros en la zona con 20 años de experiencia
+              </CardTitle>
+              <CardDescription className="mt-6 text-xl text-gray-500">
+                Ofrecemos soluciones aéreas de alta precisión para optimizar sus
+                cultivos
+              </CardDescription>
+            </div>
+          </CardHeader>
+          <CardContent className="pt-6">
+            <SiembraAereaTabs client:load />
+          </CardContent>
+          <CardFooter className="pt-4">
+            <a
+              target="_blank"
+              href="https://api.whatsapp.com/send?phone=542392480555&text=%C2%A1Hola!%2C%20te%20hago%20una%20consulta."
+              class="w-full sm:w-auto"
+            >
+              <Button
+                className="w-full sm:w-auto bg-logo-blue hover:bg-logo-blue/90 text-white gap-2 group"
+                size="lg"
+              >
+                <span>Saber más</span>
+                <MessageCircle
+                  size={18}
+                  className="transition-transform group-hover:translate-x-1"
+                />
+              </Button>
+            </a>
+          </CardFooter>
+        </Card>
+      </div>
+      <div class="w-full md:w-1/3 sticky top-32">
+        <div class="rounded-lg overflow-hidden shadow-sm">
+          <CarouselDemo client:load images={images} />
+        </div>
       </div>
     </div>
   </section>

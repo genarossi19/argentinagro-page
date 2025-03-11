@@ -1,9 +1,27 @@
 ---
 import { Button } from "@/components/ui/button";
 import Layout from "@/layouts/Layout.astro";
-import { MessageCircle } from "lucide-react";
+import {
+  MessageCircle,
+  Tractor,
+  Wheat,
+  BarChart3,
+  Truck,
+  Ruler,
+  Scale,
+} from "lucide-react";
 import "@/styles/global.css";
 import { CarouselDemo } from "@/components/Carousel/CarouselDemo";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+
 const images = [
   "/cosecha1.jpg?height=300&width=300",
   "/cosecha2.jpeg?height=300&width=300",
@@ -33,52 +51,164 @@ const title = "Cosecha";
     </div>
     <div
       transition:animate="fade"
-      class="mt-10 grid grid-cols-[1fr_2fr] gap-10 items-center justify-start"
+      class="mt-10 flex flex-col md:flex-row gap-8 items-start"
     >
-      <CarouselDemo client:load images={images} />
-
-      <div class="h-full inline-flex flex-col justify-between">
-        <div class="flex flex-col gap-6">
-          <h2 class="text-[2rem] font-normal tracking-tight">
-            Desde granos finos hasta cultivos especiales
-          </h2>
-          <p class="text-gray-500 text-lg">Para este fin disponemos de:</p>
-          <ul class="text-gray-500 text-lg space-y-2">
-            <li>
-              <strong>Cosechadora CLAAS LEXION 570 C</strong>: con plataforma
-              Piersanti Draper trigo/soja de 35 pies de corte
-            </li>
-            <li>
-              <strong>Cosechadora Challenger 660 DT</strong>: con plataforma
-              Draper de 30 pies de corte.
-            </li>
-            <li>
-              <strong>Cosechadora J. Deere 9770</strong>: con plataforma de 35
-              pies de corte.
-            </li>
-            <li>
-              <strong>Cosechadora New Holland 6.80</strong>: con plataforma de
-              35 pies, año 2022.
-            </li>
-            <li>
-              <strong>Maiceros y girasoleros </strong>que se adaptan a distintas
-              distancias entre surcos.
-            </li>
-            <li>
-              <strong>Mono-tolvas</strong> con balanzas Magris.
-            </li>
-          </ul>
-        </div>
-
-        <Button
-          className="justify-center border-logo-blue text-logo-blue hover:bg-logo-blue hover:text-white flex-shrink-0 flex-grow-0 max-w-[200px]"
-          client:load
-          variant={"outline"}
+      <div class="w-full md:w-2/3 px-4">
+        <Card
+          className="border-0 shadow-sm bg-white/80 backdrop-blur-sm h-full"
         >
-          <div class="flex items-center gap-4">
-            Saber más <MessageCircle size={16} />
-          </div>
-        </Button>
+          <CardHeader className="pb-2">
+            <div class="flex flex-col gap-2">
+              <Badge
+                variant="outline"
+                className="w-fit text-logo-blue border-logo-blue/20 bg-logo-blue/5"
+              >
+                Nuestro equipamiento
+              </Badge>
+              <CardTitle
+                className="text-4xl font-bold tracking-tight text-gray-900"
+              >
+                Desde granos finos hasta cultivos especiales
+              </CardTitle>
+              <CardDescription className="text-xl text-gray-500">
+                Para este fin disponemos de:
+              </CardDescription>
+            </div>
+          </CardHeader>
+          <CardContent className="pt-6">
+            <div class="space-y-6">
+              <div
+                class="flex items-start gap-4 p-4 rounded-lg transition-all hover:bg-logo-blue/5"
+              >
+                <div
+                  class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue"
+                >
+                  <Tractor className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 class="font-semibold text-lg text-gray-900">
+                    Cosechadora CLAAS LEXION 570 C
+                  </h3>
+                  <p class="text-gray-500 mt-1">
+                    Con plataforma Piersanti Draper trigo/soja de 35 pies de
+                    corte
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="flex items-start gap-4 p-4 rounded-lg transition-all hover:bg-logo-blue/5"
+              >
+                <div
+                  class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue"
+                >
+                  <Tractor className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 class="font-semibold text-lg text-gray-900">
+                    Cosechadora Challenger 660 DT
+                  </h3>
+                  <p class="text-gray-500 mt-1">
+                    Con plataforma Draper de 30 pies de corte
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="flex items-start gap-4 p-4 rounded-lg transition-all hover:bg-logo-blue/5"
+              >
+                <div
+                  class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue"
+                >
+                  <Tractor className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 class="font-semibold text-lg text-gray-900">
+                    Cosechadora J. Deere 9770
+                  </h3>
+                  <p class="text-gray-500 mt-1">
+                    Con plataforma de 35 pies de corte
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="flex items-start gap-4 p-4 rounded-lg transition-all hover:bg-logo-blue/5"
+              >
+                <div
+                  class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue"
+                >
+                  <Tractor className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 class="font-semibold text-lg text-gray-900">
+                    Cosechadora New Holland 6.80
+                  </h3>
+                  <p class="text-gray-500 mt-1">
+                    Con plataforma de 35 pies, año 2022
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="flex items-start gap-4 p-4 rounded-lg transition-all hover:bg-logo-blue/5"
+              >
+                <div
+                  class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue"
+                >
+                  <Wheat className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 class="font-semibold text-lg text-gray-900">
+                    Maiceros y girasoleros
+                  </h3>
+                  <p class="text-gray-500 mt-1">
+                    Que se adaptan a distintas distancias entre surcos
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="flex items-start gap-4 p-4 rounded-lg transition-all hover:bg-logo-blue/5"
+              >
+                <div
+                  class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue"
+                >
+                  <Scale className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 class="font-semibold text-lg text-gray-900">
+                    Mono-tolvas
+                  </h3>
+                  <p class="text-gray-500 mt-1">Con balanzas Magris</p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+          <CardFooter className="pt-4">
+            <a
+              target="_blank"
+              href="https://api.whatsapp.com/send?phone=542392480555&text=%C2%A1Hola!%2C%20te%20hago%20una%20consulta."
+              class="w-full sm:w-auto"
+            >
+              <Button
+                className="w-full sm:w-auto bg-logo-blue hover:bg-logo-blue/90 text-white gap-2 group"
+                size="lg"
+              >
+                <span>Saber más</span>
+                <MessageCircle
+                  size={18}
+                  className="transition-transform group-hover:translate-x-1"
+                />
+              </Button>
+            </a>
+          </CardFooter>
+        </Card>
+      </div>
+      <div class="w-full md:w-1/3 sticky top-32">
+        <div class="rounded-lg overflow-hidden shadow-sm">
+          <CarouselDemo client:load images={images} />
+        </div>
       </div>
     </div>
   </section>

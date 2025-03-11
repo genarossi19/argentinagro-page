@@ -21,5 +21,5 @@ export default defineConfig({
     applyBaseStyles: false,
   }),
 , react()],
-  
+  output: 'server',
 });

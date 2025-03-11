@@ -1,16 +1,34 @@
 ---
 import { Button } from "@/components/ui/button";
 import Layout from "@/layouts/Layout.astro";
-import { MessageCircle } from "lucide-react";
+
 import "@/styles/global.css";
 import { CarouselDemo } from "@/components/Carousel/CarouselDemo";
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  MessageCircle,
+  Sprout,
+  Droplets,
+  MapPin,
+  Wheat,
+  Bug,
+} from "lucide-react";
 const images = [
   "/dron1.jpeg?height=300&width=300",
   "/dron2.jpeg?height=300&width=300",
   "/dron3.jpeg?height=300&width=300",
 ];
 
-const title = "Aplicacion con drones";
+const title = "Aplicación con drones";
 ---
 
 <Layout title=`Servicios | ${title}` `>
@@ -32,46 +50,151 @@ const title = "Aplicacion con drones";
     </div>
     <div
       transition:animate="fade"
-      class="mt-10 grid grid-cols-[1fr_2fr] gap-10 items-center justify-start"
+      class="mt-10 flex flex-col md:flex-row gap-8 items-start"
     >
-      <CarouselDemo client:load images={images} />
-
-      <div class="h-full inline-flex flex-col justify-between">
-        <div class="flex flex-col gap-6">
-          <h2 class="text-[2rem] font-normal tracking-tight">
-            Rápido, simple y preciso.
-          </h2>
-          <p class="text-gray-500 text-lg">
-            Realizamos los siguientes trabajos:
-          </p>
-          <ul class="text-gray-500 text-lg space-y-2">
-            <li>
-              <strong>Pulverización</strong>
-            </li>
-            <li>
-              <strong>Fertilización</strong>
-            </li>
-            <li>
-              <strong>Aplicación sectorizada</strong>
-            </li>
-            <li>
-              <strong>Siembra</strong>
-            </li>
-            <li>
-              <strong>Esparcimientos de cebos</strong>
-            </li>
-          </ul>
-        </div>
-
-        <Button
-          className="justify-center border-logo-blue text-logo-blue hover:bg-logo-blue hover:text-white flex-shrink-0 flex-grow-0 max-w-[200px]"
-          client:load
-          variant={"outline"}
+      <div class="w-full md:w-2/3 px-4">
+        <Card
+          className="border-0 shadow-sm bg-white/80 backdrop-blur-sm h-full"
         >
-          <div class="flex items-center gap-4">
-            Saber más <MessageCircle size={16} />
-          </div>
-        </Button>
+          <CardHeader className="pb-2">
+            <div class="flex flex-col gap-2">
+              <Badge
+                variant="outline"
+                className="w-fit text-logo-blue border-logo-blue/20 bg-logo-blue/5"
+              >
+                Nuestros servicios
+              </Badge>
+              <CardTitle
+                className="text-4xl font-bold tracking-tight text-gray-900"
+              >
+                Rápido, simple y preciso.
+              </CardTitle>
+              <CardDescription className="text-xl text-gray-500">
+                Realizamos los siguientes trabajos con la más alta calidad y
+                eficiencia:
+              </CardDescription>
+            </div>
+          </CardHeader>
+          <CardContent className="pt-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div
+                class="flex items-start gap-4 p-4 rounded-lg transition-all hover:bg-logo-blue/5"
+              >
+                <div
+                  class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue"
+                >
+                  <Droplets className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 class="font-semibold text-lg text-gray-900">
+                    Pulverización
+                  </h3>
+                  <p class="text-gray-500 mt-1">
+                    Aplicación precisa de productos fitosanitarios para proteger
+                    sus cultivos.
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="flex items-start gap-4 p-4 rounded-lg transition-all hover:bg-logo-blue/5"
+              >
+                <div
+                  class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue"
+                >
+                  <Sprout className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 class="font-semibold text-lg text-gray-900">
+                    Fertilización
+                  </h3>
+                  <p class="text-gray-500 mt-1">
+                    Nutrición óptima para maximizar el rendimiento de sus
+                    cultivos.
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="flex items-start gap-4 p-4 rounded-lg transition-all hover:bg-logo-blue/5"
+              >
+                <div
+                  class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue"
+                >
+                  <MapPin className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 class="font-semibold text-lg text-gray-900">
+                    Aplicación sectorizada
+                  </h3>
+                  <p class="text-gray-500 mt-1">
+                    Tratamientos específicos adaptados a las necesidades de cada
+                    área.
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="flex items-start gap-4 p-4 rounded-lg transition-all hover:bg-logo-blue/5"
+              >
+                <div
+                  class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue"
+                >
+                  <Wheat className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 class="font-semibold text-lg text-gray-900">Siembra</h3>
+                  <p class="text-gray-500 mt-1">
+                    Siembra de precisión para un establecimiento óptimo del
+                    cultivo.
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="flex items-start gap-4 p-4 rounded-lg transition-all hover:bg-logo-blue/5"
+              >
+                <div
+                  class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue"
+                >
+                  <Bug className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 class="font-semibold text-lg text-gray-900">
+                    Esparcimientos de cebos
+                  </h3>
+                  <p class="text-gray-500 mt-1">
+                    Control efectivo de plagas mediante la distribución
+                    estratégica de cebos.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+          <CardFooter className="pt-4">
+            <a
+              target="_blank"
+              href="https://api.whatsapp.com/send?phone=542392480555&text=%C2%A1Hola!%2C%20te%20hago%20una%20consulta."
+              class="w-full sm:w-auto"
+            >
+              <Button
+                className="w-full sm:w-auto bg-logo-blue hover:bg-logo-blue/90 text-white gap-2 group"
+                size="lg"
+              >
+                <span>Saber más</span>
+                <MessageCircle
+                  size={18}
+                  className="transition-transform group-hover:translate-x-1"
+                />
+              </Button>
+            </a>
+          </CardFooter>
+        </Card>
+      </div>
+      <div class="w-full md:w-1/3 sticky top-32">
+        <div class="rounded-lg overflow-hidden shadow-sm">
+          <CarouselDemo client:load images={images} />
+        </div>
       </div>
     </div>
   </section>
