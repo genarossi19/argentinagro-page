@@ -13,7 +13,7 @@ export default {
     		},
     		colors: {
     			logo: {
-    				blue: '#0050AC',
+    				blue: '#2452AA',
     				red: '#FF2322'
     			}
     		},
