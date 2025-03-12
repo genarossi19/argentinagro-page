@@ -162,7 +162,7 @@ export function OtrosServiciosContent({ title, servicios }) {
         >
           {servicios.map((servicio, index) => (
             <motion.div key={index} variants={fadeUp}>
-              <Card className="group overflow-hidden border-0 shadow-md transition-all duration-300 hover:shadow-xl">
+              <Card className="group overflow-hidden border-0 shadow-md transition-all duration-300 hover:shadow-xl h-[400px] flex flex-col">
                 <div className="relative h-48 overflow-hidden">
                   <div
                     className={`absolute top-4 right-4 z-10 w-10 h-10 rounded-full ${servicio.color} flex items-center justify-center text-white`}
@@ -194,13 +194,13 @@ export function OtrosServiciosContent({ title, servicios }) {
                   </CardTitle>
                 </CardHeader>
 
-                <CardContent>
-                  <p className="text-gray-600 tracking-wider text-sm">
+                <CardContent className="flex-grow">
+                  <p className="text-gray-600 tracking-wider text-sm line-clamp-3">
                     {servicio.descripcion}
                   </p>
                 </CardContent>
 
-                <CardFooter className="pt-0">
+                <CardFooter className="mt-auto pt-0">
                   <a
                     href={servicio.href}
                     className="inline-flex items-center text-logo-blue font-medium tracking-wider text-sm group-hover:underline"
