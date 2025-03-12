@@ -1,25 +1,77 @@
 ---
 import NavBar from "../components/Navbar/NavBar.astro";
 import Footer from "@/components/Footer/Footer";
+import BaseHead from "../components/BaseHead.astro";
 import { ClientRouter } from "astro:transitions";
 interface Props {
   title: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: URL | string;
+  publishedDate?: string;
+  ogType?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title = "La Argentina SRL | Servicios Agrícolas de Calidad en Trenque Lauquen",
+  description = "Ofrecemos servicios agropecuarios integrales incluyendo siembra, cosecha, pulverización y más. Más de 20 años de experiencia en el sector agrícola argentino.",
+  image,
+  canonicalURL,
+  publishedDate,
+  ogType,
+} = Astro.props;
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "La Argentina SRL",
+  url: Astro.site?.toString(),
+  logo: new URL("/laargentinaicono.ico", Astro.site).toString(),
+  description: description,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Trenque Lauquen",
+    addressRegion: "Buenos Aires",
+    postalCode: "6400",
+    addressCountry: "AR",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+54-2392480555",
+    contactType: "customer service",
+  },
+  sameAs: [
+    "https://www.facebook.com/Argentinagrosrl/?locale=es_LA",
+    "https://www.instagram.com/argentinagrosrl/",
+    "https://www.youtube.com/@argentinagrodetrenquelauqu8241",
+  ],
+};
+
 import "@/styles/global.css";
 ---
 
 <!doctype html>
 <html lang="es">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/laargentinaicono.ico" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <BaseHead
+      title={title}
+      description={description}
+      image={image}
+      canonicalURL={canonicalURL}
+      publishedDate={publishedDate}
+      ogType={ogType}
+    />
     <ClientRouter />
+
+    <!-- Datos estructurados JSON-LD para SEO -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+
+    <!-- Verificación de propiedad del sitio (reemplaza con tu código) -->
+    <meta name="google-site-verification" content="tu-código-de-verificación" />
+
+    <!-- Sugerencias para motores de búsqueda -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
   </head>
   <body class="custom-scroll">
     <div id="app" class="grid min-h-dvh grid-rows-[auto_1fr_auto]">

@@ -22,4 +22,5 @@ export default defineConfig({
   }),
 , react()],
   output: 'server',
+  site: 'https://www.argentinagrosrl.com.ar',
 });
