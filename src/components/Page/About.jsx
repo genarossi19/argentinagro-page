@@ -347,7 +347,7 @@ export default function About() {
                     variant="ghost"
                     className="w-full h-full p-0 hover:bg-transparent hover:opacity-90 transition-opacity"
                   >
-                    <div className="text-center space-y-4">
+                    <div className="text-center space-y-4 group">
                       <div className="aspect-square w-full overflow-hidden rounded-lg">
                         <ImageWithSkeleton
                           src={machine.image || "/placeholder.svg"}
@@ -355,7 +355,7 @@ export default function About() {
                           className="w-full h-full"
                         />
                       </div>
-                      <h3 className="text-xl font-semibold px-4">
+                      <h3 className="text-xl text-white/70 group-hover:text-white transition-colors font-semibold px-4">
                         {machine.name}
                       </h3>
                     </div>
