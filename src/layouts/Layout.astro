@@ -3,6 +3,7 @@ import NavBar from "../components/Navbar/NavBar.astro";
 import Footer from "@/components/Footer/Footer";
 import BaseHead from "../components/BaseHead.astro";
 import { ClientRouter } from "astro:transitions";
+import SpeedInsights from "@vercel/speed-insights/astro";
 interface Props {
   title: string;
   description?: string;
@@ -75,7 +76,7 @@ import "@/styles/global.css";
       <header class="fixed top-0 w-full [grid-area:header] z-40">
         <NavBar />
       </header>
-      <main class="[grid-area:main]"><slot /></main>
+      <main class="[grid-area:main]"><slot /><SpeedInsights /></main>
       <footer class="[grid-area:footer] min-w-[620px]"><Footer /></footer>
     </div>
   </body>
