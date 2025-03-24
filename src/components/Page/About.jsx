@@ -13,65 +13,98 @@ import "@/styles/global.css";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
+import {
+  Sprout,
+  Plane,
+  Building2,
+  Tractor,
+  SprayCanIcon as Spray,
+  Star,
+} from "lucide-react";
 
 // Datos simulados
 const companyHistory = [
-  { year: 1976, event: "Fundación de la empresa" },
   {
-    year: 1985,
-    event: "Lanzamiento de nuestra primera línea de productos orgánicos",
-  },
-  { year: 1998, event: "Expansión a mercados internacionales" },
-  {
-    year: 2010,
-    event: "Implementación de tecnologías de agricultura de precisión",
-  },
-  {
-    year: 2020,
+    year: 1976,
+    title: "Los inicios",
     event:
-      "Desarrollo de soluciones basadas en IA para la protección de cultivos",
+      "Francisco Jose Font comienza a trabajar como Ingeniero Agrónomo, especializándose en pulverización de agroquímicos y terapéutica vegetal.",
+    icon: "Seedling",
+  },
+  {
+    year: 1997,
+    title: "Expansión aérea",
+    event:
+      "Incorporación del Avión turbo Kruk de 750 HP con capacidad de 1.500 kg, permitiendo un avance significativo en los servicios prestados.",
+    icon: "Plane",
+  },
+  {
+    year: 2011,
+    title: "Nacimiento de Argentinagro SRL",
+    event:
+      "La empresa se constituye formalmente, integrando a jóvenes de la familia bajo la dirección de Francisco J. Font. Se incorpora un segundo avión Puelche 260.",
+    icon: "Building",
+  },
+  {
+    year: 2019,
+    title: "Modernización del equipamiento",
+    event:
+      "Adquisición de Pulverizadora Pla MD 3300 con sistema SIA y cosechadoras Challenger 660 DT y J.Deere 9770.",
+    icon: "Spray",
+  },
+  {
+    year: 2025,
+    title: "Nuestro compromiso con el futuro",
+    event:
+      "Seguimos trabajando para ofrecerte el mejor servicio agropecuario, innovando constantemente y adaptándonos a las necesidades del campo argentino.",
+    icon: "Star",
   },
 ];
 
 const teamMembers = [
   {
-    name: "Mauricio J. Font",
-    role: "CEO",
-    image: "https://thispersondoesnotexist.com/",
-    bio: "Mauricio ha liderado nuestra empresa durante más de una década, impulsando la innovación y el crecimiento sostenible...",
+    name: "Mauricio José Font",
+    role: "Ingeniero Agrónomo y Socio-gerente",
+    image: "/team/mauricio.jpg",
+    bio: "En la empresa desde 2011. Planificación  de las actividades de la empresa (siembra, cosecha, pulverización, otras labores). Control y análisis de gestión.",
     achievements: [
-      "Premio a la Innovación Agrícola 2019",
-      "Miembro de la Junta de Sostenibilidad Agrícola",
+      "Carreras de karting",
+      "Vuelos de paseo",
+      "Disfrutar en familia",
     ],
   },
   {
     name: "Viviana Oses",
-    role: "Jefe de Investigación",
-    image: "https://thispersondoesnotexist.com/",
-    bio: "Con un doctorado en Biotecnología Agrícola, Viviana lidera nuestro equipo de investigación...",
+    role: "Contadora Publica Nacional - Encargada de finanzas",
+    image: "/team/viviana.jpeg",
+    bio: "Ingrese a la empresa el 10/10/2018, con 20 años de experiencia en el sector agropecuario, decidi acompañar y aportar conocimiento a la empresa joven y en crecimiento",
     achievements: [
-      "Patente en Biopesticidas Avanzados",
-      "Publicación en Nature sobre Agricultura Sostenible",
+      "Atencion a clientes particulares",
+      "Fitness acuatico",
+      "Series y películas",
+      "Compartir momentos en familia",
     ],
   },
   {
-    name: "Laura Gómez",
-    role: "Directora de Operaciones",
-    image: "https://thispersondoesnotexist.com/",
-    bio: "Laura ha optimizado nuestras operaciones globales, implementando prácticas sostenibles...",
+    name: "Camila Oderiz",
+    role: "Lic. en Administración Rural - Sector administrativo contable",
+    image: "/team/camila.jpeg",
+    bio: "En la empresa desde 2020, realizo trabajos de facturación, logística de granos en cosecha, cuentas corrientes proveedores y clientes. ",
     achievements: [
-      "Certificación en Gestión de Cadena de Suministro Verde",
-      "Reducción del 30% en la huella de carbono operativa",
+      "Hacer deporte",
+      "Compartir momentos con familia y amigos",
+      "Viajar",
+      "Estudiar",
     ],
   },
   {
-    name: "Miguel Sánchez",
-    role: "Especialista en Sostenibilidad",
-    image: "https://thispersondoesnotexist.com/",
-    bio: "Miguel trabaja incansablemente para asegurar que nuestros productos sean sostenibles...",
+    name: "Juan Patricio Font",
+    role: "Contratista Rural.",
+    image: "/team/patricio.jpeg",
+    bio: "En la empresa desde 2019. Aplicador terrestre de fitosanitarios. ",
     achievements: [
-      "Desarrollo del Programa de Agricultura Regenerativa",
-      "Ponente principal en la Cumbre de Sostenibilidad Agrícola 2022",
+      "Jugar al Futbol",
+      "Compartir momentos con amigos y familia",
     ],
   },
 ];
@@ -219,36 +252,163 @@ export default function About() {
       </motion.section>
 
       {/* Historia de la Empresa */}
-      <section className="py-20 px-4" data-header-color="white">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-          Nuestra Historia
-        </h2>
-        <div className="max-w-4xl mx-auto">
-          {companyHistory.map((item, index) => (
-            <motion.div
-              key={item.year}
-              className="flex flex-col md:flex-row items-center mb-8"
-              initial={{ x: index % 2 === 0 ? -100 : 100, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <div className="w-full md:w-1/4 text-center md:text-right pr-0 md:pr-4 mb-2 md:mb-0">
-                <span className="text-2xl md:text-3xl font-bold text-logo-blue">
-                  {item.year}
-                </span>
-              </div>
-              <div className="w-full md:w-3/4 bg-gray-700 p-4 rounded-lg">
-                <p>{item.event}</p>
-              </div>
-            </motion.div>
-          ))}
+      <section
+        className="py-12 px-4 bg-gradient-to-b from-gray-800 to-gray-900"
+        data-header-color="white"
+      >
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            Nuestra Historia
+          </h2>
+          <p className="text-center text-gray-300 mb-8 max-w-3xl mx-auto">
+            Desde nuestros inicios en 1976, hemos evolucionado constantemente
+            para ofrecer los mejores servicios agropecuarios, incorporando
+            tecnología de vanguardia y expandiendo nuestras capacidades.
+          </p>
+
+          {/* Timeline para desktop */}
+          <div className="hidden md:block relative">
+            {/* Línea vertical central */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-logo-blue"></div>
+
+            <div className="space-y-20">
+              {companyHistory.map((item, index) => (
+                <div key={item.year} className="relative">
+                  {/* Icono central */}
+                  <div className="absolute left-1/2 top-0 transform -translate-x-1/2 z-9">
+                    <div className="w-14 h-14 rounded-full bg-logo-blue flex items-center justify-center">
+                      {item.icon === "Seedling" && (
+                        <Sprout className="h-7 w-7 text-white" />
+                      )}
+                      {item.icon === "Plane" && (
+                        <Plane className="h-7 w-7 text-white" />
+                      )}
+                      {item.icon === "Building" && (
+                        <Building2 className="h-7 w-7 text-white" />
+                      )}
+                      {item.icon === "Tractor" && (
+                        <Tractor className="h-7 w-7 text-white" />
+                      )}
+                      {item.icon === "Spray" && (
+                        <Spray className="h-7 w-7 text-white" />
+                      )}
+                      {item.icon === "Star" && (
+                        <Star className="h-7 w-7 text-white" />
+                      )}
+                    </div>
+                  </div>
+
+                  <div
+                    className={`flex ${
+                      index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                    }`}
+                  >
+                    {/* Año */}
+                    <motion.div
+                      className="w-1/2 flex items-center"
+                      initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6 }}
+                      viewport={{ once: true }}
+                    >
+                      <div
+                        className={`${
+                          index % 2 === 0
+                            ? "text-right pr-14"
+                            : "text-left pl-14"
+                        } w-full`}
+                      >
+                        <span className="text-5xl font-bold text-logo-blue">
+                          {item.year}
+                        </span>
+                      </div>
+                    </motion.div>
+
+                    {/* Contenido */}
+                    <motion.div
+                      className="w-1/2 flex items-center"
+                      initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6 }}
+                      viewport={{ once: true }}
+                    >
+                      <div
+                        className={`${
+                          index % 2 === 0 ? "pl-14" : "pr-14"
+                        } w-full`}
+                      >
+                        <div className="bg-gray-800/80 p-5 rounded-lg shadow-lg border border-gray-700 backdrop-blur-sm">
+                          <h3 className="text-xl font-bold text-logo-blue mb-2">
+                            {item.title}
+                          </h3>
+                          <p className="text-gray-200 text-sm">{item.event}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Timeline para móvil */}
+          <div className="md:hidden space-y-10">
+            {companyHistory.map((item) => (
+              <motion.div
+                key={item.year}
+                className="relative pl-10 border-l-2 border-logo-blue"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                {/* Icono */}
+                <div className="absolute left-0 top-0 transform -translate-x-1/2">
+                  <div className="w-8 h-8 rounded-full bg-logo-blue flex items-center justify-center">
+                    {item.icon === "Seedling" && (
+                      <Sprout className="h-4 w-4 text-white" />
+                    )}
+                    {item.icon === "Plane" && (
+                      <Plane className="h-4 w-4 text-white" />
+                    )}
+                    {item.icon === "Building" && (
+                      <Building2 className="h-4 w-4 text-white" />
+                    )}
+                    {item.icon === "Tractor" && (
+                      <Tractor className="h-4 w-4 text-white" />
+                    )}
+                    {item.icon === "Spray" && (
+                      <Spray className="h-4 w-4 text-white" />
+                    )}
+                    {item.icon === "Star" && (
+                      <Star className="h-4 w-4 text-white" />
+                    )}
+                  </div>
+                </div>
+
+                {/* Año */}
+                <div className="mb-2">
+                  <span className="text-3xl font-bold text-logo-blue">
+                    {item.year}
+                  </span>
+                </div>
+
+                {/* Contenido */}
+                <div className="bg-gray-800/80 p-3 rounded-lg shadow-lg border border-gray-700 backdrop-blur-sm">
+                  <h3 className="text-base font-bold text-logo-blue mb-1">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-200 text-xs">{item.event}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Equipo */}
-      <section className="py-20 px-4 bg-gray-800 relative">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+      <section className="py-16 px-4 bg-gray-800 relative">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
           Nuestro Equipo
         </h2>
         <div className="flex flex-wrap justify-center gap-8">
@@ -256,7 +416,7 @@ export default function About() {
             <motion.div
               key={member.name}
               className="w-64 text-center cursor-pointer"
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
@@ -265,10 +425,10 @@ export default function About() {
               <ImageWithSkeleton
                 src={member.image || "/placeholder.svg"}
                 alt={member.name}
-                className="w-full h-[300px] mb-4"
+                className="w-full h-[250px] mb-3"
               />
-              <h3 className="text-xl font-semibold">{member.name}</h3>
-              <p className="text-logo-blue">{member.role}</p>
+              <h3 className="text-lg font-semibold">{member.name}</h3>
+              <p className="text-logo-blue text-sm">{member.role}</p>
             </motion.div>
           ))}
         </div>
@@ -300,7 +460,7 @@ export default function About() {
                   <ImageWithSkeleton
                     src={selectedMember.image || "/placeholder.svg"}
                     alt={selectedMember.name}
-                    className="w-[200px] h-[200px] rounded-full mx-auto mb-4"
+                    className="w-[180px] h-[180px] rounded-full mx-auto mb-4"
                   />
                   <h3 className="text-2xl font-bold text-center mb-2">
                     {selectedMember.name}
@@ -310,7 +470,7 @@ export default function About() {
                   </p>
                   <p className="text-gray-300 mb-6">{selectedMember.bio}</p>
                   <h4 className="text-xl font-semibold mb-2">
-                    Logros Destacados:
+                    Hobbies y otras Actividades:
                   </h4>
                   <ul className="list-disc pl-5">
                     {selectedMember.achievements.map((achievement, index) => (
@@ -327,18 +487,18 @@ export default function About() {
       </section>
 
       {/* Tecnología y Maquinaria */}
-      <section className="py-20 px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+      <section className="py-16 px-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
           Nuestra maquinaria
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {machinery.map((machine, index) => (
             <motion.div
               key={machine.name}
               className="w-full"
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
               viewport={{ once: true }}
             >
               <Dialog>
@@ -347,7 +507,7 @@ export default function About() {
                     variant="ghost"
                     className="w-full h-full p-0 hover:bg-transparent hover:opacity-90 transition-opacity"
                   >
-                    <div className="text-center space-y-4 group">
+                    <div className="text-center space-y-3 group">
                       <div className="aspect-square w-full overflow-hidden rounded-lg">
                         <ImageWithSkeleton
                           src={machine.image || "/placeholder.svg"}
@@ -355,7 +515,7 @@ export default function About() {
                           className="w-full h-full"
                         />
                       </div>
-                      <h3 className="text-xl text-white/70 group-hover:text-white transition-colors font-semibold px-4">
+                      <h3 className="text-lg text-white/70 group-hover:text-white transition-colors font-semibold px-4">
                         {machine.name}
                       </h3>
                     </div>
@@ -382,14 +542,14 @@ export default function About() {
 
       {/* Sección de Video */}
       <motion.section
-        className="py-20 px-4 bg-gray-800"
+        className="py-16 px-4 bg-gray-800"
         style={{ opacity, scale }}
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
           Nuestra Misión en Acción
         </h2>
         <div className="max-w-4xl mx-auto">
-          <div className="relative h-[600px]">
+          <div className="relative h-[500px]">
             <iframe
               src="https://www.youtube.com/embed/KoGEn24fsiM"
               title="Cosecha de Soja 2022 [1] | La Argentina | ArgentinagroSRL"
@@ -404,8 +564,8 @@ export default function About() {
       </motion.section>
 
       {/* Llamado a la Acción */}
-      <section className="py-20 px-4 text-center pb-[100px]">
-        <h2 className="text-3xl md:text-4xl font-bold mb-8">
+      <section className="py-16 px-4 text-center pb-[80px]">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6">
           Compromiso con los Productores
         </h2>
         <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
