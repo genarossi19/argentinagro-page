@@ -1,0 +1,29 @@
+---
+const { color, id } = Astro.props;
+const textColor = `text-${color}`;
+import Title from "@/components/Text/Title";
+---
+
+<div class="snap-start">
+  <section
+    id={id}
+    class="landing-section bg-black h-screen w-screen text-center relative overflow-hidden"
+    data-header-color={color}
+  >
+    <div class="z-30 relative h-full flex flex-col">
+      <header class="">
+        <slot name="icon" />
+
+        <Title client:visible />
+      </header>
+
+      <footer class="flex flex-grow flex-col flex-nowrap justify-end pb-20">
+        <slot name="footer" />
+      </footer>
+    </div>
+
+    <div class="absolute top-0 bottom-0 h-full z-10 w-full">
+      <slot name="background" />
+    </div>
+  </section>
+</div>

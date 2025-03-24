@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body { 
+  background-image: url('/nnnoise.svg'); 
+}
+.header-blur {
+  background: rgba(147, 143, 143, 0);
+
+  backdrop-filter: blur(13.5px);
+  -webkit-backdrop-filter: blur(13.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
+
+
+.item{
+ 
+  transition: .3s;
+}
+.containers:hover > :not(:hover){
+  opacity: .4;
+  filter: blur(2px);
+}
+.containers:hover > :hover{
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+/* Oculta la barra de scroll en navegadores WebKit (Chrome, Safari, Edge) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Oculta la barra de scroll en Firefox */
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE y Edge */
+}
+
+.custom-scroll{
+  /* Estilos para la barra de scroll en WebKit */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+  border: 3px solid #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Estilos para la barra de scroll en Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+}
+
+.landing-section {
+  scroll-snap-align: start;
+}
+
+

@@ -1,0 +1,165 @@
+---
+import NavItem from "./NavBarItem.astro";
+import NavbarButtons from "./NavBarButtons";
+import { AlignRight } from "lucide-react";
+
+import "../../styles/global.css";
+
+const path = Astro.url.pathname;
+const pathSplit = path.split("/").slice(1).toString();
+
+const ClassFunction = (type: string) => {
+  let classes =
+    "text-black font-medium transition-all ease-in-out cursor-pointer px-4 py-2 rounded-md ";
+
+  if (pathSplit === type) {
+    classes += " bg-black/60 text-white hover:bg-logo-blue hover:text-white";
+  } else {
+    classes +=
+      " text-current hover:text-white px-4 py-2 rounded-md hover:bg-black/20";
+  }
+
+  return classes;
+};
+
+const mobileMenuItems = [
+  { href: "/", text: "Inicio" },
+  { href: "/servicios", text: "Servicios" },
+  { href: "/nosotros", text: "Sobre nosotros" },
+  { href: "/galeria", text: "Galería" },
+];
+---
+
+<nav
+  id="nav-header"
+  class="flex justify-between py-2 px-4 md:px-16 gap-4 items-center relative z-50"
+>
+  <a class="flex items-center gap-2" href="/">
+    <img src="/logo1.png" alt="logo" class="w-[150px] md:w-[200px]" />
+  </a>
+
+  <button id="mobile-menu-button" class="md:hidden z-50">
+    <AlignRight className="w-8 h-8 " />
+  </button>
+
+  <div id="desktop-menu" class="hidden md:flex items-center gap-8">
+    <div>
+      <ul class="flex gap-8 items-center">
+        <NavItem newClass={ClassFunction("")} href="/">Inicio</NavItem>
+        <NavItem newClass={ClassFunction("servicios")} href="/servicios"
+          >Servicios</NavItem
+        >
+        <NavItem newClass={ClassFunction("about")} href="/nosotros"
+          >Sobre nosotros</NavItem
+        >
+        <NavItem newClass={ClassFunction("galeria")} href="/galeria"
+          >Galería</NavItem
+        >
+      </ul>
+    </div>
+  </div>
+  <NavbarButtons client:visible />
+</nav>
+
+<div
+  id="mobile-menu"
+  class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col justify-center items-center"
+>
+  <ul class="text-center">
+    {
+      mobileMenuItems.map((item) => (
+        <li class="my-6">
+          <a
+            href={item.href}
+            class="text-white text-2xl font-bold hover:text-gray-300 transition-colors"
+          >
+            {item.text}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<script>
+  const initializeObserver = () => {
+    const $nav = document.querySelector("#nav-header") as HTMLElement;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.9,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const { isIntersecting } = entry;
+        if (isIntersecting) {
+          const color = entry.target.getAttribute("data-header-color");
+          $nav.style.color = color!;
+        }
+      });
+    }, observerOptions);
+
+    const $sections = document.querySelectorAll(".landing-section");
+    $sections.forEach((section) => observer.observe(section));
+  };
+
+  const initializeMobileMenu = () => {
+    const mobileMenuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const body = document.body;
+
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        mobileMenu.classList.toggle("flex");
+        body.classList.toggle("overflow-hidden");
+
+        const icon = mobileMenuButton.querySelector("svg");
+        if (icon) {
+          if (mobileMenu.classList.contains("flex")) {
+            icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>`;
+          } else {
+            icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-align-right"><path d="M21 12H9"/><path d="M21 18H7"/><path d="M21 6H3"/></svg>`;
+          }
+        }
+      });
+
+      const menuLinks = mobileMenu.querySelectorAll("a");
+      menuLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          mobileMenu.classList.remove("flex");
+          body.classList.remove("overflow-hidden");
+        });
+      });
+    }
+  };
+
+  initializeObserver();
+  initializeMobileMenu();
+
+  document.addEventListener("astro:after-swap", () => {
+    initializeObserver();
+    initializeMobileMenu();
+  });
+</script>
+
+<style>
+  #mobile-menu {
+    transition:
+      opacity 0.3s ease-in-out,
+      visibility 0.3s ease-in-out;
+  }
+
+  #mobile-menu.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  #mobile-menu.flex {
+    opacity: 1;
+    visibility: visible;
+  }
+</style>

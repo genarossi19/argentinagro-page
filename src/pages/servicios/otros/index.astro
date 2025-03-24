@@ -1,0 +1,53 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import "@/styles/global.css";
+import { OtrosServiciosContent } from "@/components/OtrosServiciosContent";
+
+const title = "Otros servicios";
+
+const servicios = [
+  {
+    titulo: "Embolsado, extracción y acarreo de cereal",
+    descripcion:
+      "Servicio completo de almacenamiento y transporte de granos con equipamiento especializado y personal capacitado.",
+    imagen: "/otros.jpg",
+    icono: "Truck",
+    href: "#",
+    color: "bg-amber-500",
+  },
+  {
+    titulo: "Rolo triturador",
+    descripcion:
+      "Trituración eficiente de cañas de girasol, malezas y otros residuos vegetales para preparar el terreno para la siguiente siembra.",
+    imagen: "/rolo_triturador.jpg",
+    icono: "Tractor",
+    href: "#",
+    color: "bg-emerald-500",
+  },
+  {
+    titulo: "Rastra desencontrada con rolos",
+    descripcion:
+      "Preparación de suelos con rastra desencontrada, escardillo y otras herramientas para optimizar las condiciones de siembra.",
+    imagen: "/rastra.jpg",
+    icono: "Tools",
+    href: "#",
+    color: "bg-blue-500",
+  },
+  {
+    titulo: "Monitoreo de plagas y enfermedades",
+    descripcion:
+      "Inspección profesional de cultivos para la detección temprana y control eficiente de plagas, malezas y enfermedades.",
+    imagen: "/otros.jpg",
+    icono: "Search",
+    href: "/servicios/otros/monitoreo_cultivos",
+    color: "bg-purple-500",
+  },
+];
+---
+
+<Layout title=`Servicios | ${title}` `>
+  <div class="h-[120px] header-blur w-full z-20 fixed top-0"></div>
+  <div class="mt-36">
+    <OtrosServiciosContent client:load title={title} servicios={servicios} />
+  </div>
+</Layout>

@@ -1,0 +1,57 @@
+---
+import Layout404 from "../layouts/Layout404.astro";
+import { Button } from "@/components/ui/button";
+import { Home } from "lucide-react";
+---
+
+<Layout404>
+  <div class="w-full max-w-3xl mx-auto px-6 py-16">
+    <div class="text-center">
+      <div class="mb-8">
+        <img
+          src="/logo1.png"
+          alt="Logo de la empresa"
+          class="h-20 mx-auto"
+          onerror="this.src='/placeholder.svg?height=80&width=200'; this.onerror=null;"
+        />
+      </div>
+
+      <div class="space-y-6">
+        <h1 class="text-7xl font-bold text-gray-900">404</h1>
+        <h2 class="text-2xl font-semibold text-logo-blue">
+          Página no encontrada
+        </h2>
+        <p class="text-gray-600 max-w-md mx-auto">
+          Lo sentimos, la página que estás buscando no existe o ha sido movida.
+        </p>
+      </div>
+
+      <a href="/" class="inline-block mt-12">
+        <Button
+          className="bg-logo-blue hover:bg-logo-blue/90 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200 flex items-center gap-2"
+        >
+          <Home className="h-5 w-5" />
+          <span>Volver al inicio</span>
+        </Button>
+      </a>
+    </div>
+  </div>
+</Layout404>
+
+<style>
+  :root {
+    --logo-blue: #007bff;
+  }
+
+  .text-logo-blue {
+    color: var(--logo-blue);
+  }
+
+  .bg-logo-blue {
+    background-color: var(--logo-blue);
+  }
+
+  .hover\:bg-logo-blue\/90:hover {
+    background-color: color-mix(in srgb, var(--logo-blue) 90%, transparent);
+  }
+</style>

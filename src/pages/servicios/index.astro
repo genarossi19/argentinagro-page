@@ -1,0 +1,123 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import "@/styles/global.css";
+import { ServiciosContent } from "@/components/ServiciosContent";
+
+const servicios = [
+  {
+    title: "Siembra aérea",
+    description: "Pioneros en la zona con 20 años de experiencia",
+    imageUrl: "avion1.jpg",
+    altText: "siembra_aerea",
+    icono: "Plane",
+    color: "bg-sky-500",
+    href: "/servicios/siembra_aerea",
+  },
+  {
+    title: "Pulverización aérea",
+    description:
+      "Maximiza tus rendimientos con una pulverización aérea precisa y oportuna.",
+    imageUrl: "pulverizacion_aerea.jpg",
+    altText: "pulverizacion_aerea",
+    icono: "Plane",
+    color: "bg-blue-500",
+    href: "/servicios/pulverizacion_aerea",
+  },
+  {
+    title: "Cosecha",
+    description:
+      "Desde granos finos hasta cultivos especiales, contamos con la maquinaria y el equipo humano necesario",
+    imageUrl: "cosechadoras.JPG",
+    altText: "cosecha",
+    icono: "Wheat",
+    color: "bg-amber-500",
+    href: "/servicios/cosecha",
+  },
+  {
+    title: "Siembra terrestre",
+    description: "Contamos con 3 equipos de siembra de última tecnología",
+    imageUrl: "siembra_terrestre2.jpg",
+    altText: "siembra_terrestre",
+    icono: "Tractor",
+    color: "bg-emerald-500",
+    href: "/servicios/siembra_terrestre",
+  },
+
+  {
+    title: "Fertilización",
+    description:
+      "Aplicamos los nutrientes que tus cultivos necesitan, donde los necesitan.",
+    imageUrl: "fertilizacion4.jpg",
+    altText: "fertilizacion",
+    icono: "Droplets",
+    color: "bg-green-500",
+    href: "/servicios/fertilizacion",
+  },
+
+  {
+    title: "Pulverización terrestre",
+    description:
+      "Confía en la precisión de nuestro sistema SIA para una pulverización óptima.",
+    imageUrl: "pulverizacion_terrestre.jpg",
+    altText: "pulverizacion_terrestre",
+    icono: "Spray",
+    color: "bg-indigo-500",
+    href: "/servicios/pulverizacion_terrestre",
+  },
+  {
+    title: "Aplicacion con drones",
+    description:
+      "Aplicación de insumos y monitoreo de cultivos con tecnología de punta.",
+    imageUrl: "/dron2.jpeg",
+    altText: "drones",
+    icono: "Drone",
+    color: "bg-purple-500",
+    href: "/servicios/drones",
+  },
+  {
+    title: "Otros servicios",
+    description:
+      "Asesoramiento agronómico y servicios de campo a medida para optimizar tus resultados.",
+    imageUrl: "otros.jpg",
+    altText: "otros",
+    icono: "MoreHorizontal",
+    color: "bg-gray-500",
+    href: "/servicios/otros",
+  },
+];
+
+// Características principales
+const caracteristicas = [
+  {
+    titulo: "Tecnología de vanguardia",
+    descripcion:
+      "Utilizamos equipamiento de última generación para garantizar la máxima eficiencia y precisión en cada servicio.",
+  },
+  {
+    titulo: "Personal especializado",
+    descripcion:
+      "Nuestro equipo cuenta con amplia experiencia y formación continua para ofrecer un servicio de excelencia.",
+  },
+  {
+    titulo: "Soluciones integrales",
+    descripcion:
+      "Cubrimos todo el ciclo productivo agrícola, desde la siembra hasta la cosecha y comercialización.",
+  },
+  {
+    titulo: "Compromiso con resultados",
+    descripcion:
+      "Nos enfocamos en maximizar el rendimiento de sus cultivos y la rentabilidad de su explotación.",
+  },
+];
+---
+
+<Layout title="Servicios">
+  <div class="h-[120px] header-blur w-full z-20 fixed top-0"></div>
+  <div class="from-logo-blue/10 to-white">
+    <ServiciosContent
+      client:load
+      servicios={servicios}
+      caracteristicas={caracteristicas}
+    />
+  </div>
+</Layout>
