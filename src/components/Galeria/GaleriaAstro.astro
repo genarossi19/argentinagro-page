@@ -58,7 +58,9 @@ const photos = editionsInfo[edictionIndex];
 
     const images = document.querySelectorAll(".gallery-item img");
 
-    images.forEach((img) => {
+    images.forEach((imgElement) => {
+      const img = imgElement as HTMLImageElement; // Cast explícito a HTMLImageElement
+
       if (img.complete) {
         showImage(img);
       } else {
@@ -68,19 +70,21 @@ const photos = editionsInfo[edictionIndex];
       img.onerror = () => showImage(img);
     });
 
-    function showImage(img) {
+    function showImage(img: HTMLImageElement) {
       const galleryItem = img.closest(".gallery-item");
+      if (!galleryItem) return; // Evita posibles errores si no se encuentra
+
       const index = galleryItem.getAttribute("data-index");
       const skeleton = document.querySelector(
         `.skeleton-placeholder[data-index="${index}"]`
-      );
+      ) as HTMLElement | null;
 
       if (skeleton) {
         skeleton.style.display = "none";
       }
 
       galleryItem.classList.remove("opacity-0");
-      galleryItem.style.opacity = "1";
+      (galleryItem as HTMLElement).style.opacity = "1";
     }
   });
 </script>
