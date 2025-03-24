@@ -294,7 +294,7 @@ export function OtrosServiciosContent({ title, servicios }) {
         </h2>
         <p className="text-gray-600 tracking-wider max-w-2xl mx-auto mb-6">
           Contáctenos para obtener más información o solicitar un presupuesto
-          personalizado para su explotación agrícola.
+          personalizado.
         </p>
         <a
           href="https://api.whatsapp.com/send?phone=542392480555&text=%C2%A1Hola!%2C%20te%20hago%20una%20consulta."
