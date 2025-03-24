@@ -20,7 +20,7 @@ export default function DialogNovedades({ className }) {
       title: "Aplicación con drones",
       description: "Descubre la última tecnología en aplicación",
       image: "/dron2.jpeg",
-      link: "/servicios/drones/", // URL específica para este paso
+      link: "/servicios/drones/",
     },
   ];
 
@@ -38,16 +38,14 @@ export default function DialogNovedades({ className }) {
 
   return (
     <>
-      {/* Botón que abre el diálogo */}
       <Button
         type="button"
         onClick={() => setIsDialogVisible(true)}
-        className={className} // Pasamos las clases de Tailwind aquí
+        className={className}
       >
         <span>Novedades</span>
       </Button>
 
-      {/* Diálogo */}
       {isDialogVisible && (
         <Dialog
           open={isDialogVisible}
@@ -56,12 +54,10 @@ export default function DialogNovedades({ className }) {
           }}
         >
           <DialogContent className="gap-0 p-0 [&>button:last-child]:text-black">
-            {/* Título NOVEDADES */}
             <div className="text-black text-center font-bold text-xl py-2">
               NOVEDADES
             </div>
 
-            {/* Imagen del paso */}
             <div className="flex justify-center px-4">
               <div className="relative w-full h-64 rounded-lg overflow-hidden">
                 <img
@@ -72,7 +68,6 @@ export default function DialogNovedades({ className }) {
               </div>
             </div>
 
-            {/* Contenido del diálogo */}
             <div className="space-y-6 px-6 pb-6 pt-3">
               <DialogHeader>
                 <DialogTitle>{stepContent[step - 1].title}</DialogTitle>
@@ -81,7 +76,6 @@ export default function DialogNovedades({ className }) {
                 </DialogDescription>
               </DialogHeader>
 
-              {/* Indicadores de pasos */}
               <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                 <div className="flex justify-center space-x-1.5 max-sm:order-1">
                   {[...Array(totalSteps)].map((_, index) => (
@@ -98,7 +92,6 @@ export default function DialogNovedades({ className }) {
                   ))}
                 </div>
                 <DialogFooter>
-                  {/* Botón Ver más con enlace dinámico */}
                   <a
                     href={stepContent[step - 1].link}
                     target="_blank"

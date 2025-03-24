@@ -1,5 +1,4 @@
 ---
-// Importaciones necesarias
 import "@/styles/global.css";
 
 interface Props {
@@ -23,7 +22,6 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <!-- Asegúrate de que los estilos de Tailwind estén disponibles -->
     <link rel="stylesheet" href="/styles/global.css" />
   </head>
   <body class="min-h-screen bg-gray-50">
@@ -34,8 +32,7 @@ const {
 </html>
 
 <style is:global>
-  /* Asegúrate de que las variables CSS necesarias estén definidas */
   :root {
-    --logo-blue: #007bff; /* Ajusta este color según tu marca */
+    --logo-blue: #007bff;
   }
 </style>

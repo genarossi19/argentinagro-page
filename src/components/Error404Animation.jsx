@@ -8,10 +8,8 @@ export function Error404Animation() {
   const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
-    // Establecer el ancho de la ventana inicial
     setWindowWidth(window.innerWidth);
 
-    // Actualizar el ancho de la ventana cuando cambie
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
@@ -20,19 +18,15 @@ export function Error404Animation() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Calcular el ancho del contenedor de animación (80% del ancho de la ventana o máximo 800px)
   const containerWidth = Math.min(windowWidth * 0.8, 800);
 
-  // Calcular las posiciones iniciales y finales
   const startX = -100;
   const endX = containerWidth + 100;
 
   return (
     <div className="relative w-full h-full overflow-hidden">
-      {/* Campo de cultivo */}
       <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-logo-blue/20 to-transparent"></div>
 
-      {/* Tractor animado */}
       <motion.div
         className="absolute bottom-4"
         initial={{ x: startX }}
@@ -57,7 +51,6 @@ export function Error404Animation() {
         </div>
       </motion.div>
 
-      {/* Nubes flotantes */}
       <motion.div
         className="absolute top-10 left-[10%] w-20 h-8 bg-white rounded-full"
         animate={{ x: [0, 20, 0], opacity: [0.7, 0.9, 0.7] }}
@@ -77,7 +70,6 @@ export function Error404Animation() {
         }}
       />
 
-      {/* Texto de error animado */}
       <motion.div
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-logo-blue/20 text-9xl font-bold"
         initial={{ scale: 0.8, opacity: 0 }}

@@ -31,7 +31,6 @@ const images = [
 
 const title = "Fertilizacion";
 
-// Datos para las tarjetas de beneficios
 const beneficios = [
   {
     titulo: "Experiencia comprobada",
@@ -53,7 +52,6 @@ const beneficios = [
   },
 ];
 
-// Datos para las estadísticas
 const estadisticas = [
   { valor: "60-150", unidad: "Kg/Ha", descripcion: "Rango de fertilización" },
   { valor: "100%", unidad: "", descripcion: "Cobertura uniforme" },
@@ -112,7 +110,6 @@ const estadisticas = [
 
           <CardContent className="pt-8">
             <div class="space-y-8">
-              <!-- Texto principal con destacado -->
               <div
                 class="bg-logo-blue/5 p-6 rounded-lg border border-logo-blue/20"
               >
@@ -133,7 +130,6 @@ const estadisticas = [
                 </div>
               </div>
 
-              <!-- Tarjetas de beneficios -->
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {
                   beneficios.map((beneficio) => (
@@ -164,7 +160,6 @@ const estadisticas = [
 
               <Separator className="my-6" />
 
-              <!-- Estadísticas -->
               <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {
                   estadisticas.map((stat) => (
@@ -183,7 +178,6 @@ const estadisticas = [
                 }
               </div>
 
-              <!-- Cita destacada -->
               <div
                 class="mt-6 p-6 border-l-4 border-logo-blue bg-logo-blue/5 rounded-r-lg"
               >

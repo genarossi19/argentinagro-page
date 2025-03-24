@@ -116,7 +116,6 @@ const mobileMenuItems = [
         mobileMenu.classList.toggle("flex");
         body.classList.toggle("overflow-hidden");
 
-        // Toggle between menu and close icons
         const icon = mobileMenuButton.querySelector("svg");
         if (icon) {
           if (mobileMenu.classList.contains("flex")) {
@@ -127,7 +126,6 @@ const mobileMenuItems = [
         }
       });
 
-      // Close menu when clicking on a link
       const menuLinks = mobileMenu.querySelectorAll("a");
       menuLinks.forEach((link) => {
         link.addEventListener("click", () => {
@@ -139,11 +137,9 @@ const mobileMenuItems = [
     }
   };
 
-  // Inicialización al cargar la página
   initializeObserver();
   initializeMobileMenu();
 
-  // Re-inicializar después de cada navegación del ClientRouter
   document.addEventListener("astro:after-swap", () => {
     initializeObserver();
     initializeMobileMenu();

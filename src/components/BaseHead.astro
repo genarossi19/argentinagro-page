@@ -1,5 +1,4 @@
 ---
-// Propiedades que el componente puede recibir
 export interface Props {
   title: string;
   description: string;
@@ -10,42 +9,35 @@ export interface Props {
   ogType?: string;
 }
 
-// Valores por defecto y destructuración de props
 const {
   title,
   description,
-  image = "/images/img-44.webp", // Imagen por defecto para compartir
+  image = "/images/img-44.webp",
   canonicalURL = new URL(Astro.url.pathname, Astro.site),
   type = "website",
   publishedDate,
   ogType = "website",
 } = Astro.props;
 
-// Construir URLs absolutas
 const socialImageURL = new URL(image, Astro.site).href;
 ---
 
-<!-- Metadatos básicos -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Favicon y recursos de iconos -->
 <link rel="icon" type="image/ico" href="/laargentinaicono.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 <link rel="manifest" href="/site.webmanifest" />
 
-<!-- Título y descripción principales -->
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 
-<!-- URL canónica -->
 <link rel="canonical" href={canonicalURL} />
 
-<!-- Metadatos Open Graph / Facebook -->
 <meta property="og:type" content={ogType} />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
@@ -58,31 +50,26 @@ const socialImageURL = new URL(image, Astro.site).href;
   )
 }
 
-<!-- Metadatos Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={canonicalURL} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={socialImageURL} />
 
-<!-- Precargar fuentes críticas -->
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-<!-- Preload de recursos críticos -->
 <link
   rel="preload"
   as="style"
   href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
 />
 
-<!-- Fuentes -->
 <link
   href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
   rel="stylesheet"
 />
 
-<!-- Metadatos adicionales -->
 <meta name="theme-color" content="#007bff" />
 <meta name="format-detection" content="telephone=no" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -91,6 +78,5 @@ const socialImageURL = new URL(image, Astro.site).href;
   content="black-translucent"
 />
 
-<!-- Indicación de idioma para lectores de pantalla -->
 <meta property="og:locale" content="es_AR" />
 <meta http-equiv="Content-Language" content="es-AR" />

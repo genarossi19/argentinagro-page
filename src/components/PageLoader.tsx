@@ -14,7 +14,7 @@ export function PageLoader() {
 export function ServiciosSkeletonLoader() {
   return (
     <div className="space-y-16 animate-fade-in">
-      {/* Hero section skeletons */}
+  
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 space-y-4">
           <div className="flex justify-center">
@@ -32,7 +32,7 @@ export function ServiciosSkeletonLoader() {
         </div>
       </div>
 
-      {/* Características skeletons */}
+
       <div className="container mx-auto px-4">
         <Skeleton className="h-10 w-1/3 mx-auto mb-12" />
 
@@ -52,7 +52,7 @@ export function ServiciosSkeletonLoader() {
         </div>
       </div>
 
-      {/* Todos los servicios skeletons */}
+     
       <div className="container mx-auto px-4">
         <Skeleton className="h-10 w-1/3 mx-auto mb-12" />
 

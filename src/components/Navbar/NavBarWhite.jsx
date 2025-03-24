@@ -115,11 +115,6 @@ export default function Navbar() {
               <MessageCircle size={16} />
             </div>
           </motion.button>
-          {/* <motion.button
-            whileHover={{ scale: 1.1, rotate: 15 }}
-            whileTap={{ scale: 0.9 }}
-            className="text-white"
-          ></motion.button> */}
         </motion.div>
       </motion.nav>
 

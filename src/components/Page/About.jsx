@@ -22,7 +22,6 @@ import {
   Star,
 } from "lucide-react";
 
-// Datos simulados
 const companyHistory = [
   {
     year: 1976,
@@ -219,7 +218,7 @@ export default function About() {
         className="fixed top-0 left-0 right-0 h-1 bg-white z-50"
         style={{ scaleX, transformOrigin: "0%" }}
       />
-      {/* Hero Section */}
+
       <motion.section
         className="h-screen flex items-center justify-center relative overflow-hidden"
         initial={{ opacity: 0 }}
@@ -251,7 +250,6 @@ export default function About() {
         </div>
       </motion.section>
 
-      {/* Historia de la Empresa */}
       <section
         className="py-12 px-4 bg-gradient-to-b from-gray-800 to-gray-900"
         data-header-color="white"
@@ -266,15 +264,12 @@ export default function About() {
             tecnología de vanguardia y expandiendo nuestras capacidades.
           </p>
 
-          {/* Timeline para desktop */}
           <div className="hidden md:block relative">
-            {/* Línea vertical central */}
             <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-logo-blue"></div>
 
             <div className="space-y-20">
               {companyHistory.map((item, index) => (
                 <div key={item.year} className="relative">
-                  {/* Icono central */}
                   <div className="absolute left-1/2 top-0 transform -translate-x-1/2 z-9">
                     <div className="w-14 h-14 rounded-full bg-logo-blue flex items-center justify-center">
                       {item.icon === "Seedling" && (
@@ -303,7 +298,6 @@ export default function About() {
                       index % 2 === 0 ? "flex-row" : "flex-row-reverse"
                     }`}
                   >
-                    {/* Año */}
                     <motion.div
                       className="w-1/2 flex items-center"
                       initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
@@ -324,7 +318,6 @@ export default function About() {
                       </div>
                     </motion.div>
 
-                    {/* Contenido */}
                     <motion.div
                       className="w-1/2 flex items-center"
                       initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
@@ -351,7 +344,6 @@ export default function About() {
             </div>
           </div>
 
-          {/* Timeline para móvil */}
           <div className="md:hidden space-y-10">
             {companyHistory.map((item) => (
               <motion.div
@@ -362,7 +354,6 @@ export default function About() {
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
               >
-                {/* Icono */}
                 <div className="absolute left-0 top-0 transform -translate-x-1/2">
                   <div className="w-8 h-8 rounded-full bg-logo-blue flex items-center justify-center">
                     {item.icon === "Seedling" && (
@@ -386,14 +377,12 @@ export default function About() {
                   </div>
                 </div>
 
-                {/* Año */}
                 <div className="mb-2">
                   <span className="text-3xl font-bold text-logo-blue">
                     {item.year}
                   </span>
                 </div>
 
-                {/* Contenido */}
                 <div className="bg-gray-800/80 p-3 rounded-lg shadow-lg border border-gray-700 backdrop-blur-sm">
                   <h3 className="text-base font-bold text-logo-blue mb-1">
                     {item.title}
@@ -406,7 +395,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Equipo */}
       <section className="py-16 px-4 bg-gray-800 relative">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
           Nuestro Equipo
@@ -486,7 +474,6 @@ export default function About() {
         </AnimatePresence>
       </section>
 
-      {/* Tecnología y Maquinaria */}
       <section className="py-16 px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
           Nuestra maquinaria
@@ -540,7 +527,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Sección de Video */}
       <motion.section
         className="py-16 px-4 bg-gray-800"
         style={{ opacity, scale }}
@@ -563,7 +549,6 @@ export default function About() {
         </div>
       </motion.section>
 
-      {/* Llamado a la Acción */}
       <section className="py-16 px-4 text-center pb-[80px]">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
           Compromiso con los Productores

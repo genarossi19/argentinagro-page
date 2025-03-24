@@ -24,7 +24,6 @@ const {
 
 import "@/styles/global.css";
 
-// Datos estructurados para SEO (Schema.org)
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -65,13 +64,10 @@ const schemaData = {
     />
     <ClientRouter />
 
-    <!-- Datos estructurados JSON-LD para SEO -->
     <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 
-    <!-- Verificación de propiedad del sitio (reemplaza con tu código) -->
     <meta name="google-site-verification" content="tu-código-de-verificación" />
 
-    <!-- Sugerencias para motores de búsqueda -->
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
   </head>

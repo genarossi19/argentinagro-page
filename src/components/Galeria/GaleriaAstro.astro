@@ -16,7 +16,6 @@ const photos = editionsInfo[edictionIndex];
   {
     photos.map(({ height, width }, i) => (
       <div class="gallery-item-wrapper">
-        {/* Skeleton placeholder */}
         <div class="skeleton-placeholder" data-index={i}>
           <div
             class="animate-pulse rounded-xl bg-gray-200 dark:bg-gray-700 w-full"
@@ -50,7 +49,6 @@ const photos = editionsInfo[edictionIndex];
   import "@appnest/masonry-layout";
 
   document.addEventListener("astro:page-load", () => {
-    // Initialize PhotoSwipe
     const lightbox = new PhotoSwipeLightbox({
       gallery: "#gallery",
       children: "a.gallery-item",
@@ -58,19 +56,15 @@ const photos = editionsInfo[edictionIndex];
     });
     lightbox.init();
 
-    // Handle image loading
     const images = document.querySelectorAll(".gallery-item img");
 
     images.forEach((img) => {
-      // For already loaded images (from cache)
       if (img.complete) {
         showImage(img);
       } else {
-        // For images that need to load
         img.onload = () => showImage(img);
       }
 
-      // Fallback in case of loading error
       img.onerror = () => showImage(img);
     });
 

@@ -33,7 +33,6 @@ const images = [
 
 const title = "Pulverización aérea";
 
-// Datos para las características clave
 const caracteristicas = [
   {
     titulo: "Tecnología de precisión",
@@ -108,7 +107,6 @@ const caracteristicas = [
 
           <CardContent className="pt-8">
             <div class="space-y-8">
-              <!-- Introducción con imagen de fondo -->
               <div
                 class="relative overflow-hidden rounded-xl p-6 bg-gradient-to-r from-logo-blue/20 to-logo-blue/5"
               >
@@ -137,7 +135,6 @@ const caracteristicas = [
                 </div>
               </div>
 
-              <!-- Características clave -->
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {
                   caracteristicas.map((caracteristica) => (
@@ -166,7 +163,6 @@ const caracteristicas = [
                 }
               </div>
 
-              <!-- Destacado de logística -->
               <div
                 class="bg-logo-blue/5 p-6 rounded-lg border border-logo-blue/20"
               >
@@ -188,7 +184,6 @@ const caracteristicas = [
 
               <Separator className="my-6" />
 
-              <!-- Preguntas frecuentes como componente React -->
               <PulverizacionFAQ client:load />
             </div>
           </CardContent>

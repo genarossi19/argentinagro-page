@@ -9,7 +9,6 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 
-// Ahora el componente acepta una prop `images`
 export function CarouselDemo({ images }) {
   const plugin = React.useRef(
     Autoplay({ delay: 3000, stopOnInteraction: false })

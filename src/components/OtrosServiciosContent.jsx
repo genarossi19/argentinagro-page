@@ -23,7 +23,6 @@ import {
 import { OtrosServiciosSkeletonLoader } from "@/components/OtrosServiciosSkeletonLoader";
 import { ScrollProgressBar } from "@/components/ScrollProgressBar";
 
-// Variantes de animación para Framer Motion
 const fadeIn = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.6 } },
@@ -47,35 +46,29 @@ const staggerContainer = {
 export function OtrosServiciosContent({ title, servicios }) {
   const [isLoading, setIsLoading] = useState(true);
   const [imagesLoaded, setImagesLoaded] = useState(0);
-  const totalImages = servicios.length + 1; // +1 para la imagen principal
+  const totalImages = servicios.length + 1;
 
-  // Manejar la carga de imágenes
   const handleImageLoad = () => {
     setImagesLoaded((prev) => {
       const newCount = prev + 1;
       if (newCount >= totalImages) {
-        // Todas las imágenes cargadas
         setTimeout(() => setIsLoading(false), 300);
       }
       return newCount;
     });
   };
 
-  // Precargar imágenes
   useEffect(() => {
-    // Precargar imagen principal
     const mainImg = new Image();
     mainImg.src = "/otros.jpg";
     mainImg.onload = handleImageLoad;
 
-    // Precargar imágenes de servicios
     servicios.forEach((servicio) => {
       const img = new Image();
       img.src = servicio.imagen;
       img.onload = handleImageLoad;
     });
 
-    // Fallback por si las imágenes fallan o tardan demasiado
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 3000);
@@ -83,17 +76,14 @@ export function OtrosServiciosContent({ title, servicios }) {
     return () => clearTimeout(timer);
   }, []);
 
-  // Renderizar skeletons mientras isLoading es true
   if (isLoading) {
     return <OtrosServiciosSkeletonLoader />;
   }
 
   return (
     <section className="w-[95%] mx-auto mb-28">
-      {/* Barra de progreso de scroll */}
       <ScrollProgressBar />
 
-      {/* Encabezado con título y badge */}
       <motion.div
         className="text-center mb-8"
         initial="hidden"
@@ -117,7 +107,6 @@ export function OtrosServiciosContent({ title, servicios }) {
         </p>
       </motion.div>
 
-      {/* Imagen principal con overlay y efecto */}
       <motion.div
         className="mt-10 w-full h-[400px] relative rounded-xl overflow-hidden group"
         initial="hidden"
@@ -148,7 +137,6 @@ export function OtrosServiciosContent({ title, servicios }) {
         </motion.div>
       </motion.div>
 
-      {/* Tarjetas de servicios en grid */}
       <motion.div
         className="mt-16"
         initial="hidden"
@@ -215,7 +203,6 @@ export function OtrosServiciosContent({ title, servicios }) {
         </motion.div>
       </motion.div>
 
-      {/* Sección de beneficios */}
       <motion.div
         className="mt-20 bg-logo-blue/5 rounded-xl p-8 border border-logo-blue/20"
         initial="hidden"
@@ -281,7 +268,6 @@ export function OtrosServiciosContent({ title, servicios }) {
         </motion.div>
       </motion.div>
 
-      {/* CTA final */}
       <motion.div
         className="mt-16 text-center"
         initial="hidden"

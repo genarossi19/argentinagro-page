@@ -63,13 +63,10 @@ import "@/styles/global.css";
     />
     <ClientRouter />
 
-    <!-- Datos estructurados JSON-LD para SEO -->
     <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 
-    <!-- Verificación de propiedad del sitio (reemplaza con tu código) -->
     <meta name="google-site-verification" content="tu-código-de-verificación" />
 
-    <!-- Sugerencias para motores de búsqueda -->
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
   </head>
@@ -98,45 +95,41 @@ import "@/styles/global.css";
     grid-template-rows: auto 1fr auto;
   }
 
-  /* Estilos globales para la barra de scroll */
   body {
-    scrollbar-width: thin; /* Firefox: barra delgada */
-    scrollbar-color: transparent transparent; /* Firefox: oculta la barra por defecto */
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
   }
 
   body:hover {
-    scrollbar-color: #888 #f1f1f1; /* Firefox: muestra la barra al hacer hover */
+    scrollbar-color: #888 #f1f1f1;
   }
 
-  /* Estilos para la barra de scroll en WebKit (Chrome, Safari, Edge) */
   ::-webkit-scrollbar {
-    width: 8px; /* Ancho más delgado */
-    background-color: transparent; /* Fondo transparente */
+    width: 8px;
+    background-color: transparent;
   }
 
   ::-webkit-scrollbar-track {
-    background: transparent; /* Fondo transparente */
+    background: transparent;
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 4px;
-    border: 2px solid transparent; /* Borde transparente */
-    opacity: 0; /* Barra invisible por defecto */
+    border: 2px solid transparent;
+    opacity: 0;
     transition:
       opacity 0.3s ease,
-      background 0.3s ease; /* Transición suave */
+      background 0.3s ease;
   }
 
-  /* Mostrar la barra al hacer hover o al scrollear */
   body:hover::-webkit-scrollbar-thumb,
   body:active::-webkit-scrollbar-thumb {
-    opacity: 1; /* Barra visible */
-    border-color: #f1f1f1; /* Borde visible */
+    opacity: 1;
+    border-color: #f1f1f1;
   }
 
-  /* Cambiar el color del thumb al hacer hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }

@@ -19,7 +19,6 @@ import {
 import { ServiciosSkeletonLoader } from "@/components/ServiciosSkeletonLoader";
 import { ScrollProgressBar } from "@/components/ScrollProgressBar";
 
-// Variantes de animación para Framer Motion
 const fadeIn = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.6 } },
@@ -46,7 +45,6 @@ export function ServiciosContent({ servicios, caracteristicas }) {
   const serviciosDestacados = servicios.slice(0, 3);
   const totalImages = servicios.length;
 
-  // Manejar la carga de imágenes
   const handleImageLoad = () => {
     setImagesLoaded((prev) => {
       const newCount = prev + 1;
@@ -58,7 +56,6 @@ export function ServiciosContent({ servicios, caracteristicas }) {
     });
   };
 
-  // Precargar imágenes
   useEffect(() => {
     servicios.forEach((servicio) => {
       const img = new Image();
@@ -66,7 +63,6 @@ export function ServiciosContent({ servicios, caracteristicas }) {
       img.onload = handleImageLoad;
     });
 
-    // Fallback por si las imágenes fallan o tardan demasiado
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 3000);
@@ -74,18 +70,14 @@ export function ServiciosContent({ servicios, caracteristicas }) {
     return () => clearTimeout(timer);
   }, []);
 
-  // Renderizar skeletons mientras isLoading es true
   if (isLoading) {
     return <ServiciosSkeletonLoader />;
   }
 
-  // Renderizar el contenido real cuando todo está cargado
   return (
     <div>
-      {/* Barra de progreso de scroll */}
       <ScrollProgressBar />
 
-      {/* Hero section con servicios destacados */}
       <section className="relative bg-gradient-to-b  py-20 ">
         <div className="container mx-auto px-4 mt-28">
           <motion.div
@@ -99,7 +91,7 @@ export function ServiciosContent({ servicios, caracteristicas }) {
               variant="outline"
               className="mb-4 px-4 py-1 text-sm tracking-wider text-logo-blue border-logo-blue/20 bg-logo-blue/5 rounded-full inline-flex"
             >
-              Soluciones agrícolas integrales
+              Soluciones agropecuarias integrales
             </Badge>
             <h1 className="text-5xl font-bold text-logo-blue tracking-wider mb-4">
               Nuestros Servicios Agropecuarios
@@ -111,7 +103,6 @@ export function ServiciosContent({ servicios, caracteristicas }) {
             </p>
           </motion.div>
 
-          {/* Servicios destacados en cards grandes */}
           <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12"
             initial="hidden"
@@ -171,7 +162,6 @@ export function ServiciosContent({ servicios, caracteristicas }) {
         </div>
       </section>
 
-      {/* Características principales */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <motion.h2
@@ -216,7 +206,6 @@ export function ServiciosContent({ servicios, caracteristicas }) {
         </div>
       </section>
 
-      {/* Todos los servicios en grid */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <motion.h2
@@ -300,7 +289,6 @@ export function ServiciosContent({ servicios, caracteristicas }) {
         </div>
       </section>
 
-      {/* CTA final */}
       <section className="py-16 bg-logo-blue/10">
         <motion.div
           className="container mx-auto px-4 text-center"

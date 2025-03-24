@@ -5,7 +5,6 @@ import { motion, useScroll, useSpring } from "framer-motion";
 export function ScrollProgressBar({ color = "bg-logo-blue" }) {
   const { scrollYProgress } = useScroll();
 
-  // Aplicamos un spring para hacer la animación más suave
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
