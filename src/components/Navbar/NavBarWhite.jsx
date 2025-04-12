@@ -51,7 +51,7 @@ export default function Navbar() {
       >
         <a className="flex items-center gap-2" href="/">
           <img
-            src="/logoBN.png"
+            src="/logoBN.svg"
             alt="logo"
             className="w-[150px] md:w-[200px]"
           />

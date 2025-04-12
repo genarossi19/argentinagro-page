@@ -1,7 +1,7 @@
 ---
 const { color, id } = Astro.props;
 const textColor = `text-${color}`;
-import Title from "@/components/Text/Title";
+import Title from "@/components/Text/Title.jsx";
 ---
 
 <div class="snap-start">
@@ -14,7 +14,7 @@ import Title from "@/components/Text/Title";
       <header class="">
         <slot name="icon" />
 
-        <Title client:visible />
+        <Title client:load />
       </header>
 
       <footer class="flex flex-grow flex-col flex-nowrap justify-end pb-20">
@@ -24,6 +24,7 @@ import Title from "@/components/Text/Title";
 
     <div class="absolute top-0 bottom-0 h-full z-10 w-full">
       <slot name="background" />
+      <slot name="overlay" class="z-[-1]" />
     </div>
   </section>
 </div>

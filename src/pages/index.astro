@@ -37,6 +37,8 @@ import DialogDemo from "@/components/Dialogs/DialogDemo";
         autoplay
         class="object-center object-cover h-full w-full"
         loop></video>
+      <img src="
+        " alt="La Argentina" />
     </SectionHeader>
     <!-- Mostrar el diálogo cuando sea necesario -->
     <DialogDemo client:load />
@@ -54,11 +56,12 @@ import DialogDemo from "@/components/Dialogs/DialogDemo";
         >
       </div>
       <img
-        transition:name="img-siembra_aerea"
-        slot="background"
-        class="object-center object-cover h-full w-full"
-        src="avion1.jpg"
-        alt="Siembra aerea"
+        loading={"lazy"}
+        transition:name={"img-siembra_aerea"}
+        slot={"background"}
+        class={"object-center object-cover h-full w-full"}
+        src={"avion1.webp"}
+        alt={"Siembra aerea"}
       />
     </Section>
     <!-- SIEMBRA TERRESTRE -->
@@ -75,10 +78,11 @@ import DialogDemo from "@/components/Dialogs/DialogDemo";
         >
       </div>
       <img
+        loading="lazy"
         transition:name="img-siembra_terrestre"
         slot="background"
         class="object-top object-cover h-full w-full"
-        src="siembra_terrestre2.jpg"
+        src="siembra_terrestre2.webp"
         alt="Siembra terrestre"
       />
     </Section>
@@ -96,10 +100,11 @@ import DialogDemo from "@/components/Dialogs/DialogDemo";
         >
       </div>
       <img
+        loading="lazy"
         transition:name="img-cosecha"
         slot="background"
         class="object-center object-cover h-full w-full"
-        src="cosechadoras.JPG"
+        src="cosechadoras.webp"
         alt="cosecha"
       />
     </Section>
@@ -117,10 +122,11 @@ import DialogDemo from "@/components/Dialogs/DialogDemo";
         >
       </div>
       <img
+        loading="lazy"
         transition:name="img-fertilizacion"
         slot="background"
         class="object-top object-cover h-full w-full"
-        src="fertilizacion4.jpg"
+        src="fertilizacion4.webp"
         alt="fertilizacion"
       />
     </Section>
@@ -138,10 +144,11 @@ import DialogDemo from "@/components/Dialogs/DialogDemo";
         >
       </div>
       <img
+        loading="lazy"
         transition:name="img-pulverizacion_aerea"
         slot="background"
         class="object-center object-cover h-full w-full"
-        src="pulverizacion_aerea.jpg"
+        src="pulverizacion_aerea.webp"
         alt="pulverizacion_aerea"
       />
     </Section>
@@ -159,10 +166,11 @@ import DialogDemo from "@/components/Dialogs/DialogDemo";
         >
       </div>
       <img
+        loading="lazy"
         transition:name="img-pulverizacion_terrestre"
         slot="background"
         class="object-center object-cover h-full w-full"
-        src="pulverizacion_terrestre.jpg"
+        src="pulverizacion_terrestre.webp"
         alt="pulverizacion_terrestre"
       />
     </Section>
@@ -180,10 +188,11 @@ import DialogDemo from "@/components/Dialogs/DialogDemo";
         >
       </div>
       <img
+        loading="lazy"
         transition:name="img-drones"
         slot="background"
         class="object-left-top object-cover h-full w-full"
-        src="/dron2.jpeg"
+        src="/dron2.webp"
         alt="drones"
       />
     </Section>
@@ -201,10 +210,11 @@ import DialogDemo from "@/components/Dialogs/DialogDemo";
         >
       </div>
       <img
+        loading="lazy"
         transition:name="img-otros"
         slot="background"
         class="object-top object-cover h-full w-full"
-        src="otros.jpg"
+        src="otros.webp"
         alt="otros"
       />
     </Section>

@@ -64,7 +64,7 @@ const teamMembers = [
   {
     name: "Mauricio José Font",
     role: "Ingeniero Agrónomo y Socio-gerente",
-    image: "/team/mauricio.jpg",
+    image: "/team/mauricio.webp",
     bio: "En la empresa desde 2011. Planificación  de las actividades de la empresa (siembra, cosecha, pulverización, otras labores). Control y análisis de gestión.",
     achievements: [
       "Carreras de karting",
@@ -75,7 +75,7 @@ const teamMembers = [
   {
     name: "Viviana Oses",
     role: "Contadora Publica Nacional - Encargada de finanzas",
-    image: "/team/viviana.jpeg",
+    image: "/team/viviana.webp",
     bio: "Ingrese a la empresa el 10/10/2018, con 20 años de experiencia en el sector agropecuario, decidi acompañar y aportar conocimiento a la empresa joven y en crecimiento",
     achievements: [
       "Atencion a clientes particulares",
@@ -87,7 +87,7 @@ const teamMembers = [
   {
     name: "Camila Oderiz",
     role: "Lic. en Administración Rural - Sector administrativo contable",
-    image: "/team/camila.jpeg",
+    image: "/team/camila.webp",
     bio: "En la empresa desde 2020, realizo trabajos de facturación, logística de granos en cosecha, cuentas corrientes proveedores y clientes. ",
     achievements: [
       "Hacer deporte",
@@ -99,7 +99,7 @@ const teamMembers = [
   {
     name: "Juan Patricio Font",
     role: "Contratista Rural.",
-    image: "/team/patricio.jpeg",
+    image: "/team/patricio.webp",
     bio: "En la empresa desde 2019. Aplicador terrestre de fitosanitarios. ",
     achievements: [
       "Jugar al Futbol",
@@ -111,29 +111,29 @@ const teamMembers = [
 const machinery = [
   {
     name: "Cosechadora John Deere 9770",
-    image: "/cosecha2.jpeg?height=600&width=800",
+    image: "/cosecha2.webp?height=600&width=800",
     description: "Con plataforma de 35 pies de corte.",
   },
   {
     name: "Cosechadora New Holland ",
-    image: "/cosechadora2.JPG?height=600&width=800",
+    image: "/cosecha3.webp?height=600&width=800",
     description: "desc",
   },
   {
     name: "Pulverizadora PLA MD 3300 2019",
-    image: "/pulverizacion_terrestre.jpg?height=600&width=800",
+    image: "/pulverizacion_terrestre.webp?height=600&width=800",
     description:
       "Con sistema SIA (estacion meteorologica incorporada) 36 mts de ala mixta, corte por sección, banderillero satelital, piloto automático y computadora de a bordo, operadas por personal.",
   },
   {
     name: "Sembradora JUBER 5200",
-    image: "/sembradora_juber5200.jpg?height=600&width=800",
+    image: "/SiembraTerrestre3.webp?height=600&width=800",
     description:
       "Distancias posibles 17,5 cm. 35 cm. 52 cm y 70 cm entre hileras. Con sistema de dosificación Master Mac, neumática y variable de semilla y fertilizante.",
   },
   {
     name: "Sembradora Crucianelli GRINGA",
-    image: "/siembra_terrestre2.jpg?height=600&width=800",
+    image: "/siembra_terrestre2.webp?height=600&width=800",
     description:
       "De grano grueso de 28 cuerpos a 35 cm, con sistema PRECISION PLANTING, neumático y variable de semilla y fertilizante. Ideal para maíces, con excelentes resultados en uniformidad de nacimientos.",
   },
@@ -150,7 +150,7 @@ const machinery = [
   },
   {
     name: "Avion Turbo Kruk",
-    image: "/pulverizacion_aerea3.jpg?height=600&width=800",
+    image: "/pulverizacion_aerea3.webp?height=600&width=800",
     description: "",
   },
   {
