@@ -60,7 +60,7 @@ export function OtrosServiciosContent({ title, servicios }) {
 
   useEffect(() => {
     const mainImg = new Image();
-    mainImg.src = "/otros.jpg";
+    mainImg.src = "/otros.webp";
     mainImg.onload = handleImageLoad;
 
     servicios.forEach((servicio) => {
@@ -117,7 +117,7 @@ export function OtrosServiciosContent({ title, servicios }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10"></div>
         <img
           className="object-center object-cover h-full w-full transition-transform duration-700 group-hover:scale-105"
-          src="/otros.jpg"
+          src="/otros.webp"
           alt={title}
         />
         <motion.div
