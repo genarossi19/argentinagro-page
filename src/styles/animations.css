@@ -11,4 +11,23 @@
   .fade-in-up {
     animation: fadeInUp 0.5s ease-out forwards;
   }
-  
+  .animate {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+  }
+  .animate-visible {
+    opacity: 1;
+  }
+  .animate-title {
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+  .animate-image {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  .animate-card {
+    animation: fadeInUp 0.5s ease-out forwards;
+    transition: transform 0.5s ease-out;
+  }
+  .animate-card:hover {
+    transform: translateY(-5px);
+  }

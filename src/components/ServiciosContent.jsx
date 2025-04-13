@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   Plane,
@@ -16,13 +16,6 @@ import {
   CheckCircle,
   DrillIcon as Drone,
 } from "lucide-react";
-import { ServiciosSkeletonLoader } from "@/components/ServiciosSkeletonLoader";
-import { ScrollProgressBar } from "@/components/ScrollProgressBar";
-
-const fadeIn = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.6 } },
-};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -55,38 +48,20 @@ export function ServiciosContent({ servicios, caracteristicas }) {
       return newCount;
     });
   };
-
   useEffect(() => {
-    servicios.forEach((servicio) => {
-      const img = new Image();
-      img.src = servicio.imageUrl;
-      img.onload = handleImageLoad;
-    });
-
+    // Simulamos un pequeño retraso para mostrar el "loading", si es necesario
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 500); // Ajusta el tiempo si es necesario
 
     return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return <ServiciosSkeletonLoader />;
-  }
+  }, [servicios]); // Si los servicios cambian, se vuelve a ejecutar el useEffect
 
   return (
     <div>
-      <ScrollProgressBar />
-
-      <section className="relative bg-gradient-to-b  py-20 ">
+      <section className="relative bg-gradient-to-b py-20 animate-fade-in ">
         <div className="container mx-auto px-4 mt-28">
-          <motion.div
-            className="text-center mb-12"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={fadeUp}
-          >
+          <div className="text-center mb-12 animate-fade-in-down">
             <Badge
               variant="outline"
               className="mb-4 px-4 py-1 text-sm tracking-wider text-logo-blue border-logo-blue/20 bg-logo-blue/5 rounded-full inline-flex"
@@ -101,23 +76,22 @@ export function ServiciosContent({ servicios, caracteristicas }) {
               todas las necesidades de su explotación agrícola, combinando
               tecnología de vanguardia con la experiencia de nuestro equipo.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={staggerContainer}
+          <div
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 animate-stagger-cards"
+            // initial="hidden"
+            // whileInView="visible"
+            // viewport={{ once: true, amount: 0.1 }}
+            // variants={staggerContainer}
           >
             {serviciosDestacados.map((servicio, index) => (
-              <motion.a
+              <a
                 href={servicio.href}
                 className="group"
-                key={index}
-                variants={fadeUp}
+                key={servicio.title} // Utilizando el título como clave única
               >
-                <Card className="overflow-hidden border-0 shadow-lg h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <Card className="overflow-hidden border-0 shadow-lg h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1 animate-stagger-cards">
                   <div className="relative h-64 overflow-hidden">
                     <div
                       className={`absolute top-4 right-4 z-10 w-12 h-12 rounded-full ${servicio.color} flex items-center justify-center text-white`}
@@ -156,9 +130,9 @@ export function ServiciosContent({ servicios, caracteristicas }) {
                     </div>
                   </CardFooter>
                 </Card>
-              </motion.a>
+              </a>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -184,7 +158,7 @@ export function ServiciosContent({ servicios, caracteristicas }) {
             {caracteristicas.map((caracteristica, index) => (
               <motion.div
                 className="bg-logo-blue/5 rounded-lg p-6 border border-logo-blue/10 transition-all duration-300 hover:shadow-md"
-                key={index}
+                key={caracteristica.titulo} // Utilizando el título como clave única
                 variants={fadeUp}
               >
                 <div className="flex items-start gap-4">
@@ -225,11 +199,11 @@ export function ServiciosContent({ servicios, caracteristicas }) {
             viewport={{ once: true, amount: 0.1 }}
             variants={staggerContainer}
           >
-            {servicios.map((servicio, index) => (
+            {servicios.map((servicio) => (
               <motion.a
                 href={servicio.href}
                 className="group"
-                key={index}
+                key={servicio.title} // Utilizando el título como clave única
                 variants={fadeUp}
               >
                 <Card className="overflow-hidden border-0 shadow-md h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
@@ -262,65 +236,25 @@ export function ServiciosContent({ servicios, caracteristicas }) {
                     <img
                       src={servicio.imageUrl || "/placeholder.svg"}
                       alt={servicio.altText}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-4">
-                      <h3 className="text-white text-lg font-bold tracking-wider">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <h3 className="text-white text-xl font-semibold tracking-wider">
                         {servicio.title}
                       </h3>
                     </div>
                   </div>
-                  <CardContent className="pt-4">
-                    <p className="text-gray-600 tracking-wider text-sm line-clamp-2">
+                  <CardContent className="pt-6">
+                    <p className="text-gray-600 tracking-wider">
                       {servicio.description}
                     </p>
                   </CardContent>
-                  <CardFooter className="pt-0">
-                    <div className="inline-flex items-center text-logo-blue font-medium tracking-wider text-sm group-hover:underline">
-                      Ver detalles
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </div>
-                  </CardFooter>
                 </Card>
               </motion.a>
             ))}
           </motion.div>
         </div>
-      </section>
-
-      <section className="py-16 bg-logo-blue/10">
-        <motion.div
-          className="container mx-auto px-4 text-center"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-          variants={fadeUp}
-        >
-          <h2 className="text-3xl font-bold text-gray-900 tracking-wider mb-4">
-            ¿Necesita alguno de nuestros servicios?
-          </h2>
-          <p className="text-gray-600 tracking-wider max-w-2xl mx-auto mb-8">
-            Contáctenos para obtener más información o solicitar un presupuesto
-            personalizado.
-          </p>
-          <a
-            href="https://api.whatsapp.com/send?phone=542392480555&text=%C2%A1Hola!%2C%20te%20hago%20una%20consulta."
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Button
-              className="bg-logo-blue hover:bg-logo-blue/90 text-white gap-3 group px-8 py-6 text-base tracking-wider"
-              size="lg"
-            >
-              <span>Solicitar presupuesto</span>
-              <ArrowRight
-                size={20}
-                className="transition-transform group-hover:translate-x-1"
-              />
-            </Button>
-          </a>
-        </motion.div>
       </section>
     </div>
   );

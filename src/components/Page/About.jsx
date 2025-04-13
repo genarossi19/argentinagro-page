@@ -1,15 +1,9 @@
-"use client";
-
-import {
-  motion,
-  AnimatePresence,
-  useTransform,
-  useSpring,
-} from "framer-motion";
-import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence, useTransform } from "framer-motion";
+import { useState, useRef, useEffect, memo } from "react";
 import { X } from "lucide-react";
 import { useScroll } from "framer-motion";
 import "@/styles/global.css";
+import "@/styles/animations.css";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -160,7 +154,7 @@ const machinery = [
   },
 ];
 
-const ImageWithSkeleton = ({ src, alt, className }) => {
+const ImageWithSkeleton = memo(({ src, alt, className }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
 
@@ -181,6 +175,7 @@ const ImageWithSkeleton = ({ src, alt, className }) => {
         <Skeleton className="absolute inset-0 w-full h-full rounded-lg" />
       )}
       <img
+        loading="lazy"
         src={src || "/placeholder.svg"}
         alt={alt}
         className={`w-full h-full object-cover rounded-lg transition-opacity duration-300 ${
@@ -190,7 +185,7 @@ const ImageWithSkeleton = ({ src, alt, className }) => {
       />
     </div>
   );
-};
+});
 
 export default function About() {
   const [selectedMember, setSelectedMember] = useState(null);
@@ -202,11 +197,11 @@ export default function About() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
 
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
+  // const scaleX = useSpring(scrollYProgress, {
+  //   stiffness: 100,
+  //   damping: 30,
+  //   restDelta: 0.001,
+  // });
 
   return (
     <section
@@ -214,16 +209,16 @@ export default function About() {
       ref={containerRef}
       className="landing-section min-h-[calc(100vh-100px)] bg-gradient-to-b from-gray-900 to-gray-800 text-white"
     >
-      <motion.div
+      {/* <div
         className="fixed top-0 left-0 right-0 h-1 bg-white z-50"
         style={{ scaleX, transformOrigin: "0%" }}
-      />
+      /> */}
 
       <motion.section
         className="h-screen flex items-center justify-center relative overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
+        transition={{ duration: 1 }}
       >
         <img
           src="/images/img-44.webp"
@@ -231,22 +226,17 @@ export default function About() {
           className="absolute inset-0 w-full h-full object-cover z-0 opacity-40"
         />
         <div className="relative z-10 text-center px-4 mb-20">
-          <motion.h1
-            className="text-4xl md:text-6xl font-bold mb-4"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-          >
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 animate-fade-in-up">
             Protegiendo el Futuro de la Agricultura
-          </motion.h1>
-          <motion.p
-            className="text-lg md:text-xl mb-8"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
+          </h1>
+          <p
+            className="text-lg md:text-xl mb-8 animate-fade-in-up"
+            // initial={{ y: 50, opacity: 0 }}
+            // animate={{ y: 0, opacity: 1 }}
+            // transition={{ delay: 0.7, duration: 0.8 }}
           >
             Desde 1976, innovando para el bienestar de tus cultivos y el planeta
-          </motion.p>
+          </p>
         </div>
       </motion.section>
 
@@ -298,12 +288,12 @@ export default function About() {
                       index % 2 === 0 ? "flex-row" : "flex-row-reverse"
                     }`}
                   >
-                    <motion.div
+                    <div
                       className="w-1/2 flex items-center"
-                      initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6 }}
-                      viewport={{ once: true }}
+                      // initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                      // whileInView={{ opacity: 1, x: 0 }}
+                      // transition={{ duration: 0.6 }}
+                      // viewport={{ once: true }}
                     >
                       <div
                         className={`${
@@ -316,14 +306,14 @@ export default function About() {
                           {item.year}
                         </span>
                       </div>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
+                    <div
                       className="w-1/2 flex items-center"
-                      initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6 }}
-                      viewport={{ once: true }}
+                      // initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
+                      // whileInView={{ opacity: 1, x: 0 }}
+                      // transition={{ duration: 0.6 }}
+                      // viewport={{ once: true }}
                     >
                       <div
                         className={`${
@@ -337,7 +327,7 @@ export default function About() {
                           <p className="text-gray-200 text-sm">{item.event}</p>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -526,7 +516,7 @@ export default function About() {
           ))}
         </div>
       </section>
-
+      {/* 
       <motion.section
         className="py-16 px-4 bg-gray-800"
         style={{ opacity, scale }}
@@ -539,7 +529,6 @@ export default function About() {
             <iframe
               src="https://www.youtube.com/embed/KoGEn24fsiM"
               title="Cosecha de Soja 2022 [1] | La Argentina | ArgentinagroSRL"
-              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
@@ -547,8 +536,7 @@ export default function About() {
             />
           </div>
         </div>
-      </motion.section>
-
+      </motion.section> */}
       <section className="py-16 px-4 text-center pb-[80px]">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
           Compromiso con los Productores
