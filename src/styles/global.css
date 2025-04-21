@@ -11,6 +11,7 @@
 
 body { 
   background-image: url('/nnnoise.svg'); 
+  font-family: 'Poppins', sans-serif;
 }
 .header-blur {
   background: rgba(147, 143, 143, 0);

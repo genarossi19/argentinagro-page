@@ -1,7 +1,7 @@
-import { motion, AnimatePresence, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect, memo } from "react";
 import { X } from "lucide-react";
-import { useScroll } from "framer-motion";
+
 import "@/styles/global.css";
 import "@/styles/animations.css";
 import { Button } from "@/components/ui/button";
@@ -187,21 +187,40 @@ const ImageWithSkeleton = memo(({ src, alt, className }) => {
   );
 });
 
+// Reemplaza ImageWithSkeleton por esto en About.jsx, arriba del export default:
+// function ImageWithSkeleton({ src, alt, className }) {
+//   const [isLoaded, setIsLoaded] = useState(false);
+//   const imgRef = useRef(null);
+
+//   useEffect(() => {
+//     if (imgRef.current && imgRef.current.complete) {
+//       setIsLoaded(true);
+//     }
+//   }, [src]);
+
+//   return (
+//     <div className={`relative ${className}`}>
+//       {!isLoaded && (
+//         <div className="absolute inset-0 bg-gray-700 animate-pulse rounded-lg z-0" />
+//       )}
+//       <img
+//         ref={imgRef}
+//         src={src}
+//         alt={alt}
+//         loading="lazy"
+//         decoding="async"
+//         onLoad={() => setIsLoaded(true)}
+//         className={`w-full h-full object-cover rounded-lg transition-opacity duration-300 ${
+//           isLoaded ? "opacity-100 z-10" : "opacity-0"
+//         }`}
+//       />
+//     </div>
+//   );
+// }
+
 export default function About() {
   const [selectedMember, setSelectedMember] = useState(null);
   const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    offset: ["start start", "end end"],
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
-
-  // const scaleX = useSpring(scrollYProgress, {
-  //   stiffness: 100,
-  //   damping: 30,
-  //   restDelta: 0.001,
-  // });
 
   return (
     <section

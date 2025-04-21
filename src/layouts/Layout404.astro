@@ -18,7 +18,12 @@ const {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="icon" type="image/png" href="/favicon.png" />
+<!-- Preconexiones recomendadas por Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+<!-- Fuente Poppins con display=swap para mejor UX -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <title>{title}</title>
     <meta name="description" content={description} />
 
@@ -31,7 +36,11 @@ const {
   </body>
 </html>
 
-<style is:global>
+<style >
+
+  body{
+    font-family: 'Poppins',sans-serif;
+  }
   :root {
     --logo-blue: #007bff;
   }

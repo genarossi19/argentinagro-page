@@ -34,16 +34,6 @@ const staggerContainer = {
 
 export function ServiciosContent({ servicios, caracteristicas }) {
   const serviciosDestacados = servicios.slice(0, 3);
-  const totalImages = servicios.length;
-
-  useEffect(() => {
-    // Simulamos un pequeño retraso para mostrar el "loading", si es necesario
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 500); // Ajusta el tiempo si es necesario
-
-    return () => clearTimeout(timer);
-  }, [servicios]); // Si los servicios cambian, se vuelve a ejecutar el useEffect
 
   return (
     <div>
@@ -66,13 +56,7 @@ export function ServiciosContent({ servicios, caracteristicas }) {
             </p>
           </div>
 
-          <div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 animate-stagger-cards"
-            // initial="hidden"
-            // whileInView="visible"
-            // viewport={{ once: true, amount: 0.1 }}
-            // variants={staggerContainer}
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 animate-stagger-cards">
             {serviciosDestacados.map((servicio, index) => (
               <a
                 href={servicio.href}

@@ -7,6 +7,8 @@ import {
   Youtube,
 } from "lucide-react";
 
+import "@/styles/global.css";
+
 const socialLinks = [
   {
     name: "instagram",
