@@ -37,6 +37,7 @@ const title = "Siembra aérea";
     </h1>
     <div class="mt-10 w-full h-[300px]">
       <img
+      loading="lazy"
         transition:name="img-siembra_aerea"
         class="object-center object-cover h-full w-full rounded-md"
         src="/avion1.webp"
@@ -96,7 +97,7 @@ const title = "Siembra aérea";
       </div>
       <div class="w-full md:w-1/3 sticky top-32">
         <div class="rounded-lg overflow-hidden shadow-sm">
-          <CarouselDemo client:load images={images} />
+          <CarouselDemo client:visible images={images} />
         </div>
       </div>
     </div>

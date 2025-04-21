@@ -33,21 +33,9 @@ const staggerContainer = {
 };
 
 export function ServiciosContent({ servicios, caracteristicas }) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [imagesLoaded, setImagesLoaded] = useState(0);
   const serviciosDestacados = servicios.slice(0, 3);
   const totalImages = servicios.length;
 
-  const handleImageLoad = () => {
-    setImagesLoaded((prev) => {
-      const newCount = prev + 1;
-      if (newCount >= totalImages) {
-        // Todas las imágenes cargadas
-        setTimeout(() => setIsLoading(false), 300);
-      }
-      return newCount;
-    });
-  };
   useEffect(() => {
     // Simulamos un pequeño retraso para mostrar el "loading", si es necesario
     const timer = setTimeout(() => {
@@ -107,6 +95,7 @@ export function ServiciosContent({ servicios, caracteristicas }) {
                       )}
                     </div>
                     <img
+                      loading="lazy"
                       src={servicio.imageUrl || "/placeholder.svg"}
                       alt={servicio.altText}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -234,6 +223,7 @@ export function ServiciosContent({ servicios, caracteristicas }) {
                       )}
                     </div>
                     <img
+                      loading="lazy"
                       src={servicio.imageUrl || "/placeholder.svg"}
                       alt={servicio.altText}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
