@@ -20,7 +20,7 @@ export default function DialogDemo() {
     {
       title: "Aplicación con drones",
       description: "Descubre la última tecnología en aplicación",
-      image: "/dron2.jpeg",
+      image: "/dron2.webp",
       link: "/servicios/drones/",
     },
   ];
