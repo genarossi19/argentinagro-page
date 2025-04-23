@@ -111,15 +111,9 @@ export function ServiciosContent({ servicios, caracteristicas }) {
 
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <motion.h2
-            className="text-3xl font-bold text-center text-gray-900 tracking-wider mb-12"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-            variants={fadeUp}
-          >
+          <h2 className="text-3xl font-bold text-center text-gray-900 tracking-wider mb-12">
             ¿Por qué elegir nuestros servicios?
-          </motion.h2>
+          </h2>
 
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
@@ -155,15 +149,9 @@ export function ServiciosContent({ servicios, caracteristicas }) {
 
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <motion.h2
-            className="text-3xl font-bold text-center text-gray-900 tracking-wider mb-12"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-            variants={fadeUp}
-          >
+          <h2 className="text-3xl font-bold text-center text-gray-900 tracking-wider mb-12">
             Todos nuestros servicios
-          </motion.h2>
+          </h2>
 
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
