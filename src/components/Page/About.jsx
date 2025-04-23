@@ -139,8 +139,8 @@ const machinery = [
   },
   {
     name: "Tractor New Holland",
-    image: "/images/img-80.webp",
-    description: "Con plataforma de 35 pies, año 2022",
+    image: "/SiembraTerrestre2.webp",
+    description: "",
   },
   {
     name: "Avion Turbo Kruk",
@@ -149,7 +149,7 @@ const machinery = [
   },
   {
     name: "Avion Puelche 260",
-    image: "/images/img-80.webp",
+    image: "/images/img-75.webp",
     description: "",
   },
 ];
