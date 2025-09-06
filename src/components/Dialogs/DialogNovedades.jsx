@@ -17,10 +17,24 @@ export default function DialogNovedades({ className }) {
 
   const stepContent = [
     {
-      title: "Aplicación con drones",
-      description: "Descubre la última tecnología en aplicación",
-      image: "/dron2.webp",
-      link: "/servicios/drones/",
+      title: "Siembra Gruesa 2025",
+      description:
+        "Estamos realizando labores de siembra de maiz, soja y girasol. Contactanos para obtener mas información",
+      image: "/novedades/siembra_gruesa.jpg",
+      link: "/servicios/siembra_terrestre/",
+    },
+    {
+      title: "Fertilizacion",
+      description: "Fertilizacion en fina con dosis variable. ",
+      image: "/fertilizacion.webp",
+      link: "/servicios/fertilizacion/",
+    },
+    {
+      title: "Pulverización terrestre",
+      description:
+        "Confía en la precisión de nuestro sistema SIA para una pulverización óptima.",
+      image: "/novedades/pulverizadora.jpeg",
+      link: "/servicios/pulverizacion_terrestre",
     },
   ];
 

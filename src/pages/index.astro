@@ -5,7 +5,6 @@ import Section from "@/components/Sections/Section.astro";
 import DialogNovedades from "@/components/Dialogs/DialogNovedades";
 import SectionHeader from "@/components/Sections/SectionHeader.astro";
 import SectionFooter from "@/components/Sections/SectionFooter.astro";
-import DialogDemo from "@/components/Dialogs/DialogDemo";
 ---
 
 <LayoutLanding title="Argentinagro SRL de Trenque Lauquen">
@@ -18,12 +17,19 @@ import DialogDemo from "@/components/Dialogs/DialogDemo";
         slot="footer"
         class="flex flex-col px-6 justify-center gap-y-4 sm:flex-row sm:gap-x-6"
       >
-        <DialogNovedades
-          client:visible
-          className="text-sm py-2 px-12 border-[3px] border-black/5 rounded cursor-pointer hover:bg-black/90 hover:border-black/5 hover:backdrop-blur-3xl bg-black/60 text-white transition-all duration-300"
-        >
-          <span>Novedades</span>
-        </DialogNovedades>
+        <div class="relative">
+          <DialogNovedades
+            client:visible
+            className="text-sm py-2 px-12 border-[3px] border-black/5 rounded cursor-pointer hover:bg-black/90 hover:border-black/5 hover:backdrop-blur-3xl bg-black/60 text-white transition-all duration-300"
+          >
+            <span>Novedades</span>
+          </DialogNovedades>
+          <div
+            class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full"
+          >
+            3
+          </div>
+        </div>
 
         <a
           class="text-sm py-2 px-12 border-[3px] border-white rounded cursor-pointer hover:bg-black/30 hover:border-gray-100/5 hover:backdrop-blur-3xl hover:text-white bg-white text-black transition-all duration-300"
@@ -45,7 +51,7 @@ import DialogDemo from "@/components/Dialogs/DialogDemo";
     <Section
       color="black"
       title="Siembra aérea"
-      subtitle="Pioneros en la zona con 20 años de experiencia"
+      subtitle="Pioneros en la zona con 40 años de experiencia"
       id="siembra_aerea"
     >
       <div slot="footer">
@@ -221,4 +227,3 @@ import DialogDemo from "@/components/Dialogs/DialogDemo";
     <SectionFooter id="footer" color="white" />
   </main>
 </LayoutLanding>
-

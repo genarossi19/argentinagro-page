@@ -3,7 +3,9 @@ import { Button } from "@/components/ui/button";
 import Layout from "@/layouts/Layout.astro";
 import {
   MessageCircle,
+  Globe,
   Tractor,
+  Funnel,
   Wheat,
   BarChart3,
   Truck,
@@ -43,7 +45,7 @@ const title = "Cosecha";
     </h1>
     <div class="mt-10 w-full h-[300px]">
       <img
-      loading="lazy"
+        loading="lazy"
         transition:name="img-cosecha"
         class="object-center object-cover h-full w-full rounded-md"
         src="/cosechadoras.webp"
@@ -184,9 +186,52 @@ const title = "Cosecha";
                   <p class="text-gray-500 mt-1">Con balanzas Magris</p>
                 </div>
               </div>
+              <!-- AGDP -->
+              <div
+                class="flex items-start gap-4 p-4 rounded-lg transition-all hover:bg-green-700/5"
+              >
+                <div
+                  class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-green-700/10 text-green-700"
+                >
+                  <Funnel className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 class="font-semibold text-lg text-gray-900">
+                    Sistema tecnologico de tolvas Corvus AGDP
+                  </h3>
+                  <p class="text-gray-500 mt-1">
+                    Pesaje inteligente. Datos en tiempo real. Control de calidad
+                  </p>
+                </div>
+              </div>
+              <div class="w-80 flex justify-center">
+                <img src="/public/corvus-logos.png" alt="corvus agdp" />
+              </div>
+              <!-- FieldView -->
+              <div
+                class="flex items-start gap-4 p-4 rounded-lg transition-all hover:bg-[#F6B231]/5"
+              >
+                <div
+                  class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-orange-300/10 text-[#F6B231]"
+                >
+                  <Funnel className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 class="font-semibold text-lg text-gray-900">
+                    Sistema de mapeo FieldView
+                  </h3>
+                  <p class="text-gray-500 mt-1">
+                    Recopila y procesa los datos de tu campo para que puedas
+                    analizarlos en un solo lugar
+                  </p>
+                </div>
+              </div>
+              <div class="w-80 flex justify-center">
+                <img src="/public/logo-field-view.png" alt="FieldView" />
+              </div>
             </div>
           </CardContent>
-          <CardFooter className="pt-4">
+          <CardFooter className="pt-4 flex gap-10">
             <a
               target="_blank"
               href="https://api.whatsapp.com/send?phone=542392480555&text=%C2%A1Hola!%2C%20te%20hago%20una%20consulta."
@@ -196,8 +241,40 @@ const title = "Cosecha";
                 className="w-full sm:w-auto bg-logo-blue hover:bg-logo-blue/90 text-white gap-2 group"
                 size="lg"
               >
-                <span>Saber más</span>
+                <span>Consultarnos ahora</span>
                 <MessageCircle
+                  size={18}
+                  className="transition-transform group-hover:translate-x-1"
+                />
+              </Button>
+            </a>
+            <a
+              target="_blank"
+              href="https://drive.google.com/file/d/1PLl6gzrodN-S9ULAxdDtEVYOQy6EBCZU/view"
+              class="w-full sm:w-auto"
+            >
+              <Button
+                className="w-full sm:w-auto bg-green-700 hover:bg-green-700/90 text-white gap-2 group"
+                size="lg"
+              >
+                <span>Saber más de Corvus</span>
+                <Globe
+                  size={18}
+                  className="transition-transform group-hover:translate-x-1"
+                />
+              </Button>
+            </a>
+            <a
+              target="_blank"
+              href="https://climatefieldview.com.ar/"
+              class="w-full sm:w-auto"
+            >
+              <Button
+                className="w-full sm:w-auto bg-[#F6B231] hover:bg-orange-[#F6B231]/90 text-white gap-2 group"
+                size="lg"
+              >
+                <span>Saber más de FieldView</span>
+                <Globe
                   size={18}
                   className="transition-transform group-hover:translate-x-1"
                 />

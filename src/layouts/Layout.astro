@@ -15,7 +15,7 @@ interface Props {
 
 const {
   title = "La Argentina SRL | Servicios Agrícolas de Calidad en Trenque Lauquen",
-  description = "Ofrecemos servicios agropecuarios integrales incluyendo siembra, cosecha, pulverización y más. Más de 20 años de experiencia en el sector agrícola argentino.",
+  description = "Ofrecemos servicios agropecuarios integrales incluyendo siembra, cosecha, pulverización y más. Más de 45 años de experiencia en el sector agrícola argentino.",
   image,
   canonicalURL,
   publishedDate,
@@ -71,12 +71,15 @@ import "@/styles/global.css";
 
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
-  <!-- Preconexiones recomendadas por Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Preconexiones recomendadas por Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-<!-- Fuente Poppins con display=swap para mejor UX -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <!-- Fuente Poppins con display=swap para mejor UX -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body class="custom-scroll">
     <div id="app" class="grid min-h-dvh grid-rows-[auto_1fr_auto]">
@@ -84,13 +87,13 @@ import "@/styles/global.css";
         <NavBar />
       </header>
       <main class="[grid-area:main]"><slot /><SpeedInsights /></main>
-      <footer class="[grid-area:footer] min-w-[620px]"><Footer client:visible /></footer>
+      <footer class="[grid-area:footer] min-w-[620px]">
+        <Footer client:visible />
+      </footer>
     </div>
   </body>
 </html>
-<style >
-
- 
+<style>
   #app {
     display: grid;
     grid-template-areas:

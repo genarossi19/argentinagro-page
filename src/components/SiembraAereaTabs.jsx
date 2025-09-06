@@ -1,5 +1,14 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plane, Leaf, Target, Zap } from "lucide-react";
+import {
+  Plane,
+  Leaf,
+  Target,
+  Zap,
+  History,
+  Flower2,
+  Globe,
+} from "lucide-react";
+import { Button } from "./ui/button";
 
 export function SiembraAereaTabs() {
   return (
@@ -58,6 +67,51 @@ export function SiembraAereaTabs() {
                   líneas eléctricas
                 </span>
               </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Acronex */}
+        <div className="flex items-start gap-4 p-4 rounded-lg">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-logo-blue/10 text-logo-blue">
+            <Plane className="h-6 w-6" />
+          </div>
+          <div>
+            <h3 className="font-semibold text-lg text-gray-900">
+              Sistema de monitoreo Acronex - Unimap
+            </h3>
+            <ul className="mt-2 space-y-2 text-gray-500">
+              <li className="flex items-center gap-2">
+                <History className="h-4 w-4 text-logo-blue" />
+                <span>Monitoreo en tiempo real</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Zap className="h-4 w-4 text-logo-blue" />
+                <span>Gestión eficiente</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Flower2 className="h-4 w-4 text-logo-blue" />
+                <span>Mayor trazabilidad</span>
+              </li>
+              <div className=" flex gap-10 justify-center items-center w-64">
+                <img src="/acronex-logo.png" alt="acronex" />
+                <a
+                  target="_blank"
+                  href="https://www.acronex.com/"
+                  class="w-full sm:w-auto"
+                >
+                  <Button
+                    className="w-full sm:w-auto bg-[#0C90E9] hover:bg-[#0C90E9]/90 text-white gap-2 group"
+                    size="lg"
+                  >
+                    <span>Saber más</span>
+                    <Globe
+                      size={18}
+                      className="transition-transform group-hover:translate-x-1"
+                    />
+                  </Button>
+                </a>
+              </div>
             </ul>
           </div>
         </div>
